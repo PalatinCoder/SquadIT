@@ -11,7 +11,7 @@ title                    : "SquadIT"
 title_separator          : "-"
 name                     : "SquadIT Project"
 description              : "SquadIT makes managing your sports squad easy!"
-url                      : "https://palatincoder.github.io"  # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://palatincoder.github.com"  # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/SquadIT"                         # the subpath of your site, e.g. "/blog"
 repository               : "PalatinCoder/SquadIT"             # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
@@ -79,17 +79,17 @@ analytics:
 author:
   name             : "The SquadIT Team"
   avatar           : "bio-photo.jpg"
-  bio              : "We're students at Karlsruhe DHBW, developing this application as a project for the software engineering lecture"
+  bio              : "We're three students at Karlsruhe DHBW, developing this application as a project for the software engineering lecture"
   location         : "Karlsruhe, Germany"
   email            :
-  uri              : "https://palatincoder.github.io/SquadIT/"
+  uri              :
   bitbucket        :
   codepen          :
   dribbble         :
   flickr           :
   facebook         :
   foursquare       :
-  github           : "asdfre"
+  github           : "PalatinCoder/SquadIT"
   google_plus      :
   keybase          :
   instagram        :
