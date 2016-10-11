@@ -5,4 +5,4 @@ author_profile: true
 permalink: /about/
 ---
 
-We don't no either. So stay tuned!
+We don't know either. So stay tuned!
