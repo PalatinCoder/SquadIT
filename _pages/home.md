@@ -9,5 +9,5 @@ header:
   overlay_image: header.jpg
   cta_label: "Try it!"
   cta_url: "http://squadit-service.jan-sl.de/"
-excerpt: "SquadIT let's you manage your squad easily from the web. Add your team mate, and invite them to have a drink with you!"
+excerpt: "SquadIT let's you manage your squad easily from the web. Add your team mates, add your schedule, relax!"
 ---
