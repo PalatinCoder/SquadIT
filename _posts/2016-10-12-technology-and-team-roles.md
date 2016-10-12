@@ -17,13 +17,13 @@ First steps first, we need to select the technology, frameworks and tools which 
 
 + **GitHub** obviously to host the code, also our homepage and blog are hosted on GitHub Pages
 + **Travis-CI** for continuous integration, unit- and framework testing
-+ **Telegram** as messenger, also connected to GitHub via the GitHub Bot to notify us of commits, PRs, etc.
++ **Telegram** as messenger, also connected to GitHub via the [GitHubBot](https://telegram.me/GitHubBot) to notify us of commits, PRs, etc.
 
 The selection of the tools was rather straight forward, so to the interesting stuff now: How do we organize ourselves?
 
 ### Team Roles
 
-Based on the RUP roles we assigned roles to each team member. We only picked the roles we think are important, while keeping an eye on having both breadth and depth view for each discipline. Each of us has the Role "Implementer", as all of us do want and need to work on the code itself.
+Based on the [RUP roles](http://www.ibm.com/developerworks/rational/library/apr05/crain/) we assigned roles to each team member. We only picked the roles we think are important, while keeping an eye on having both breadth and depth view for each discipline. Each of us has the Role "Implementer", as all of us do want and need to work on the code itself.
 
 | Ferdinand | Jan | Rico |
 |-----------|-----|------|
