@@ -1,7 +1,7 @@
 ---
 title: "Technology and Team Roles"
 author: Jan
-excerpt: "After we introduced our project last week, we now want to talk about the technology we're going to use to build SquadIT, and also how we arranged the team roles."
+excerpt: "After we introduced our project last week, we now want to talk about the technology we're going to use and also how we arranged the team roles."
 ---
 
 Goooooood Morning World!
@@ -27,5 +27,7 @@ Based on the [RUP roles](http://www.ibm.com/developerworks/rational/library/apr0
 
 | Ferdinand | Jan | Rico |
 |-----------|-----|------|
-|<ul><li>Test Manager</li><li>Change Control Manager</li><li>Co-Implementer</li></ul>|<ul><li>Software Architect</li><li>Integrator</li><li>Co-Implementer<li>Tool Specialist</li></ul>|<ul><li>Business Process Analyst</li><li>Co-Implementer</li><li>Testdesigner</li></ul>|
-{: rules="groups"}
+|Test Manager|Software Architect|Business Process Analyst|
+|Change Control Manager|Integrator|Co-Implementer|
+|Co-Implementer|Co-Implementer|Testdesigner|
+||Tool Specialist||
