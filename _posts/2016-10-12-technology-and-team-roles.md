@@ -17,6 +17,7 @@ First steps first, we need to select the technology, frameworks and tools which 
 
 + **GitHub** obviously to host the code, also our homepage and blog are hosted on GitHub Pages
 + **Travis-CI** for continuous integration, unit- and framework testing
++ **[Composer](getcomposer.org)** as a PHP package and dependency manager
 + **Telegram** as messenger, also connected to GitHub via the [GitHubBot](https://telegram.me/GitHubBot) to notify us of commits, PRs, etc.
 
 The selection of the tools was rather straight forward, so to the interesting stuff now: How do we organize ourselves?
