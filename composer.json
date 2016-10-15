@@ -1,0 +1,20 @@
+{
+    "description": "SquadIT is a web application that makes managing your sports squad easy",
+    "homepage": "http://squadit.jan-sl.de/",
+    "license": "MIT",
+    "type": "neos-package",
+    "require": {
+        "typo3/flow": "~3.3.0"
+    },
+    "name": "squadit/webapp",
+    "autoload": {
+        "psr-0": {
+            "SquadIT\\WebApp": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "SquadIT.WebApp"
+        }
+    }
+}
