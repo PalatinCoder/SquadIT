@@ -20,6 +20,10 @@ First steps first, we need to select the technology, frameworks and tools which 
 + **[Composer](https://getcomposer.org)** as a PHP package and dependency manager
 + **Telegram** as messenger, also connected to GitHub via the [GitHubBot](https://telegram.me/GitHubBot) to notify us of commits, PRs, etc.
 
+Note: If you are interested in how I set up the development environment on my machine, you can look on the [wiki page](https://github.com/PalatinCoder/SquadIT/wiki/Dev-Env-setup), or feel free to ask me :)
+
+---
+
 The selection of the tools was rather straight forward, so to the interesting stuff now: How do we organize ourselves?
 
 ### Team Roles
