@@ -13,7 +13,7 @@ name                     : "SquadIT Project"
 description              : "SquadIT makes managing your sports squad easy!"
 url                      : "http://squadit.jan-sl.de"  # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : ""                         # the subpath of your site, e.g. "/blog"
-repository               : "PalatinCoder/SquadIT"             # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "PalatinCoder/SquadIT.WebApp" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
