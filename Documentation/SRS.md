@@ -1,42 +1,33 @@
 # SquadIT - Software Requirements Specification
 
-Note: For revision history, refer to this [Link](https://github.com/PalatinCoder/SquadIT.WebApp/commits/master/Documentation/SRS.md)
+Note: For revision history, refer to this [link](https://github.com/PalatinCoder/SquadIT.WebApp/commits/master/Documentation/SRS.md)
 
 ## 1 Introduction
 
-[The introduction of the Software Requirements Specification (SRS) provides an overview of the entire SRS. It includes the purpose, scope, definitions, acronyms, abbreviations, references, and overview of the SRS.]
-[Note: The SRS document captures the complete software requirements for the system, or a portion of the system.  Following is a typical SRS outline for a project using only traditional, natural-language style requirements—with no use-case modeling.  It captures all requirements in a single document, with applicable sections inserted from the Supplementary Specifications (which would no longer be needed).  For a template of an SRS using use-case modeling, which consists of a package containing Use Cases of the use-case model and applicable Supplementary Specifications and other supporting information, see rup_srsuc.dot.]
-[Many different arrangements of an SRS are possible.  Refer to [IEEE830-1998] for further elaboration of these explanations, as well as other options for SRS organization.]
 
 ### 1.1 Purpose
 
-[Specify the purpose of this SRS. The SRS fully describes the external behavior of the application or subsystem identified. It also describes nonfunctional requirements, design constraints, and other factors necessary to provide a complete and comprehensive description of the requirements for the software.]
+This document describes all specifications for the "SquadIT WebApp". The purpose of this web app is to help people organize their teams. Therefor it provides an intuitive interface to manage team members, schedule events and communicate with each other. These features are described below. Furthermore other important aspects such as reliability, performance and design are discussed.
 
 ### 1.2 Scope
 
-[Specify the purpose of this SRS. The SRS fully describes the external behavior of the application or subsystem identified. It also describes nonfunctional requirements, design constraints, and other factors necessary to provide a complete and comprehensive description of the requirements for the software.]
+tbd
 
 ### 1.3 Definitions, Acronyms and Abbreviations
 
-[This subsection provides the definitions of all terms, acronyms, and abbreviations required to properly interpret the SRS.  This information may be provided by reference to the project’s Glossary.]
+tbe
 
 ### 1.4 References
 
-[This subsection provides a complete list of all documents referenced elsewhere in the SRS.  Identify each document by title, report number if applicable, date, and publishing organization.  Specify the sources from which the references can be obtained. This information may be provided by reference to an appendix or to another document.]
+tbd
 
 ### 1.5 Overview
 
-[This subsection describes what the rest of the SRS contains and explains how the document is organized.]
+The following chapters are about our vision and perspective, the software requirements, the demands we have, licensing and the technical realisation of this project.
 
 ## 2 Overall Description
 
-[This section of the SRS describes the general factors that affect the product and its requirements.  This section does not state specific requirements.  Instead, it provides a background for those requirements, which are defined in detail in Section 3, and makes them easier to understand. Include such items as:
-•	product perspective
-•	product functions
-•	 user characteristics
-•	constraints
-•	assumptions and dependencies
-•	requirements subsets]
+Many people bla bla sports club... bla bla... organize their team with our webapp, tbe
 
 ## 3 Specific Requirements
 
