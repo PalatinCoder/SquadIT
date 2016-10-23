@@ -7,27 +7,29 @@ Note: For revision history, refer to this [link](https://github.com/PalatinCoder
 
 ### 1.1 Purpose
 
-This document describes all specifications for the "SquadIT WebApp". The purpose of this web app is to help people organize their teams. Therefor it provides an intuitive interface to manage team members, schedule events and communicate with each other. These features are described below. Furthermore other important aspects such as reliability, performance and design are discussed.
+This document describes the specifications for "SquadIT". The purpose of this application is to help people organize their teams. Therefor it provides an intuitive interface to manage team members, schedule events and communicate with each other. These features are described below. Furthermore other important aspects such as reliability, performance and design are discussed.
 
 ### 1.2 Scope
 
-tbd
+This document defines the requirements for the web app. Other components such as mobile apps are not in the scope of this document. Furthermore, it servers as an internal reference to be used during development of the application.
 
 ### 1.3 Definitions, Acronyms and Abbreviations
 
-tbe
+N/A
 
 ### 1.4 References
 
-tbd
+* [Website](http://squadit.jan-sl.de/)
+* [Blog](http://squadit.jan-sl.de/blog)
+* [GitHub](https://github.com/PalatinCoder/SquadIT.WebApp)
 
 ### 1.5 Overview
 
-The following chapters are about our vision and perspective, the software requirements, the demands we have, licensing and the technical realisation of this project.
+The following chapters are about our vision and perspective, the software requirements, the demands we have, licensing and the technical realization of this project.
 
 ## 2 Overall Description
 
-Many people bla bla sports club... bla bla... organize their team with our webapp, tbe
+[TBD]
 
 ## 3 Specific Requirements
 
@@ -35,103 +37,96 @@ Many people bla bla sports club... bla bla... organize their team with our webap
 
 ### 3.1 Functionality
 
-[This section describes the functional requirements of the system for those requirements that are expressed in the natural language style. For many applications, this may constitute the bulk of the SRS package and thought should be given to the organization of this section. This section is typically organized by feature, but alternative organization methods may also be appropriate; for example, organization by user or organization by subsystem. Functional requirements may include feature sets, capabilities, and security.
-Where application development tools, such as requirements tools, modeling tools, and the like, are employed to capture the functionality, this section of the document would refer to the availability of that data, indicating the location and name of the tool used to capture the data.]
+#### 3.1.1 User registration
 
-#### 3.1.1 <Functional requirement one>
+The user is able to create an account in order to use the application. Therefor he must provide a valid email address and his name.
 
-[The requirement description]
+#### 3.1.2 Login/logout
+
+The user needs to authenticate prior to using the application. For authentication the usual email address / password credentials are used.
+
+#### 3.1.3 Create a squad
+
+A user is able to create a squad and add his team mates to it via their email addresses. Also he can assign a name and a logo for the squad. The user will also be the team captain of this particular squad.
+
+#### 3.1.4 Squad Schedule
+
+The team captain can manage events like regular matches or tournaments in the squad's calendar. Each events consists of a name, date, description and optionally further notes. Each team member can view the schedule.
+
+#### 3.1.5 Team mates' statuses
+
+A user can assign a yes / no / maybe status to himself for each event in the schedule. Each team member can see who will be available for each event.
+
+#### 3.1.6 Re-schedule events
+
+Each team member can ask for rescheduling of an event. He suggests a new date and time and a message. Other team members are notified and need to adjust their statuses accordingly. The rescheduled event is marked as a proposal until the team captain confirms it.
+
+#### 3.1.7 Messaging
+
+Team members can send messages to an internal board.
 
 ### 3.2 Usability
 
-[This section includes all those requirements that affect usability. For example,
-•	specify the required training time for a normal users and a power user to become productive at particular operations
-•	specify measurable task times for typical tasks or base the new system’s usability requirements on other systems that the users know and like
-•	specify requirement to conform to common usability standards, such as IBM’s CUA standards Microsoft’s GUI standards]
+#### 3.2.1 Intuitive interface
 
-#### 3.2.1 <Usability requirement one>
+The user interface should be easy to use following the usual design patterns for web applications, so the user will need little to no time to learn using the app.
 
-[The requirement goes here]
+#### 3.2.2 Short click paths
+
+As the app shall make life easier, the described use cases should be reachable with few clicks.
 
 ### 3.3 Reliability
 
-[Requirements for reliability of the system should be specified here. Some suggestions follow:
-•	Availability—specify the percentage of time available ( xx.xx%), hours of use, maintenance access, degraded mode operations, and so on.
-•	Mean Time Between Failures (MTBF) — this is usually specified in hours, but it could also be specified in terms of days, months or years.
-•	Mean Time To Repair (MTTR)—how long is the system allowed to be out of operation after it has failed?
-•	Accuracy—specifies precision (resolution) and accuracy (by some known standard) that is required in the system’s output.
-•	Maximum Bugs or Defect Rate—usually expressed in terms of bugs per thousand lines of code (bugs/KLOC) or bugs per function-point( bugs/function-point).
-•	Bugs or Defect Rate—categorized in terms of minor, significant, and critical bugs: the requirement(s) must define what is meant by a “critical” bug; for example, complete loss of data or a complete inability to use certain parts of the system’s functionality.]
+#### 3.3.1 Availability
 
-#### 3.3.1 <Reliability requirement one>
+Server uptime should be around 80%(?)
 
-[The requirement description]
+#### 3.3.2 Data consistency
+
+Data consistency must be ensured under all circumstances.
 
 ### 3.4 Performance
 
-[The system’s performance characteristics are outlined in this section. Include specific response times. Where applicable, reference related Use Cases by name.
-•	Response time for a transaction (average, maximum)
-•	Throughput, for example, transactions per second
-•	Capacity, for example, the number of customers or transactions the system can accommodate
-•	Degradation modes (what is the acceptable mode of operation when the system has been degraded in some manner)
-•	Resource utilization, such as memory, disk, communications, and so forth.
+#### 3.4.1 Response times
 
-#### 3.4.1 <Performance requirement one>
+The server's response time should not exceed two seconds time to first byte.
 
-[The requirement description goes here]
+#### 3.4.2 Scalability
+
+The system should be able to scale with growing users numbers.
 
 ### 3.6 Design Constraints
 
-[This section indicates any design constraints on the system being built. Design constraints represent design decisions that have been mandated and must be adhered to.  Examples include software languages, software process requirements, prescribed use of developmental tools, architectural and design constraints, purchased components, class libraries, and so on.]
+#### 3.6.1 Language
 
-#### 3.6.1 <Design constraint one>
-
-[The requirement description goes here]
+The application will be developed using PHP and the Flow Framework
 
 ### 3.7 Online User Documentation and Help System Requirements
 
-[Describes the requirements, if any, for o-line user documentation, help systems, help about notices, and so forth.]
+As per the defined usability requirements a user should be able to use the application intuitively and no online help system shall be required. A end user documentation may be created.
 
 ### 3.8 Purchased Components
 
-[This section describes any purchased components to be used with the system, any applicable licensing or usage restrictions, and any associated compatibility and interoperability or interface standards.]
+N/A
 
 ### 3.9 Interfaces
 
-[This section defines the interfaces that must be supported by the application. It should contain adequate specificity, protocols, ports and logical addresses, and the like, so that the software can be developed and verified against the interface requirements.]
-
 #### 3.9.1 User Interfaces
 
-[Describe the user interfaces that are to be implemented by the software.]
+* Website / Browser
 
-#### 3.9.2 Hardware Interfaces
+#### 3.9.2 Software Interfaces
 
-[This section defines any hardware interfaces that are to be supported by the software, including logical structure, physical addresses, expected behavior, and so on.]
-
-#### 3.9.3 Software Interfaces
-
-[This section describes software interfaces to other components of the software system. These may be purchased components, components reused from another application or components being developed for subsystems outside of the scope of this SRS but with which this software application must interact.]
-
-#### 3.9.4 Communications Interface
-
-[Describe any communications interfaces to other systems or devices such as local area networks, remote serial devices, and so forth.]
+* RESTful API to tie mobile apps to the system may be added
 
 ### 3.10 Licensing Requirements
 
-[Defines any licensing enforcement requirements or other usage restriction requirements that are to be exhibited by the software.]
+N/A
 
 ### Legal, Copyright and Other Notices
 
-[This section describes any necessary legal disclaimers, warranties, copyright notices, patent notices, wordmark, trademark, or logo compliance issues for the software.]
+Copyright (c) 2016 The SquadIT Developers. The application is licensed under the MIT License.
 
 ### 3.12 Applicable Standards
 
-[This section describes by reference any applicable standard and the specific sections of any such standards which apply to the system being described. For example, this could include legal, quality and regulatory standards, industry standards for usability, interoperability, internationalization, operating system compliance, and so forth.]
-
 ## Supporting Information
-
-[The supporting information makes the SRS easier to use.  It includes:
-•	Table of contents
-•	Index
-•	Appendices
-These may include use-case storyboards or user-interface prototypes. When appendices are included, the SRS should explicitly state whether or not the appendices are to be considered part of the requirements.]
