@@ -104,11 +104,19 @@ The server's response time should not exceed two seconds time to first byte.
 
 The system should be able to scale with growing users numbers.
 
+### 3.5 Supportability
+
+#### 3.5.1 Follow [PSR-2][psr2] coding standard
+
+#### 3.5.2 Documentation in the code
+
+Documenting in the code improves supportability of the code and is also mandatory for the framework to work properly.
+
 ### 3.6 Design Constraints
 
 #### 3.6.1 Language
 
-The application will be developed using PHP and the [Flow Framework][flow] and implement the MVC pattern. The PHP code shall follow the [PSR-2 Coding standard][psr2]. The view will coded in HTML and CSS3 with help of [Bootstrap][twbt] and [jQuery][jquery].
+The application will be developed using PHP and the [Flow Framework][flow] and implement the MVC pattern. The view will coded in HTML and CSS3 with help of [Bootstrap][twbt] and [jQuery][jquery].
 
 ### 3.7 Online User Documentation and Help System Requirements
 
@@ -124,15 +132,23 @@ N/A
 
 * Website / Browser, as described in [Functionality](#31-functionality)
 
-#### 3.9.2 Software Interfaces
+#### 3.9.2 Hardware Interfaces
+
+N/A
+
+#### 3.9.3 Software Interfaces
 
 * RESTful API to tie mobile apps to the system may be added
+
+#### 3.9.4 Communications Interfaces
+
+N/A
 
 ### 3.10 Licensing Requirements
 
 N/A
 
-### Legal, Copyright and Other Notices
+### 3.11 Legal, Copyright and Other Notices
 
 Copyright (c) 2016 The SquadIT Developers. The application is licensed under the MIT License.
 
@@ -141,6 +157,8 @@ Copyright (c) 2016 The SquadIT Developers. The application is licensed under the
 * [PSR-2][psr2]
 
 ## Supporting Information
+
+TBD
 
 
 <!-- Link definitions -->
