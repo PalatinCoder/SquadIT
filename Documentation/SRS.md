@@ -120,7 +120,7 @@ Documenting in the code improves supportability of the code and is also mandator
 
 #### 3.6.1 Language
 
-The application will be developed using PHP and the [Flow Framework][flow] and implement the MVC pattern. The view will coded in HTML and CSS3 with help of [Bootstrap][twbt] and [jQuery][jquery].
+The application will be developed using PHP and the [Flow Framework][flow] and will implement the MVC pattern. The view will be coded in HTML and CSS3 with help of [Bootstrap][twbt] and [jQuery][jquery].
 
 ### 3.7 Online User Documentation and Help System Requirements
 
