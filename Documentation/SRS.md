@@ -112,7 +112,11 @@ The system should be able to scale with growing users numbers.
 
 #### 3.5.1 Follow [PSR-2][psr2] coding standard
 
-#### 3.5.2 Documentation in the code
+#### 3.5.2 Follow [PSR-4][psr4] standard for directory structure and autoloading
+
+This is mandatory for the framework to work properly.
+
+#### 3.5.3 Documentation in the code
 
 Documenting in the code improves supportability of the code and is also mandatory for the framework to work properly.
 
@@ -159,6 +163,7 @@ Copyright (c) 2016 The SquadIT Developers. The application is licensed under the
 ### 3.12 Applicable Standards
 
 * [PSR-2][psr2]
+* [PSR-4][psr4]
 
 ## Supporting Information
 
@@ -167,6 +172,7 @@ TBD
 
 <!-- Link definitions -->
 [psr2]: http://www.php-fig.org/psr/psr-2/ "PSR-2"
+[psr4]: http://www.php-fig.org/psr/psr-4/ "PSR-4"
 [twbt]: http://getbootstrap.com "Bootstrap"
 [flow]: http://flow.neos.io "Flow Framework"
 [jquery]: http://jquery.com "jQuery"
