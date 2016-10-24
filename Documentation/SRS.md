@@ -66,6 +66,10 @@ Each team member can ask for rescheduling of an event. He suggests a new date an
 
 Team members can send messages to an internal board.
 
+#### 3.1.8 E-mail notifications
+
+When an event has been rescheduled or a new message was added to the internal board, e-mails with all the important information and a link to the message or event are sent to the user. Users can disable e-mail notifications
+
 ### 3.2 Usability
 
 #### 3.2.1 Intuitive interface
