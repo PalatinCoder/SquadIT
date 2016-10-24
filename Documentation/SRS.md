@@ -122,7 +122,7 @@ N/A
 
 #### 3.9.1 User Interfaces
 
-* Website / Browser, as described in [Functionality](31-functionality)
+* Website / Browser, as described in [Functionality](#31-functionality)
 
 #### 3.9.2 Software Interfaces
 
