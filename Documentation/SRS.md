@@ -1,6 +1,6 @@
 # SquadIT - Software Requirements Specification
 
-Note: For revision history, refer to this [link](https://github.com/PalatinCoder/SquadIT.WebApp/commits/master/Documentation/SRS.md)
+Note: For revision history of this document, refer to this [link](https://github.com/PalatinCoder/SquadIT.WebApp/commits/master/Documentation/SRS.md)
 
 ## 1 Introduction
 
@@ -29,11 +29,12 @@ The following chapters are about our vision and perspective, the software requir
 
 ## 2 Overall Description
 
-[TBD]
+The SquadIT web app will be a responsive web portal to access the functions of SquadIT. It will provide interfaces to the calendar and the squad management.
+
+An overview of the components is given in the following overall use case diagram:
+![Overall use case diagram](overall_ucd.png)
 
 ## 3 Specific Requirements
-
-[This section of the SRS contains all software requirements to a level of detail sufficient to enable designers to design a system to satisfy those requirements, and testers to test that the system satisfies those requirements. When using use-case modeling, these requirements are captured in the Use Cases and the applicable supplementary specifications.  If use-case modeling is not used, the outline for supplementary specifications may be inserted directly into this section, as shown below.]
 
 ### 3.1 Functionality
 
@@ -79,11 +80,19 @@ As the app shall make life easier, the described use cases should be reachable w
 
 #### 3.3.1 Availability
 
-Server uptime should be around 80%(?)
+Server uptime should be around 90%. Lower uptimes during development are acceptable.
 
 #### 3.3.2 Data consistency
 
 Data consistency must be ensured under all circumstances.
+
+#### 3.3.3 Mean Time Between Failures
+
+Should be as high as possible. No estimation possible at the moment.
+
+#### 3.3.4 Mean Time To Repair
+
+Should be as low as possible. Current target is three workdays.
 
 ### 3.4 Performance
 
@@ -99,7 +108,7 @@ The system should be able to scale with growing users numbers.
 
 #### 3.6.1 Language
 
-The application will be developed using PHP and the Flow Framework
+The application will be developed using PHP and the [Flow Framework][flow] and implement the MVC pattern. The PHP code shall follow the [PSR-2 Coding standard][psr2]. The view will coded in HTML and CSS3 with help of [Bootstrap][twbt] and [jQuery][jquery].
 
 ### 3.7 Online User Documentation and Help System Requirements
 
@@ -113,7 +122,7 @@ N/A
 
 #### 3.9.1 User Interfaces
 
-* Website / Browser
+* Website / Browser, as described in [Functionality](31-functionality)
 
 #### 3.9.2 Software Interfaces
 
@@ -129,4 +138,13 @@ Copyright (c) 2016 The SquadIT Developers. The application is licensed under the
 
 ### 3.12 Applicable Standards
 
+* [PSR-2][psr2]
+
 ## Supporting Information
+
+
+<!-- Link definitions -->
+[psr2]: http://www.php-fig.org/psr/psr-2/ "PSR-2"
+[twbt]: http://getbootstrap.com "Bootstrap"
+[flow]: http://flow.neos.io "Flow Framework"
+[jquery]: http://jquery.com "jQuery"
