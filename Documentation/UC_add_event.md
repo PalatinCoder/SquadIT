@@ -5,6 +5,7 @@
 ### 1.1 Brief Description
 
 This use-case allows the team captain to add an event to the Squad Calendar.
+This use-case is part of the functional requirement [3.1.4 "Squad Schedule"](SRS.md#314-squad-schedule).
 
 ## 2. Flow of Events
 
@@ -13,6 +14,7 @@ This use-case allows the team captain to add an event to the Squad Calendar.
 The user has to fill in the necessary information and is then able to save the event. Afterwards, all team members are notified about the new event and are able to send answers (see the corresponding UC [TBD]).
 
 * **UML Diagram**
+
   ![uml][]
 * **Mockup**
   ![mock][]
@@ -40,5 +42,5 @@ N/A
 * Send notification to team members
 
 <!-- link definitions -->
-[uml]: UC_AddEvent_UML.png "UML Diagram: UC Add Event"
+[uml]: UC_AddEvent_Activity.png "UML Diagram: UC Add Event"
 [mock]: UC_AddEvent_Mockup.png "Mockup: UC Add Event"
