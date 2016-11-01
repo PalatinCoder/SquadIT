@@ -24,6 +24,7 @@ N/A
 * [GitHub](https://github.com/PalatinCoder/SquadIT.WebApp)
 * Use-Cases
   + [Add Event](UC_add_event.md)
+  + [Create Squad](UC_create_squad.md)
 
 ### 1.5 Overview
 
