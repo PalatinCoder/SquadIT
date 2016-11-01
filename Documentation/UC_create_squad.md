@@ -1,4 +1,4 @@
-# Use-Case Specification: Add event
+# Use-Case Specification: Create Squad
 
 ## 1. Use-Case Name
 
