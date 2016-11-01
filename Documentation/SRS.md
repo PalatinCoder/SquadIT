@@ -66,6 +66,10 @@ Each team member can ask for rescheduling of an event. He suggests a new date an
 
 Team members can send messages to an internal board.
 
+#### 3.1.8 E-mail notifications
+
+When an event has been rescheduled or a new message was added to the internal board, e-mails with all the important information and a link to the message or event are sent to the user. Users can disable e-mail notifications
+
 ### 3.2 Usability
 
 #### 3.2.1 Intuitive interface
@@ -108,7 +112,11 @@ The system should be able to scale with growing users numbers.
 
 #### 3.5.1 Follow [PSR-2][psr2] coding standard
 
-#### 3.5.2 Documentation in the code
+#### 3.5.2 Follow [PSR-4][psr4] standard for directory structure and autoloading
+
+This is mandatory for the framework to work properly.
+
+#### 3.5.3 Documentation in the code
 
 Documenting in the code improves supportability of the code and is also mandatory for the framework to work properly.
 
@@ -116,7 +124,7 @@ Documenting in the code improves supportability of the code and is also mandator
 
 #### 3.6.1 Language
 
-The application will be developed using PHP and the [Flow Framework][flow] and implement the MVC pattern. The view will coded in HTML and CSS3 with help of [Bootstrap][twbt] and [jQuery][jquery].
+The application will be developed using PHP and the [Flow Framework][flow] and will implement the MVC pattern. The view will be coded in HTML and CSS3 with help of [Bootstrap][twbt] and [jQuery][jquery].
 
 ### 3.7 Online User Documentation and Help System Requirements
 
@@ -155,6 +163,7 @@ Copyright (c) 2016 The SquadIT Developers. The application is licensed under the
 ### 3.12 Applicable Standards
 
 * [PSR-2][psr2]
+* [PSR-4][psr4]
 
 ## Supporting Information
 
@@ -163,6 +172,7 @@ TBD
 
 <!-- Link definitions -->
 [psr2]: http://www.php-fig.org/psr/psr-2/ "PSR-2"
+[psr4]: http://www.php-fig.org/psr/psr-4/ "PSR-4"
 [twbt]: http://getbootstrap.com "Bootstrap"
 [flow]: http://flow.neos.io "Flow Framework"
 [jquery]: http://jquery.com "jQuery"
