@@ -5,7 +5,7 @@
 ### 1.1 Brief Description
 
 This use-case allows a member to create a squad and become the team captain of it.
-This use-case is part of the functional requirement [3.1.3 "Create a squad"](SRS.md#313-create-a-squad).
+This use-case is corresponds to the functional requirement [3.1.3 "Create a squad"](SRS.md#313-create-a-squad).
 
 ## 2. Flow of Events
 
@@ -16,7 +16,9 @@ The user has to fill in the necessary information and is then able to create a s
 * **UML Diagram**
 
   ![uml][]
+  
 * **Mockup**
+
   ![mock][]
 
 ### 2.2 Alternative Flows
