@@ -22,6 +22,9 @@ N/A
 * [Website](http://squadit.jan-sl.de/)
 * [Blog](http://squadit.jan-sl.de/blog)
 * [GitHub](https://github.com/PalatinCoder/SquadIT.WebApp)
+* Use-Cases
+  + [Add Event](UC_add_event.md)
+  + [Create Squad](UC_create_squad.md)
 
 ### 1.5 Overview
 
@@ -53,6 +56,8 @@ A user is able to create a squad and add his team mates to it via their email ad
 #### 3.1.4 Squad Schedule
 
 The team captain can manage events like regular matches or tournaments in the squad's calendar. Each events consists of a name, date, description and optionally further notes. Each team member can view the schedule.
+
+This requirement is further described in the use-cases [Add Event](UC_add_event.md), [TBD].
 
 #### 3.1.5 Team mates' statuses
 
