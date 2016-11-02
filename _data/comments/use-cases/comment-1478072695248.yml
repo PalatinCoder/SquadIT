@@ -1,0 +1,6 @@
+message: "Hi SquadIT,\r\n\r\nyour MockUps design is great! I think the related diagrams are completly understandable. The template shows all important information about the UseCases. But, in the other hand, there are some actions unecessary (like click \"Create squad\"/\"Add Event\"). That is because when your UC is named create squad, you know you had to click a button or similar with that name before calling the UC.  \r\nKeep it up!\r\n\r\nGreetings,\r\nthe JoinSports-Team"
+name: Join
+email: 642cbbe767c585b5048bce706ee78e00
+url: ''
+hidden: ''
+date: '2016-11-02T07:44:54.597Z'
