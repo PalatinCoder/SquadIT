@@ -53,6 +53,8 @@ The user needs to authenticate prior to using the application. For authenticatio
 
 A user is able to create a squad and add his team mates to it via their email addresses. Also he can assign a name and a logo for the squad. The user will also be the team captain of this particular squad.
 
+This requirement is described in the use-case [Create squad](UC_create_squad.md).
+
 #### 3.1.4 Squad Schedule
 
 The team captain can manage events like regular matches or tournaments in the squad's calendar. Each events consists of a name, date, description and optionally further notes. Each team member can view the schedule.
