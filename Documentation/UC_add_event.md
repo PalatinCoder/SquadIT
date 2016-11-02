@@ -5,7 +5,7 @@
 ### 1.1 Brief Description
 
 This use-case allows the team captain to add an event to the Squad Calendar.
-This use-case is part of the functional requirement [3.1.4 "Squad Schedule"](SRS.md#314-squad-schedule).
+This use-case is part of the functional requirement [3.1.4 "Squad Schedule"](SRS.md#314-squad-schedule) and therefor a part of a CRUD.
 
 ## 2. Flow of Events
 
