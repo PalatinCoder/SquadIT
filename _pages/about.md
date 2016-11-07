@@ -11,7 +11,7 @@ We are a team of three Computer Science students from the DHBW Karlsruhe in sout
 Part of the team are Jan, Rico and Ferdinand.
 
 ## Our Project
-SquadIT is the project we do for our Software Engineering class. The goal is to achieve experience in working on a software project based on an agile developement. We got to chose a topic for our project and of wich technologies the soloution should consist.
+SquadIT is the project we do for our Software Engineering class. The goal is to achieve experience in working on a software project based on an agile developement. We got to chose a topic for our project and of which technologies the solution should consist.
 To come up with a good topic we tried to look out for daily problems in our life which could be easily implemented.
 So we came up with sports management for squads and clubs!
 
