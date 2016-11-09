@@ -1,0 +1,6 @@
+-
+  name: 'Fallback Route'
+  uriPattern: ''
+  defaults:
+    '@controller': 'Standard'
+    '@action': 'index'
