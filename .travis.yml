@@ -1,0 +1,13 @@
+language: php
+php:
+    - '7.0'
+
+
+script:
+    - echo 'dummy'
+
+deploy:
+    provider: script
+    script: curl https://squadit-service.jan-sl.de/travis-ci/deploy.sh
+    on:
+        branch: master
