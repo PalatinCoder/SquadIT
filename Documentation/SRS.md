@@ -23,8 +23,8 @@ N/A
 * [Blog](http://squadit.jan-sl.de/blog)
 * [GitHub](https://github.com/PalatinCoder/SquadIT.WebApp)
 * Use-Cases
-  + [Add Event](UC_add_event.md)
-  + [Create Squad](UC_create_squad.md)
+  + [Add Event][UC_AddEvent]
+  + [Create Squad][UC_CreateSquad]
 
 ### 1.5 Overview
 
@@ -35,7 +35,7 @@ The following chapters are about our vision and perspective, the software requir
 The SquadIT web app will be a responsive web portal to access the functions of SquadIT. It will provide interfaces to the calendar and the squad management.
 
 An overview of the components is given in the following overall use case diagram:
-![Overall use case diagram](overall_ucd.png)
+![Overall use case diagram][overall_ucd]
 
 ## 3 Specific Requirements
 
@@ -53,13 +53,13 @@ The user needs to authenticate prior to using the application. For authenticatio
 
 A user is able to create a squad and add his team mates to it via their email addresses. Also he can assign a name and a logo for the squad. The user will also be the team captain of this particular squad.
 
-This requirement is described in the use-case [Create squad](UC_create_squad.md).
+This requirement is described in the use-case [Create squad][UC_CreateSquad].
 
 #### 3.1.4 Squad Schedule
 
 The team captain can manage events like regular matches or tournaments in the squad's calendar. Each events consists of a name, date, description and optionally further notes. Each team member can view the schedule.
 
-This requirement is further described in the use-cases [Add Event](UC_add_event.md), [TBD].
+This requirement is further described in the use-cases [Add Event][UC_AddEvent], [TBD].
 
 #### 3.1.5 Team mates' statuses
 
@@ -183,3 +183,7 @@ TBD
 [twbt]: http://getbootstrap.com "Bootstrap"
 [flow]: http://flow.neos.io "Flow Framework"
 [jquery]: http://jquery.com "jQuery"
+
+[overall_ucd]: overall_ucd.png
+[UC_AddEvent]: UC_AddEvent.md
+[UC_CreateSquad]: UC_CreateSquad.md
