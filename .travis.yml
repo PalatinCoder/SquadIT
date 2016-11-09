@@ -3,6 +3,8 @@ php:
     - '7.0'
 
 
+script:
+
 deploy:
     provider: script
     script: curl https://squadit-service.jan-sl.de/travis-ci/deploy.sh
