@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/PalatinCoder/SquadIT.WebApp.svg?branch=master)](https://travis-ci.org/PalatinCoder/SquadIT.WebApp)
 # SquadIT
 SquadIT is a web application that makes managing your sports squad easy!
 
