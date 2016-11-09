@@ -4,6 +4,7 @@ php:
 
 
 script:
+    - echo 'dummy'
 
 deploy:
     provider: script
