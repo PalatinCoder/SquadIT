@@ -13,7 +13,7 @@ use SquadIT\WebApp\Tests\Behavior\Features\Bootstrap\CommonFeaturesTrait;
 //
 
 require_once(__DIR__ . '/../../../../../../Application/Flowpack.Behat/Tests/Behat/FlowContext.php');
-require_once(__DIR__ . './CommonFeaturesTrait.php');
+require_once(__DIR__ . '/CommonFeaturesTrait.php');
 
 /**
  * Features context.
