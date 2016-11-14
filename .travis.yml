@@ -26,7 +26,7 @@ before_script:
 script:
     # TODO Unit & Functional Tests
     - FLOW_CONTEXT=Testing/Behat
-    - ./bin/behat --ansi --stop-on-failure -f progress -c Packages/Application/SquadIT.WebApp/Test/Behavior/behat.yml
+    - ./bin/behat --ansi --stop-on-failure -f progress -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml
 
 deploy:
     provider: script
