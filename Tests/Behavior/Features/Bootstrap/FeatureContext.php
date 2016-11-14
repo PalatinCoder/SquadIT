@@ -3,7 +3,7 @@
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Flowpack\Behat\Tests\Behat\FlowContext;
-use MyCompany\MyPackage\Tests\Behavior\Features\Bootstrap\WurstFeaturesTrait;
+use SquadIT\WebApp\Tests\Behavior\Features\Bootstrap\CommonFeaturesTrait;
 
 //
 // Require 3rd-party libraries here:
@@ -13,12 +13,14 @@ use MyCompany\MyPackage\Tests\Behavior\Features\Bootstrap\WurstFeaturesTrait;
 //
 
 require_once(__DIR__ . '/../../../../../../Application/Flowpack.Behat/Tests/Behat/FlowContext.php');
+require_once(__DIR__ . './CommonFeaturesTrait.php');
 
 /**
  * Features context.
  */
 class FeatureContext extends MinkContext
 {
+    use CommonFeaturesTrait;
 
     /**
      * @var string
