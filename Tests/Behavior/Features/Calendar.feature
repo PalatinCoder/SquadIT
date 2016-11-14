@@ -32,6 +32,21 @@ Scenario: Save Event with correct data
     And I press "save"
     Then I should see "Event \"Testevent\" created"
 
+Scenario: Save Event with incorrect data
+    Given I am logged in as "chef"
+    And I am on "/calendar/add"
+    When I fill in the following:
+        | name          | "Testevent"                   |
+        | description   | "Das ist ein behat Testevent" |
+        | notes         | "notizen..."                  |
+        | date          | "§$quertz"                    |
+        | startTime     | "25:61"                       |
+        | endTime       | "100207$$"                    |
+    And I press "save"
+    Then I should see "invalid date"
+    And I should see "invalid start time"
+    And I should see "invalid end time"
+
 Scenario: Save Event with missing data
     Given I am logged in as "chef"
     And I am on "/calendar/add"
