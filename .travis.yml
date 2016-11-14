@@ -8,7 +8,7 @@ cache:
 install:
     - cd ..
     - composer create-project neos/flow-base-distribution --no-progress --no-interaction
-    - mv SquadIT.WebApp Packages/Application/
+    #- mv SquadIT.WebApp Packages/Application/
     - tree -d
 
 
