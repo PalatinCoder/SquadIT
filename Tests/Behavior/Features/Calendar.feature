@@ -12,18 +12,10 @@ Scenario: Add Event
     Given I am logged in as "chef"
     And I am on "/calendar"
     When I press "Create Event"
-    Then I should see a form with the fields:
-        | id            | type |
-        | name          | text |
-        | description   | text |
-        | notes         | text |
-        | date          | date |
-        | startTime     | time |
-        | endTime       | time |
-    And I should see
+    Then I should see 6 "input" elements
 
 Scenario: Add Event with insufficient permissions
-    Given I am loggen in as "player"
+    Given I am logged in as "player"
     And I am on "/calendar"
     Then I should not see "Create Event"
 
@@ -38,13 +30,13 @@ Scenario: Save Event with correct data
         | startTime     | "13:00"                       |
         | endTime       | "14:00"                       |
     And I press "save"
-    Then I should see 'Event "Testevent" created'
+    Then I should see "Event \"Testevent\" created"
 
 Scenario: Save Event with missing data
-    Given I am loggen in as "chef"
+    Given I am logged in as "chef"
     And I am on "/calendar/add"
-    When I fill "name" with "Testevent"
-    And I fill "description" with "Das ist ein behat Testevent"
+    When I fill in "name" with "Testevent"
+    And I fill in "description" with "Das ist ein behat Testevent"
     And I press "save"
     Then I should be on "/calendar/add"
     #TODO

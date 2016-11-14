@@ -11,14 +11,10 @@ Scenario: Create Squad
     Given I am logged in as "player"
     And I am on "/dashboard"
     When I press "Create a squad"
-    Then I should see a form with the fields:
-        | id        | type |
-        | name      | text |
-        | logo      | fileupload |
-        | member    | list |
+    Then I should see 3 "input" elements
     When I fill in "name" with "Testsquad"
-    And I fill in "member" with the following:
+    And I fill in "member" with:
         | john.doe@example.com |
         | jane.doe@example.com |
     And I press "Create & Join"
-    Then I should see 'Squad "Testsquad" created'
+    Then I should see "Squad \"Testsquad\" created"
