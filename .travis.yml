@@ -1,10 +1,19 @@
 language: php
 php:
     - '7.0'
+cache:
+    directories:
+        - $HOME/.composer/cache
+
+install:
+    - cd ../..
+    - composer create-project neos/flow-base-distribution --no-progress --no-interaction
+    - mv SquadIT/WebApp Packages/Application/SquadIT.WebApp
+    - tree -d
 
 
 script:
-    - echo 'dummy'
+    - ./bin/behat --config Packages/Application/SquadIT.WebApp/Test/Behavior/behat.yml
 
 deploy:
     provider: script
