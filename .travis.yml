@@ -6,14 +6,27 @@ cache:
         - $HOME/.composer/cache
 
 install:
+    - phpenv config-rm xdebug.ini
     - cd ..
     - composer create-project neos/flow-base-distribution --no-progress --no-interaction
     - cd flow-base-distribution
     - mv ../SquadIT.WebApp Packages/Application/
 
+before_script:
+  - echo 'date.timezone = "Antarctica/Troll"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo 'opcache.fast_shutdown = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo 'opcache.enable_cli = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo 'zend.enable_gc = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo 'report_zend_debug = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo 'report_memleaks = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - composer install -d Build/Behat
+  # TODO setup database, config and routing
+  # but for now it works ;)
 
 script:
-    - ./bin/behat --config Packages/Application/SquadIT.WebApp/Test/Behavior/behat.yml
+    # TODO Unit & Functional Tests
+    - FLOW_CONTEXT=Testing/Behat
+    - ./bin/behat --ansi --stop-on-failure -f progress -c Packages/Application/SquadIT.WebApp/Test/Behavior/behat.yml
 
 deploy:
     provider: script
