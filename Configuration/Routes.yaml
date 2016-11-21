@@ -1,6 +1,9 @@
 -
-  name: 'Fallback Route'
+  name: 'Landing Route'
   uriPattern: ''
   defaults:
     '@controller': 'Standard'
     '@action': 'index'
+-
+  name: 'Default Route'
+  uriPattern: '{@controller}/{@action}'
