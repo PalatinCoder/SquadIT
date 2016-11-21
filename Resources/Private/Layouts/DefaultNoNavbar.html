@@ -1,0 +1,24 @@
+{namespace bootstrap=TYPO3\Twitter\Bootstrap\ViewHelpers}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title><f:render section="Title" /> - SquadIT</title>
+        <f:base />
+        <f:format.raw><bootstrap:include version="3" includeJQuery="true" /></f:format.raw>
+        <link rel="stylesheet" href="{f:uri.resource(package: 'SquadIT.WebApp', path: 'Style/Global.css')}" type="text/css" />
+        <f:render section="HeaderStyles" optional="TRUE" />
+        <f:render section="HeaderScripts" optional="TRUE" />
+    </head>
+    <body>
+        <div class="container">
+            <f:render partial="FlashMessages" />
+            <f:render section="Content" />
+        </div>
+
+        <f:render partial="Footer" />
+
+        <f:render section="BodyScripts" optional="TRUE" />
+    </body>
+</html>
