@@ -1,0 +1,14 @@
+privilegeTargets:
+  'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+
+    'SquadIT.WebApp:ViewDashboard':
+      matcher: 'method(SquadIT\WebApp\Controller\StandardController->indexAction())'
+
+roles:
+  'TYPO3.Flow:Everybody':
+    privileges: []
+  'TYPO3.Flow:AuthenticatedUser':
+    privileges:
+      -
+        privilegeTarget: 'SquadIT.WebApp:ViewDashboard'
+        permission: GRANT
