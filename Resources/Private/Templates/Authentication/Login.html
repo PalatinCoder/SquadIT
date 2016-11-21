@@ -1,0 +1,65 @@
+<f:layout name="DefaultNoNavbar" />
+
+<f:section name="HeaderStyles">
+<style>
+body {
+  background: url({f:uri.resource(package: 'MyCompany.MyPackage', path: 'Assets/login-wallpaper.jpg')}) center/cover no-repeat;
+}
+.form-signin {
+  max-width: 380px;
+  padding: 15px;
+  margin: 0 auto;
+  margin-top: 40px;
+  background-color: #fffb;
+  border-radius: 6px;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-signin p.lead {
+  margin-top: 20px;
+}
+</style>
+</f:section>
+
+<f:section name="Title">Login</f:section>
+
+<f:section name="Content">
+  <f:form class="form-signin" action="authenticate">
+    <h2 class="form-siginin-heading"><f:render section="Title" /></h2>
+    <label for="inputEmail" class="sr-only">E-Mail Addresse</label>
+    <f:form.textfield type="email" id="inputEmail" class="form-control" placeholder="E-Mail Adresse" required="required" autofocus="autofocus" additionalAttributes="{'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'}" />
+    <label for="inputPassword" class="sr-only">Passwort</label>
+    <f:form.password id="inputPassword" class="form-control" placeholder="Passwort" required="required" />
+    <div class="checkbox">
+      <label>
+        <f:form.checkbox value="remember-me" /> Remember me
+      </label>
+    </div>
+    <f:form.button class="btn btn-lg btn-primary btn-block" type="submit">Anmelden</f:form.button>
+    <p class="lead">Noch kein Account?</p>
+    <f:link.action controller="account" action="register" class="btn btn-default btn-lg btn-block">Registrieren</f:link.action>
+</f:form>
+</f:section>
