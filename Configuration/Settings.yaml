@@ -3,7 +3,7 @@ TYPO3:
     security:
       authentication:
         providers:
-          'SomeAuthenticationProvider':
+          'DefaultProvider':
             provider: 'PersistedUsernamePasswordProvider'
             entryPoint: 'WebRedirect'
             entryPointOptions:
