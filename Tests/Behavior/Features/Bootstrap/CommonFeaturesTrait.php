@@ -25,7 +25,9 @@ trait CommonFeaturesTrait
      */
     public function thereAreUsers(TableNode $table)
     {
+        /** @var AccountRepository $accountRepository */
         $accountRepository = $this->objectManager->get(AccountRepository::class);
+        /** @var AccountFactory $accountFactory */
         $accountFactory = $this->objectManager->get(AccountFactory::class);
 
         $hash = $table->getHash();
