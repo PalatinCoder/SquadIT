@@ -14,12 +14,56 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
     /**
      * @test
      */
-    public function makeSureThatSomethingHolds()
+    public function aFirstNameCanBeSetAndRetrievedFromTheUser()
     {
-        $this->markTestIncomplete('Automatically generated test case; you need to adjust this!');
+        $user = new User();
+        $user->setFirstname('RandomName');
+        $expected = 'RandomName';
+        $actual = $user->getFirstname();
+        $this->assertSame($expected, $actual);
+    }
 
-        $expected = 'Foo';
-        $actual = 'Foo'; // This should be the result of some function call
+    /**
+     * @test
+     */
+    public function aLastNameCanBeSetAndRetrievedFromTheUser()
+    {
+        $user = new User();
+        $user->setLastname('RandomName');
+        $expected = 'RandomName';
+        $actual = $user->getLastname();
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function aSquadCanBeAssignedToAUser()
+    {
+        $user = new User();
+        $squad = new Squad();
+        $user->setSquad($squad);
+        $this->assertInstanceOf(Squad::class, $user->getSquad());
+    }
+
+    /**
+     * @test
+     */
+    public function aPictureCanBeSet()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * @test
+     */
+    public function aFullNameCanBeRetrievedFromAUser()
+    {
+        $user = new User();
+        $user->setFirstname('Random');
+        $user->setLastname('Name');
+        $expected = 'Random Name';
+        $actual = $user->getFullName();
         $this->assertSame($expected, $actual);
     }
 }
