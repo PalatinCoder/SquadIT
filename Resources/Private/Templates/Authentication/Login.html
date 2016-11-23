@@ -50,9 +50,9 @@ body {
   <f:form class="form-signin" action="authenticate">
     <h2 class="form-siginin-heading"><f:render section="Title" /></h2>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <f:form.textfield type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" additionalAttributes="{'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'}" />
+    <f:form.textfield type="email" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" additionalAttributes="{'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'}" />
     <label for="inputPassword" class="sr-only">Password</label>
-    <f:form.password id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="required" />
+    <f:form.password name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]" class="form-control" placeholder="Password" required="required" />
     <div class="checkbox">
       <label>
         <f:form.checkbox value="remember-me" /> Remember me
