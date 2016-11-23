@@ -4,3 +4,11 @@
   defaults:
     '@controller': 'Standard'
     '@action': 'index'
+    '@package': 'SquadIT.WebApp'
+    '@format': 'html'
+-
+  name: 'Default Route'
+  uriPattern: '{@controller}/{@action}'
+  defaults:
+    '@package': 'SquadIT.WebApp'
+    '@format': 'html'
