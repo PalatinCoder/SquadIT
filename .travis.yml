@@ -9,13 +9,17 @@ cache:
         - $HOME/.composer/cache
 
 install:
-    - phpenv config-rm xdebug.ini
     - cd ..
-    - composer create-project neos/flow-base-distribution --no-progress --no-interaction
+    - git clone https://github.com/neos/flow-base-distribution.git -b 3.3
     - cd flow-base-distribution
-    - mv ../SquadIT.WebApp Packages/Application/
+    - composer config repositories.github vcs https://github.com/PalatinCoder/SquadIT.WebApp.git
+    - composer require squadit/webapp:dev-master
+    - rm -rf Packages/Application/SquadIT.WebApp
+    - mv ../SquadIT.WebApp Packages/Application/SquadIT.WebApp
+    - composer install -d Build/Behat
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - echo 'date.timezone = "Antarctica/Troll"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'opcache.fast_shutdown = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'opcache.enable_cli = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
@@ -26,7 +30,6 @@ before_script:
   - Build/BuildEssentials/TravisCi/SetupDatabase.sh
   - cp Configuration/Settings.yaml Configuration/Testing/
   - rm Configuration/Routes.yaml
-  - composer install -d Build/Behat
   - FLOW_CONTEXT=Development/Behat ./flow server:run &
 
 script:
