@@ -1,11 +1,12 @@
+@skip
 Feature: Squad management
     To make use of the application, it must provide methods to manage the squad itself
 
 Background:
 Given there are users:
-    | username | role         |
-    | chef     | team captain |
-    | player   | member       |
+    | username            | password | role            |
+    | chef@squadit.de     | chefchef | TeamCaptain     |
+    | player@squadit.de   | playa    | TeamMember      |
 
 Scenario: Create Squad
     Given I am logged in as "player"
