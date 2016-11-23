@@ -41,6 +41,17 @@ class User
      */
     protected $squad;
 
+    /**
+     * Constructor of user with name as parameter.
+     * @param string $firstname
+     * @param string $lastname
+     * @return void
+     */
+    public function __construct($firstname, $lastname)
+    {
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+    }
 
     /**
      * @return string
@@ -109,5 +120,4 @@ class User
     {
         $this->squad = $squad;
     }
-
 }
