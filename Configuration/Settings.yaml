@@ -11,3 +11,6 @@ TYPO3:
                 '@package': 'SquadIT.WebApp'
                 '@controller': 'Authentication'
                 '@action': 'login'
+    mvc:
+      routes:
+        'SquadIT.WebApp': TRUE
