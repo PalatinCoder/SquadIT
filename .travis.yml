@@ -27,10 +27,11 @@ before_script:
   - cp Configuration/Settings.yaml Configuration/Testing/
   - rm Configuration/Routes.yaml
   - composer install -d Build/Behat
+  - FLOW_CONTEXT=Development/Behat ./flow server:run &
 
 script:
     # TODO Unit & Functional Tests
-    - ./bin/behat --ansi --stop-on-failure -f progress,failed -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml.dist
+    - ./bin/behat --ansi --stop-on-failure -f progress,failed -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml
 
 deploy:
     provider: script
