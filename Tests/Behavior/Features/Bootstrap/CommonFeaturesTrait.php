@@ -36,14 +36,17 @@ trait CommonFeaturesTrait
             $accountRepository->add($account);
         }
 
-        $this->persistAll();
+        $this->getSubcontext('flow')->persistAll();
     }
 
     /**
-     * @Given /^I am logged in as "([^"]*)"$/
+     * @Given /^I am authenticated as "([^"]*)" with password "([^"]*)"$/
      */
-    public function iAmLoggedInAs($arg1)
+    public function iAmAuthenticatedAsWithPassword($username, $password)
     {
-        throw new PendingException();
+        $this->visit('/authentication/login');
+        $this->fillField('Email address', $username);
+        $this->fillField('Password', $password);
+        $this->pressButton('Login');
     }
 }
