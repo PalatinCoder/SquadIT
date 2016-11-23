@@ -93,7 +93,7 @@ class Squad
     }
 
     /**
-     * @return User
+     * @return array
      */
     public function getMember()
     {
@@ -101,12 +101,13 @@ class Squad
     }
 
     /**
+     * Add a user as a member to a squad.
+     *
      * @param User $member
      * @return void
      */
-    public function setMember($member)
-    {
-        $this->member = $member;
-    }
-
+     public function addMember($member)
+     {
+         $this->member[]=$member;
+     }
 }
