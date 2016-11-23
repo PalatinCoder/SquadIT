@@ -1,3 +1,4 @@
+@skip
 Feature: Squad Calendar
     To efficiently manage the squad events can be scheduled in a calendar
 
