@@ -1,3 +1,4 @@
+@skip
 Feature: Squad management
     To make use of the application, it must provide methods to manage the squad itself
 
