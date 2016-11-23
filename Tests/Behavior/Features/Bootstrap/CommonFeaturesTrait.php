@@ -36,7 +36,7 @@ trait CommonFeaturesTrait
             $accountRepository->add($account);
         }
 
-        $this->getSubcontext('flow')->persistAll();
+        $this->persistAll();
     }
 
     /**

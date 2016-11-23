@@ -44,6 +44,6 @@ class AuthenticationController extends AbstractAuthenticationController
         if ($originalRequest !== null) {
             $this->redirectToRequest($originalRequest);
         }
-        $this->redirect('index', 'StandardController');
+        $this->redirect('index', 'Standard');
     }
 }
