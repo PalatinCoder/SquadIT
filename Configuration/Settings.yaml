@@ -1,5 +1,16 @@
 TYPO3:
   Flow:
+    security:
+      authentication:
+        providers:
+          'DefaultProvider':
+            provider: 'PersistedUsernamePasswordProvider'
+            entryPoint: 'WebRedirect'
+            entryPointOptions:
+              routeValues:
+                '@package': 'SquadIT.WebApp'
+                '@controller': 'Authentication'
+                '@action': 'login'
     mvc:
       routes:
         'SquadIT.WebApp': TRUE

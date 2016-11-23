@@ -1,0 +1,65 @@
+<f:layout name="DefaultNoNavbar" />
+
+<f:section name="HeaderStyles">
+<style>
+body {
+  background: url({f:uri.resource(package: 'SquadIT.WebApp', path: 'Assets/login-wallpaper.jpg')}) center/cover no-repeat;
+}
+.form-signin {
+  max-width: 380px;
+  padding: 15px;
+  margin: 0 auto;
+  margin-top: 40px;
+  background-color: #fffb;
+  border-radius: 6px;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-signin p.lead {
+  margin-top: 20px;
+}
+</style>
+</f:section>
+
+<f:section name="Title">Login</f:section>
+
+<f:section name="Content">
+  <f:form class="form-signin" action="authenticate">
+    <h2 class="form-siginin-heading"><f:render section="Title" /></h2>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <f:form.textfield type="email" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" additionalAttributes="{'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'}" />
+    <label for="inputPassword" class="sr-only">Password</label>
+    <f:form.password name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]" class="form-control" placeholder="Password" required="required" />
+    <div class="checkbox">
+      <label>
+        <f:form.checkbox value="remember-me" /> Remember me
+      </label>
+    </div>
+    <f:form.button class="btn btn-lg btn-primary btn-block" type="submit">Login</f:form.button>
+    <p class="lead">Don't have an account?</p>
+    <f:link.action action="register" class="btn btn-default btn-lg btn-block">Sign up now</f:link.action>
+</f:form>
+</f:section>

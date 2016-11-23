@@ -18,7 +18,7 @@ default:
       # Use BEHAT_PARAMS="extensions[Behat\MinkExtension\Extension][base_url]=http://neos.local/" for configuration during
       # runtime.
       #
-      base_url: http://localhost:8081/SquadIT.WebApp/
+      base_url: http://localhost:8081/
 
       # Saucelabs configuration
       #

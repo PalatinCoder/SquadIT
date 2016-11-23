@@ -1,5 +1,5 @@
 -
-  name: 'Fallback Route'
+  name: 'Landing Route'
   uriPattern: ''
   defaults:
     '@controller': 'Standard'
