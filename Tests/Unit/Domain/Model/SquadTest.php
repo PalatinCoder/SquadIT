@@ -14,12 +14,44 @@ class SquadTest extends \TYPO3\Flow\Tests\UnitTestCase
     /**
      * @test
      */
-    public function makeSureThatSomethingHolds()
+    public function aNameCanBeSetAndRetrievedFromTheSquad()
     {
-        $this->markTestIncomplete('Automatically generated test case; you need to adjust this!');
-
-        $expected = 'Foo';
-        $actual = 'Foo'; // This should be the result of some function call
+        $squad = new Squad();
+        $squad->setName('RandomName');
+        $expected = 'RandomName';
+        $actual = $squad->getName();
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function aDescriptionCanBeSetAndRetrievedFromTheSquad()
+    {
+        $squad = new Squad();
+        $squad->setDescription('A random description that describes the squad.');
+        $expected = 'A random description that describes the squad.';
+        $actual = $squad->getDescription();
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function aPictureCanBeSet()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * @test
+     */
+    public function aMemberCanBeAddedToASquad()
+    {
+        $squad = new Squad();
+        $squad->addMember(new User('Haggl', 'Schorsch'));
+        $squad->addMember(new User('Frodo', 'TheHobo'));
+        $squad->addMember(new User('Jan', 'Delay'));
+        $this->assertSame(count($squad->getMember()), 3);
     }
 }
