@@ -30,7 +30,7 @@ before_script:
 
 script:
     # TODO Unit & Functional Tests
-    - ./bin/behat --ansi --stop-on-failure -f progress,failed -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml
+    - ./bin/behat --ansi --stop-on-failure -f progress,failed -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml.dist
 
 deploy:
     provider: script
