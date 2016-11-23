@@ -3,9 +3,9 @@ Feature: Squad management
 
 Background:
 Given there are users:
-    | username | role         |
-    | chef     | team captain |
-    | player   | member       |
+    | username            | password | role            |
+    | chef@squadit.de     | chefchef | TeamCaptain     |
+    | player@squadit.de   | playa    | TeamMember      |
 
 Scenario: Create Squad
     Given I am logged in as "player"
