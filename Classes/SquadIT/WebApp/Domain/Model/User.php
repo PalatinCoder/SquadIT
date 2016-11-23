@@ -54,6 +54,16 @@ class User
     }
 
     /**
+     * Returns the full name of a user as one string.
+     * @return string
+     */
+     public function getFullName()
+     {
+         $fullname = $this->firstname.' '.$this->lastname;
+         return $fullname;
+     }
+
+    /**
      * @return string
      */
     public function getFirstname()
