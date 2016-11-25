@@ -2,28 +2,21 @@
 namespace SquadIT\WebApp\Tests\Behavior\Features\Bootstrap;
 
 use Behat\Behat\Exception\PendingException;
+use Behat\Behat\Exception\Exception;
 use Behat\Gherkin\Node\TableNode;
 use TYPO3\Flow\Security\AccountRepository;
 use TYPO3\Flow\Security\AccountFactory;
 
 /**
- * A trait containing commonly used step definitions
+ * A trait containing step definitions regarding accounts
  */
-trait CommonFeaturesTrait
+trait AccountFeaturesTrait
 {
 
     /**
-     * @Given /^a squad "([^"]*)" exists$/
+     * @Given /^there are accounts:$/
      */
-    public function aSquadExists($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given /^there are users:$/
-     */
-    public function thereAreUsers(TableNode $table)
+    public function thereAreAccounts(TableNode $table)
     {
         /** @var AccountRepository $accountRepository */
         $accountRepository = $this->objectManager->get(AccountRepository::class);
@@ -48,5 +41,18 @@ trait CommonFeaturesTrait
         $this->fillField('Email address', $username);
         $this->fillField('Password', $password);
         $this->pressButton('Login');
+    }
+
+    /**
+     * @Then /^the account "([^"]*)" should exist$/
+     */
+    public function theAccountShouldExist($acccountId)
+    {
+        /** @var AccountRepository $AccountRepository */
+        $accountRepository = $this->objectManager->get(AccountRepository::class);
+        $account = $accountRepository->findOneByAccountIdentifier($accountId);
+        if ($account === null) {
+            throw new Exception();
+        }
     }
 }
