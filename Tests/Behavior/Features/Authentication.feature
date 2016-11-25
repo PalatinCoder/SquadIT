@@ -21,7 +21,7 @@ Scenario: Login with wrong credentials
     And I fill in "Email address" with "someone@example.com"
     And I fill in "Password" with "password"
     And I press "Login"
-    Then I should be on "/authentication/authenticate"
+    Then I should be on "/authentication/login"
     And I should see "Authentication failed"
 
 @fixtures
