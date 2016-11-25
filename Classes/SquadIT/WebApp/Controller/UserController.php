@@ -7,9 +7,30 @@ namespace SquadIT\WebApp\Controller;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Error\Message;
+use TYPO3\Flow\Security\Account;
+use TYPO3\Flow\Security\AccountRepository;
+use TYPO3\Flow\Security\AccountFactory;
 
 class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController
 {
+
+    /**
+     * @Flow\Inject
+     * @var AccountRepository
+     */
+    protected $accountRepository;
+
+    /**
+     * @Flow\Inject
+     * @var AccountFactory
+     */
+    protected $accountFactory;
+
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Security\Context
+     */
+    protected $securityContext;
 
     /**
      * @return void
@@ -33,11 +54,44 @@ class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController
     /**
      * Create a User and an account for login
      *
+     * @param string $firstname
+     * @Flow\Validate(argumentName="firstname", type="NotEmpty")
+     * @param string $lastname
+     * @Flow\Validate(argumentName="firstname", type="NotEmpty")
+     * @param string $email
+     * @Flow\Validate(argumentName="firstname", type="NotEmpty")
+     * @Flow\Validate(argumentName="email", type="EmailAddress")
+     * @param string $password
+     * @Flow\Validate(argumentName="firstname", type="NotEmpty")
+     * @param string $passwordRepeat
+     * @Flow\Validate(argumentName="firstname", type="NotEmpty")
      * @return void
      */
-    public function createAction()
+    public function createAction($firstname, $lastname, $email, $password, $passwordRepeat)
     {
-        $this->addFlashMessage('Sorry, registration is not implemented yet', 'Hang on!', Message::SEVERITY_NOTICE);
-        $this->forward('index', 'standard');
+        if ($password !== $passwordRepeat) {
+            $this->addFlashMessage('The entered passwords are not identical', 'Error', Message::SEVERITY_ERROR);
+            $this->redirect('register');
+        }
+
+        /** @var Account $account */
+        $account = $this->accountFactory->createAccountWithPassword($email, $password);
+        $this->accountRepository->add($account);
+
+        /* TODO create user here */
+
+        /*
+         * Perform login for the created account
+         */
+
+        /** @var \TYPO3\Flow\Security\Authentication\Token\UsernamePassword */
+        $authenticationTokens = $this->securityContext->getAuthenticationTokensOfType('TYPO3\Flow\Security\Authentication\Token\UsernamePassword');
+        if (count($authenticationTokens) === 1) {
+            $authenticationTokens[0]->setAccount($account);
+            $authenticationTokens[0]->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+        }
+
+        $this->addFlashMessage('Registration successful');
+        $this->redirect('index', 'standard');
     }
 }

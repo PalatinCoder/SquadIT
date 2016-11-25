@@ -1,6 +1,8 @@
 <?php
 namespace SquadIT\WebApp\Tests\Behavior\Features\Bootstrap;
 
+use Behat\Behat\Exception\PendingException;
+
 /**
  * This trait contains the step definitions for the features related to the user management#
  */
