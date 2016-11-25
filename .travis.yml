@@ -13,7 +13,7 @@ install:
     - git clone https://github.com/neos/flow-base-distribution.git -b 3.3
     - cd flow-base-distribution
     - composer config repositories.github vcs https://github.com/PalatinCoder/SquadIT.WebApp.git
-    - composer require squadit/webapp:dev-master
+    - composer require squadit/webapp:dev-$TRAVIS-BRANCH
     - rm -rf Packages/Application/SquadIT.WebApp
     - mv ../SquadIT.WebApp Packages/Application/SquadIT.WebApp
     - composer install -d Build/Behat
