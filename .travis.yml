@@ -12,6 +12,9 @@ install:
     - cd ..
     - git clone https://github.com/neos/flow-base-distribution.git -b 3.3
     - cd flow-base-distribution
+    # temporary fix until release of Flow 4
+    - composer config repositories.behat-helper vcs https://github.com/PalatinCoder/Flowpack.Behat
+    # end temp fix
     - composer config repositories.github vcs https://github.com/PalatinCoder/SquadIT.WebApp.git
     - composer require squadit/webapp:dev-master
     - rm -rf Packages/Application/SquadIT.WebApp
