@@ -46,7 +46,7 @@ trait AccountFeaturesTrait
     /**
      * @Then /^the account "([^"]*)" should exist$/
      */
-    public function theAccountShouldExist($acccountId)
+    public function theAccountShouldExist($accountId)
     {
         /** @var AccountRepository $AccountRepository */
         $accountRepository = $this->objectManager->get(AccountRepository::class);
