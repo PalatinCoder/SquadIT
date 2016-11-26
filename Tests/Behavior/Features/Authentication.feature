@@ -1,7 +1,7 @@
 Feature: User Authentication
 
 Background:
-    Given there are users:
+    Given there are accounts:
         | username            | password | role |
         | chef@squadit.de     | chefchef |      |
         | player@squadit.de   | playa    |      |

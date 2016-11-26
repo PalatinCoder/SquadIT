@@ -6,19 +6,22 @@ use TYPO3\Flow\Tests\Behavior\Features\Bootstrap\IsolatedBehatStepsTrait;
 use TYPO3\Flow\Tests\Behavior\Features\Bootstrap\SecurityOperationsTrait;
 use TYPO3\Flow\Tests\Functional\Command\BehatTestHelper;
 use TYPO3\Flow\Utility\Environment;
-use SquadIT\WebApp\Tests\Behavior\Features\Bootstrap\CommonFeaturesTrait;
+use SquadIT\WebApp\Tests\Behavior\Features\Bootstrap\AccountFeaturesTrait;
+use SquadIT\WebApp\Tests\Behavior\Features\Bootstrap\UserFeaturesTrait;
 
 require_once(__DIR__ . '/../../../../../../Application/Flowpack.Behat/Tests/Behat/FlowContext.php');
 require_once(__DIR__ . '/../../../../../../Framework/TYPO3.Flow/Tests/Behavior/Features/Bootstrap/IsolatedBehatStepsTrait.php');
 require_once(__DIR__ . '/../../../../../../Framework/TYPO3.Flow/Tests/Behavior/Features/Bootstrap/SecurityOperationsTrait.php');
-require_once(__DIR__ . '/CommonFeaturesTrait.php');
+require_once(__DIR__ . '/AccountFeaturesTrait.php');
+require_once(__DIR__ . '/UserFeaturesTrait.php');
 
 /**
  * Features context.
  */
 class FeatureContext extends MinkContext
 {
-    use CommonFeaturesTrait;
+    use AccountFeaturesTrait;
+    use UserFeaturesTrait;
     use IsolatedBehatStepsTrait;
     use SecurityOperationsTrait;
 
