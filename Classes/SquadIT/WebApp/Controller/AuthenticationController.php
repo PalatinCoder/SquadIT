@@ -13,15 +13,6 @@ class AuthenticationController extends AbstractAuthenticationController
 {
 
     /**
-     * Displays a login form
-     *
-     * @return void
-     */
-    public function loginAction()
-    {
-    }
-
-    /**
      * Logs all active tokens out and redirects the user to the login form
      *
      * @return void
@@ -45,5 +36,17 @@ class AuthenticationController extends AbstractAuthenticationController
             $this->redirectToRequest($originalRequest);
         }
         $this->redirect('index', 'Standard');
+    }
+
+    /**
+     * Is called if authentication failed.
+     *
+     * @param \TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception The exception thrown while the authentication process
+     * @return void
+     */
+    protected function onAuthenticationFailure(\TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception = null)
+    {
+        $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error('Authentication failed!', ($exception === null ? 1347016771 : $exception->getCode())));
+        $this->redirect('login');
     }
 }

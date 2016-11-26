@@ -6,6 +6,16 @@ body {
   margin-bottom: 60px;
 }
 
+#flashMessageContainer {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 90%;
+    max-width: 500px;
+    z-index: 1000;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
