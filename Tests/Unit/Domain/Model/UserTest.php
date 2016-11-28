@@ -1,6 +1,9 @@
 <?php
 namespace SquadIT\WebApp\Tests\Unit\Domain\Model;
 
+use SquadIT\WebApp\Domain\Model\User;
+use SquadIT\WebApp\Domain\Model\Squad;
+
 /*
  * This file is part of the SquadIT.WebApp package.
  */
@@ -16,7 +19,7 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aFirstNameCanBeSetAndRetrievedFromTheUser()
     {
-        $user = new User();
+        $user = new User('Hugo', 'Tester');
         $user->setFirstname('RandomName');
         $expected = 'RandomName';
         $actual = $user->getFirstname();
@@ -28,7 +31,7 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aLastNameCanBeSetAndRetrievedFromTheUser()
     {
-        $user = new User();
+        $user = new User('Hugo', 'Tester');
         $user->setLastname('RandomName');
         $expected = 'RandomName';
         $actual = $user->getLastname();
@@ -40,7 +43,7 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aSquadCanBeAssignedToAUser()
     {
-        $user = new User();
+        $user = new User('Hugo', 'Tester');
         $squad = new Squad();
         $user->setSquad($squad);
         $this->assertInstanceOf(Squad::class, $user->getSquad());
@@ -59,10 +62,8 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aFullNameCanBeRetrievedFromAUser()
     {
-        $user = new User();
-        $user->setFirstname('Random');
-        $user->setLastname('Name');
-        $expected = 'Random Name';
+        $user = new User('Hugo', 'Tester');
+        $expected = 'Hugo Tester';
         $actual = $user->getFullName();
         $this->assertSame($expected, $actual);
     }

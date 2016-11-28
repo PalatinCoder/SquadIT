@@ -1,6 +1,9 @@
 <?php
 namespace SquadIT\WebApp\Tests\Unit\Domain\Model;
 
+use SquadIT\WebApp\Domain\Model\Squad;
+use SquadIT\WebApp\Domain\Model\User;
+
 /*
  * This file is part of the SquadIT.WebApp package.
  */
