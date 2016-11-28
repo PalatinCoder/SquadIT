@@ -10,6 +10,7 @@ use TYPO3\Flow\Error\Message;
 use TYPO3\Flow\Security\Account;
 use TYPO3\Flow\Security\AccountRepository;
 use TYPO3\Flow\Security\AccountFactory;
+use TYPO3\Flow\Security\Cryptography\HashService;
 use SquadIT\WebApp\Domain\Model\User;
 use SquadIT\WebApp\Domain\Repository\UserRepository;
 
@@ -36,24 +37,42 @@ class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
     /**
      * @Flow\Inject
+     * @var HashService
+     */
+    protected $hashService;
+
+    /**
+     * @Flow\Inject
      * @var UserRepository
      */
     protected $userRepository;
 
     /**
-     * @Flow\Inject
      * @var User
      */
     protected $user;
+
+    /**
+     * @param \TYPO3\Flow\Mvc\View\ViewInterface $view
+     * @return void
+     */
+    public function initializeView(\TYPO3\Flow\Mvc\View\ViewInterface $view)
+    {
+        $this->user = $this->userRepository->findOneByAccount($this->securityContext->getAccount());
+        if ($this->user === null) {
+            return;
+        }
+        $view->assign('user_firstname', $this->user->getFirstname());
+        $view->assign('user_initials', substr($this->user->getFirstname(), 0, 1) . substr($this->user->getLastname(), 0, 1));
+    }
 
     /**
      * @return void
      */
     public function indexAction()
     {
-        $this->view->assign('foos', array(
-            'bar', 'baz'
-        ));
+        $this->view->assign('user', $this->user);
+        $this->view->assign('account', $this->securityContext->getAccount());
     }
 
     /**
@@ -108,5 +127,62 @@ class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
         $this->addFlashMessage('Registration successful');
         $this->redirect('index', 'standard');
+    }
+
+    /**
+     * Update the user
+     *
+     * @param User $user
+     * @return void
+     */
+    public function updateAction(User $user)
+    {
+        $this->userRepository->update($user);
+        $this->addFlashMessage('Updated your profile');
+        $this->redirect('index');
+    }
+
+    /**
+     * Changes the password of the account
+     *
+     * @param Account $account
+     * @param string $password
+     * @param string $passwordRepeat
+     *
+     * @return void
+     */
+    public function changePasswordAction($account, $password, $passwordRepeat)
+    {
+        if ($password != $passwordRepeat) {
+            $this->addFlashMessage('The entered passwords are not identical', '', Message::SEVERITY_ERROR);
+            $referrer = $this->request->getInternalArgument('__referrer');
+            $this->redirect($referrer['@action'], $referrer['@controller']);
+        }
+        //$account = $this->accountRepository->find($account);
+        $account->setCredentialsSource($this->hashService->hashPassword($password, 'default'));
+        $this->accountRepository->update($account);
+
+        $this->addFlashMessage('Successfully changed your password');
+
+        $referrer = $this->request->getInternalArgument('__referrer');
+        $this->redirect($referrer['@action'], $referrer['@controller']);
+    }
+
+    /**
+     * Deletes an account and the corresponding user
+     *
+     * @param boolean $confirm
+     * @return void
+     */
+    public function deleteAction($confirm)
+    {
+        if (!$confirm) {
+            $this->redirect('index');
+        }
+
+        $this->userRepository->remove($this->user);
+        $this->accountRepository->remove($this->securityContext->getAccount());
+        $this->addFlashMessage('Your account has been deleted');
+        $this->redirect('logout', 'Authentication');
     }
 }
