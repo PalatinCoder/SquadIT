@@ -40,7 +40,7 @@ N/A
 
 ## 5 Logical View
 
-class diagram incoming
+![Class diagram](Classdiagram.png)
 
 ## 6 Process View
 
