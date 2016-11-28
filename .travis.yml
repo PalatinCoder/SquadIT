@@ -1,32 +1,43 @@
 language: php
 php:
     - '7.0'
+env:
+    - DB=mysql
+
 cache:
     directories:
         - $HOME/.composer/cache
 
 install:
-    - phpenv config-rm xdebug.ini
     - cd ..
-    - composer create-project neos/flow-base-distribution --no-progress --no-interaction
+    - git clone https://github.com/neos/flow-base-distribution.git -b 3.3
     - cd flow-base-distribution
-    - mv ../SquadIT.WebApp Packages/Application/
+    # temporary fix until release of Flow 4
+    - composer config repositories.behat-helper vcs https://github.com/PalatinCoder/Flowpack.Behat
+    # end temp fix
+    - composer config repositories.github vcs https://github.com/PalatinCoder/SquadIT.WebApp.git
+    - composer require squadit/webapp:dev-master
+    - rm -rf Packages/Application/SquadIT.WebApp
+    - mv ../SquadIT.WebApp Packages/Application/SquadIT.WebApp
+    - composer install -d Build/Behat
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - echo 'date.timezone = "Antarctica/Troll"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'opcache.fast_shutdown = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'opcache.enable_cli = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'zend.enable_gc = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'report_zend_debug = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'report_memleaks = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  - composer install -d Build/Behat
-  # TODO setup database, config and routing
-  # but for now it works ;)
+  - cp Configuration/Settings.yaml.example Configuration/Settings.yaml
+  - Build/BuildEssentials/TravisCi/SetupDatabase.sh
+  - cp Configuration/Settings.yaml Configuration/Testing/
+  - rm Configuration/Routes.yaml
+  - FLOW_CONTEXT=Development/Behat ./flow server:run &
 
 script:
     # TODO Unit & Functional Tests
-    - FLOW_CONTEXT=Testing/Behat
-    - ./bin/behat --ansi --stop-on-failure -f progress -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml
+    - ./bin/behat --ansi --stop-on-failure -f progress,failed -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml --tags ~@skip
 
 deploy:
     provider: script

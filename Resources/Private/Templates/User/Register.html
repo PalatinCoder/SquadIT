@@ -1,0 +1,48 @@
+<f:layout name="DefaultNoNavbar" />
+
+<f:section name="Title">Signup</f:section>
+
+<f:section name="Content">
+
+<div class="page-header">
+    <h1 class="page-title"><f:render section="Title" /></h1>
+</div>
+
+<p class="lead">Fill the following form to create an account and start using SquadIT today.</p>
+
+<f:form action="create" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label for="inputFirstname" class="col-sm-2 control-label">Firstname</label>
+        <div class="col-sm-10">
+            <f:form.textfield name="firstname" id="inputFirstname" placeholder="John" class="form-control" required="required" />
+        </div>
+        <label for="inputLastname" class="col-sm-2 control-label">Lastname</label>
+        <div class="col-sm-10">
+            <f:form.textfield name="lastname" id="inputLastname" placeholder="Doe" class="form-control" required="required" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail" class="col-sm-2 control-label">Email address</label>
+        <div class="col-sm-10">
+            <f:form.textfield name="email" id="inputEmail" placeholder="john.doe@example.com" class="form-control" required="required" title="Please enter a valid email address" additionalAttributes="{'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$', 'aria-describedby': 'help-email'}" />
+            <span id="help-email" class="help-block">Will be used for login</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+            <f:form.password name="password" id="inputPassword" class="form-control" required="required" />
+        </div>
+        <label for="inputPasswordRepeat" class="col-sm-2 control-label">Repeat password</label>
+        <div class="col-sm-10">
+            <f:form.password name="passwordRepeat" id="inputPasswordRepeat" class="form-control" required="required" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 col-sm-offset-10">
+            <f:form.submit class="btn btn-primary btn-block" value="Submit" />
+        </div>
+    </div>
+</f:form>
+
+</f:section>

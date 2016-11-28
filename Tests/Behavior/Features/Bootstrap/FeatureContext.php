@@ -1,31 +1,34 @@
 <?php
 
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\Gherkin\Node\PyStringNode;
 use Flowpack\Behat\Tests\Behat\FlowContext;
-use SquadIT\WebApp\Tests\Behavior\Features\Bootstrap\CommonFeaturesTrait;
-
-//
-// Require 3rd-party libraries here:
-//
-//   require_once 'PHPUnit/Autoload.php';
-//   require_once 'PHPUnit/Framework/Assert/Functions.php';
-//
+use TYPO3\Flow\Tests\Behavior\Features\Bootstrap\IsolatedBehatStepsTrait;
+use TYPO3\Flow\Tests\Behavior\Features\Bootstrap\SecurityOperationsTrait;
+use TYPO3\Flow\Tests\Functional\Command\BehatTestHelper;
+use TYPO3\Flow\Utility\Environment;
+use SquadIT\WebApp\Tests\Behavior\Features\Bootstrap\AccountFeaturesTrait;
+use SquadIT\WebApp\Tests\Behavior\Features\Bootstrap\UserFeaturesTrait;
 
 require_once(__DIR__ . '/../../../../../../Application/Flowpack.Behat/Tests/Behat/FlowContext.php');
-require_once(__DIR__ . '/CommonFeaturesTrait.php');
+require_once(__DIR__ . '/../../../../../../Framework/TYPO3.Flow/Tests/Behavior/Features/Bootstrap/IsolatedBehatStepsTrait.php');
+require_once(__DIR__ . '/../../../../../../Framework/TYPO3.Flow/Tests/Behavior/Features/Bootstrap/SecurityOperationsTrait.php');
+require_once(__DIR__ . '/AccountFeaturesTrait.php');
+require_once(__DIR__ . '/UserFeaturesTrait.php');
 
 /**
  * Features context.
  */
 class FeatureContext extends MinkContext
 {
-    use CommonFeaturesTrait;
+    use AccountFeaturesTrait;
+    use UserFeaturesTrait;
+    use IsolatedBehatStepsTrait;
+    use SecurityOperationsTrait;
 
     /**
      * @var string
      */
-    protected $behatTestHelperObjectName = \TYPO3\Flow\Tests\Functional\Command\BehatTestHelper::class;
+    protected $behatTestHelperObjectName = BehatTestHelper::class;
 
     /**
      * Initializes context.
@@ -38,6 +41,7 @@ class FeatureContext extends MinkContext
         $this->useContext('flow', new FlowContext($parameters));
         $flowContext = $this->getSubcontext('flow');
         $this->objectManager = $flowContext->getObjectManager();
-        $this->environment = $this->objectManager->get(\TYPO3\Flow\Utility\Environment::class);
+        $this->environment = $this->objectManager->get(Environment::class);
+        $this->setupSecurity();
     }
 }
