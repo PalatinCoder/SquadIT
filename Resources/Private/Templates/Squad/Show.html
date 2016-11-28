@@ -1,0 +1,28 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Show squad"{squad.name}"</f:section>
+
+<f:section name="Content">
+    <table>
+        <tr>
+            <th>Name</th>
+            <td>{squad.name}</td>
+        </tr>
+    
+        <tr>
+            <th>Description</th>
+            <td>{squad.description}</td>
+        </tr>
+    
+        <tr>
+            <th>Picture</th>
+            <td>{squad.picture}</td>
+        </tr>
+    
+        <tr>
+            <th>Member</th>
+            <td>{squad.member}</td>
+        </tr>
+    </table>
+    <f:link.action action="index">Back</f:link.action>
+</f:section>

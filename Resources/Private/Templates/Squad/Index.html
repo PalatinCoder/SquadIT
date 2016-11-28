@@ -1,0 +1,25 @@
+<f:layout name="Default" />
+
+<f:section name="Title">A list of squads</f:section>
+
+<f:section name="Content">
+    <f:if condition="{squads}">
+        <f:then>
+            <ul>
+                <f:for each="{squads}" as="squad">
+                    <li>
+                        <f:link.action action="show" arguments="{squad: squad}">{squad.name}</f:link.action>
+                        <f:link.action action="edit" arguments="{squad: squad}">Edit</f:link.action>
+                        <f:form action="delete" arguments="{squad: squad}">
+                            <f:form.submit value="Delete" />
+                        </f:form>
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+        <f:else>
+            <p>No squads created yet.</p>
+        </f:else>
+    </f:if>
+    <p><f:link.action action="new">Create a new squad</f:link.action></p>
+</f:section>
