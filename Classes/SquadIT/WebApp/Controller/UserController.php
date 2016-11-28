@@ -10,6 +10,8 @@ use TYPO3\Flow\Error\Message;
 use TYPO3\Flow\Security\Account;
 use TYPO3\Flow\Security\AccountRepository;
 use TYPO3\Flow\Security\AccountFactory;
+use SquadIT\WebApp\Domain\Model\User;
+use SquadIT\WebApp\Domain\Repository\UserRepository;
 
 class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController
 {
@@ -31,6 +33,18 @@ class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController
      * @var \TYPO3\Flow\Security\Context
      */
     protected $securityContext;
+
+    /**
+     * @Flow\Inject
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * @Flow\Inject
+     * @var User
+     */
+    protected $user;
 
     /**
      * @return void
@@ -78,7 +92,8 @@ class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController
         $account = $this->accountFactory->createAccountWithPassword($email, $password);
         $this->accountRepository->add($account);
 
-        /* TODO create user here */
+        $user = new User($firstname, $lastname, $account);
+        $this->userRepository->add($user);
 
         /*
          * Perform login for the created account
