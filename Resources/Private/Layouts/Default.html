@@ -14,9 +14,11 @@
     <body>
         <div class="container">
             <f:render partial="FlashMessages" />
-            <f:render partial="Navbar" />
+            <f:render partial="Navbar" arguments="{_all}" />
 
-            <h1><f:render section="Title" /></h1>
+            <div class="page-header">
+                <h1 class="page-title"><f:render section="Title" /></h1>
+            </div>
             <f:render section="Content" />
         </div>
 

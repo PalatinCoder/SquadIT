@@ -31,6 +31,7 @@ class User
     protected $lastname;
 
     /**
+     * @ORM\Column(nullable=true)
      * @var string
      */
     protected $profilepicture;
@@ -42,15 +43,22 @@ class User
     protected $squad;
 
     /**
+     * @ORM\OneToOne
+     * @var \TYPO3\Flow\Security\Account
+     */
+    protected $account;
+
+    /**
      * Constructor of user with name as parameter.
      * @param string $firstname
      * @param string $lastname
      * @return void
      */
-    public function __construct($firstname, $lastname)
+    public function __construct($firstname, $lastname, $account = null)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
+        $this->account = $account;
     }
 
     /**
@@ -129,5 +137,13 @@ class User
     public function setSquad($squad)
     {
         $this->squad = $squad;
+    }
+
+    /**
+     * @return \TYPO3\Flow\Security\Account
+     */
+    public function getAccount()
+    {
+        return $this->account;
     }
 }
