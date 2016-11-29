@@ -19,6 +19,37 @@ class SquadController extends ActionController
     protected $squadRepository;
 
     /**
+     * @Flow\Inject
+     * @var \SquadIT\WebApp\Domain\Repository\UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Security\Context
+     */
+    protected $securityContext;
+
+    /**
+     * @var \SquadIT\WebApp\Domain\Model\User
+     */
+    protected $user;
+
+    /**
+     * @param \TYPO3\Flow\Mvc\View\ViewInterface $view
+     * @return void
+     */
+    public function initializeView(\TYPO3\Flow\Mvc\View\ViewInterface $view)
+    {
+        $this->user = $this->userRepository->findOneByAccount($this->securityContext->getAccount());
+        if ($this->user === null) {
+            return;
+        }
+        $view->assign('user_firstname', $this->user->getFirstname());
+        $view->assign('user_initials', substr($this->user->getFirstname(), 0, 1) . substr($this->user->getLastname(), 0, 1));
+    }
+
+    /**
      * @return void
      */
     public function indexAction()
@@ -83,5 +114,4 @@ class SquadController extends ActionController
         $this->addFlashMessage('Deleted a squad.');
         $this->redirect('index');
     }
-
 }
