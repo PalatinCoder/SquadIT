@@ -1,11 +1,10 @@
 <?php
 namespace SquadIT\WebApp\Tests\Behavior\Features\Bootstrap;
 
-use Behat\Behat\Exception\PendingException;
-use Behat\Behat\Exception\Exception;
 use Behat\Gherkin\Node\TableNode;
 use TYPO3\Flow\Security\AccountRepository;
 use TYPO3\Flow\Security\AccountFactory;
+use PHPUnit_Framework_Assert as Assert;
 
 /**
  * A trait containing step definitions regarding accounts
@@ -51,8 +50,6 @@ trait AccountFeaturesTrait
         /** @var AccountRepository $AccountRepository */
         $accountRepository = $this->objectManager->get(AccountRepository::class);
         $account = $accountRepository->findOneByAccountIdentifier($accountId);
-        if ($account === null) {
-            throw new Exception();
-        }
+        Assert::assertNotNull($account);
     }
 }

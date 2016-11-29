@@ -1,7 +1,9 @@
 <?php
 namespace SquadIT\WebApp\Tests\Behavior\Features\Bootstrap;
 
-use Behat\Behat\Exception\PendingException;
+use SquadIT\WebApp\Domain\Repository\UserRepository;
+use SquadIT\WebApp\Domain\Model\User;
+use PHPUnit_Framework_Assert as Assert;
 
 /**
  * This trait contains the step definitions for the features related to the user management#
@@ -9,10 +11,15 @@ use Behat\Behat\Exception\PendingException;
 trait UserFeaturesTrait
 {
     /**
-     * @Given /^the user "([^"]*)" should exist$/
+     * @Then /^the user "([^"]*)" should exist$/
      */
-    public function theUserShouldExist($arg1)
+    public function theUserShouldExist($fullname)
     {
-        throw new PendingException();
+        /** var UserRepository $userRepository */
+        $userRepository = $this->objectManager->get(UserRepository::class);
+        $firstname = explode(' ', $fullname)[0];
+        /** @var User $user */
+        $user = $userRepository->findOneByFirstname($firstname);
+        Assert::assertEquals($fullname, $user->getFullname());
     }
 }
