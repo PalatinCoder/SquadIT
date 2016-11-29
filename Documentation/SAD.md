@@ -23,8 +23,8 @@ N/A
 * [Blog](http://squadit.jan-sl.de/blog)
 * [GitHub](https://github.com/PalatinCoder/SquadIT.WebApp)
 * Use-Cases
-  + [Add Event][UC_AddEvent]
-  + [Create Squad][UC_CreateSquad]
+  + [Add Event](UC_AddEvent)
+  + [Create Squad](UC_CreateSquad)
 
 ## 2 Architectural Representation
 
@@ -32,7 +32,7 @@ The SquadIT Web App uses the common MVC architecture.
 
 ## 3 Architectural Goals and Constraints
 
-We are using the [Flow] Framework which implements the MVC pattern and does already most of the work. We define our models as simple PHP classes. The controllers are also written in PHP. The view is handeled by Fluid, the template engine of Flow, so it consists of HTML and CSS. Furthermore, Flow includes doctrine, which abstracts the database layer from our logic.
+We are using the [Flow](https://flow.neos.io/) Framework which implements the MVC pattern and does already most of the work. We define our models as simple PHP classes. The controllers are also written in PHP. The view is handeled by Fluid, the template engine of Flow, so it consists of HTML and CSS. Furthermore, Flow includes doctrine, which abstracts the database layer from our logic.
 
 ## 4 Use-Case View
 
