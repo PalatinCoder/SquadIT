@@ -6,40 +6,45 @@ namespace SquadIT\WebApp\Controller;
  */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Security\Context;
+use TYPO3\Flow\Mvc\View\ViewInterface;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use SquadIT\WebApp\Domain\Model\Squad;
+use SquadIT\WebApp\Domain\Repository\SquadRepository;
+use SquadIT\WebApp\Domain\Model\User;
+use SquadIT\WebApp\Domain\Repository\UserRepository;
 
 class SquadController extends ActionController
 {
 
     /**
      * @Flow\Inject
-     * @var \SquadIT\WebApp\Domain\Repository\SquadRepository
+     * @var SquadRepository
      */
     protected $squadRepository;
 
     /**
      * @Flow\Inject
-     * @var \SquadIT\WebApp\Domain\Repository\UserRepository
+     * @var UserRepository
      */
     protected $userRepository;
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\Context
+     * @var Context
      */
     protected $securityContext;
 
     /**
-     * @var \SquadIT\WebApp\Domain\Model\User
+     * @var User
      */
     protected $user;
 
     /**
-     * @param \TYPO3\Flow\Mvc\View\ViewInterface $view
+     * @param ViewInterface $view
      * @return void
      */
-    public function initializeView(\TYPO3\Flow\Mvc\View\ViewInterface $view)
+    public function initializeView(ViewInterface $view)
     {
         $this->user = $this->userRepository->findOneByAccount($this->securityContext->getAccount());
         if ($this->user === null) {
@@ -58,7 +63,7 @@ class SquadController extends ActionController
     }
 
     /**
-     * @param \SquadIT\WebApp\Domain\Model\Squad $squad
+     * @param Squad $squad
      * @return void
      */
     public function showAction(Squad $squad)
@@ -74,7 +79,7 @@ class SquadController extends ActionController
     }
 
     /**
-     * @param \SquadIT\WebApp\Domain\Model\Squad $newSquad
+     * @param Squad $newSquad
      * @return void
      */
     public function createAction(Squad $newSquad)
@@ -85,7 +90,7 @@ class SquadController extends ActionController
     }
 
     /**
-     * @param \SquadIT\WebApp\Domain\Model\Squad $squad
+     * @param Squad $squad
      * @return void
      */
     public function editAction(Squad $squad)
@@ -94,7 +99,7 @@ class SquadController extends ActionController
     }
 
     /**
-     * @param \SquadIT\WebApp\Domain\Model\Squad $squad
+     * @param Squad $squad
      * @return void
      */
     public function updateAction(Squad $squad)
@@ -105,7 +110,7 @@ class SquadController extends ActionController
     }
 
     /**
-     * @param \SquadIT\WebApp\Domain\Model\Squad $squad
+     * @param Squad $squad
      * @return void
      */
     public function deleteAction(Squad $squad)
