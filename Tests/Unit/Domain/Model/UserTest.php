@@ -3,6 +3,8 @@ namespace SquadIT\WebApp\Tests\Unit\Domain\Model;
 
 use SquadIT\WebApp\Domain\Model\User;
 use SquadIT\WebApp\Domain\Model\Squad;
+use TYPO3\Flow\Security\AccountFactory;
+use TYPO3\Flow\Security\Account;
 
 /*
  * This file is part of the SquadIT.WebApp package.
@@ -15,10 +17,17 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
 {
 
     /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Security\AccountFactory
+     */
+    protected $accountFactory;
+
+    /**
      * @test
      */
     public function aFirstNameCanBeSetAndRetrievedFromTheUser()
     {
+        /** @var User $user */
         $user = new User('Hugo', 'Tester');
         $user->setFirstname('RandomName');
         $expected = 'RandomName';
@@ -31,6 +40,7 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aLastNameCanBeSetAndRetrievedFromTheUser()
     {
+        /** @var User $user */
         $user = new User('Hugo', 'Tester');
         $user->setLastname('RandomName');
         $expected = 'RandomName';
@@ -43,6 +53,7 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aSquadCanBeAssignedToAUser()
     {
+        /** @var User $user */
         $user = new User('Hugo', 'Tester');
         $squad = new Squad();
         $user->setSquad($squad);
@@ -62,9 +73,21 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aFullNameCanBeRetrievedFromAUser()
     {
+        /** @var User $user */
         $user = new User('Hugo', 'Tester');
         $expected = 'Hugo Tester';
         $actual = $user->getFullName();
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function anAccountCanBeAssignedToAndRetrievedFromTheUser()
+    {
+        $account = $this->getAccessibleMock(Account::class, ['dummy']);
+        $user = new User('Hugo', 'Tester', $account);
+
+        $this->assertInstanceOf(Account::class, $user->getAccount());
     }
 }

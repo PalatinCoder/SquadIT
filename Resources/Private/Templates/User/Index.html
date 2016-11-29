@@ -1,15 +1,71 @@
 <f:layout name="Default" />
 
-<f:section name="Title">Index view of User controller</f:section>
+<f:section name="Title">My Profile</f:section>
 
 <f:section name="Content">
-    <h1>A freshly created Fluid template!</h1>
-    <p>Some data set by the controller:</p>
-    <ul>
-        
-        <f:for each="{foos}" as="foo">
-            <li>{foo}</li>
-        </f:for>
-        
-    </ul>
+
+<f:form method="post" action="update" class="form-horizontal col-sm-6" object="{user}" objectName="user">
+    <h2>My name</h2>
+    <div class="form-group">
+        <label for="inputFirstname" class="col-sm-2 control-label">Firstname</label>
+        <div class="col-sm-10">
+            <f:form.textfield property="firstname" class="form-control" id="inputFirstname"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputLastname" class="col-sm-2 control-label">Lastname</label>
+        <div class="col-sm-10">
+            <f:form.textfield property="lastname"  class="form-control" id="inputLastname" />
+        </div>
+    </div>
+    <h2>Profile picture</h2>
+    <p>Hang on, we're working on it!</p>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <f:form.submit name="saveUser" value="Save" class="btn btn-primary pull-right" />
+        </div>
+    </div>
+</f:form>
+
+<f:form method="post" action="changePassword" class="form-horizontal col-sm-6" object="{account}" objectName="account">
+    <h2>My account</h2>
+    <div class="form-group">
+        <label for="fieldIdentifier" class="col-sm-2 control-label">Identifier</label>
+        <div class="col-sm-10">
+            <f:form.textfield property="accountIdentifier" class="form-control" additionalAttributes="{'readonly': 'readonly'}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">New Password</label>
+        <div class="col-sm-10">
+            <f:form.password name="password" id="inputPassword" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPasswordRepeat" class="col-sm-2 control-label">Repeat Password</label>
+        <div class="col-sm-10">
+            <f:form.password name="passwordRepeat" id="inputPasswordRepeat" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <f:form.submit name="changePassword" value="Change Password" class="btn btn-primary pull-right" />
+        </div>
+    </div>
+</f:form>
+
+<f:form method="post" action="delete" class="col-sm-6">
+    <h3>Delete my account</h3>
+    <p>We're really sorry you don't want to use SquadIT anymore. But we won't stop you. Go ahead.</p>
+    <div class="checkbox">
+        <label>
+            <f:form.checkbox name="confirm" additionalAttributes="{'required': 'required'}" value="true" />
+            Yes, I'm sure
+        </label>
+    </div>
+    <div class="form-group">
+        <f:form.submit name="delete" value="Delete" class="btn btn-danger pull-right" />
+    </div>
+</f:form>
+
 </f:section>

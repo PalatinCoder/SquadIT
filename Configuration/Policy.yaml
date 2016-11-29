@@ -4,6 +4,9 @@ privilegeTargets:
     'SquadIT.WebApp:ViewDashboard':
       matcher: 'method(SquadIT\WebApp\Controller\StandardController->indexAction())'
 
+    'SquadIT.WebApp:UserManagement':
+      matcher: 'method(SquadIT\WebApp\Controller\UserController->(index|update|delete|changePassword)Action())'
+
 roles:
   'TYPO3.Flow:Everybody':
     privileges: []
@@ -11,4 +14,7 @@ roles:
     privileges:
       -
         privilegeTarget: 'SquadIT.WebApp:ViewDashboard'
+        permission: GRANT
+      -
+        privilegeTarget: 'SquadIT.WebApp:UserManagement'
         permission: GRANT
