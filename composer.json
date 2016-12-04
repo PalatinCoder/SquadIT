@@ -8,6 +8,9 @@
         "typo3/twitter-bootstrap": "^2.2"
     },
     "name": "squadit/webapp",
+	"require-dev": {
+		"flowpack/behat": "dev-sqlite-truncate"
+	},
     "autoload": {
         "psr-0": {
             "SquadIT\\WebApp": "Classes/"
@@ -16,6 +19,12 @@
     "extra": {
         "neos": {
             "package-key": "SquadIT.WebApp"
+        }
+    },
+    "repositories": {
+        "behat-helper": {
+            "type": "vcs",
+            "url": "https://github.com/PalatinCoder/Flowpack.Behat.git"
         }
     }
 }
