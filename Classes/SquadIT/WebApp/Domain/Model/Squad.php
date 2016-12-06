@@ -7,6 +7,7 @@ namespace SquadIT\WebApp\Domain\Model;
 
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -36,11 +37,20 @@ class Squad
     protected $picture;
 
     /**
-     * @ORM\OneToMany(mappedBy="squad")
+     * @ORM\ManyToMany(inversedBy="squads")
      * @var Collection<User>
      */
-    protected $member;
+    protected $members;
 
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function __construct($name)
+    {
+        $this->members = new ArrayCollection();
+        $this->name = $name;
+    }
 
     /**
      * @return string
@@ -96,9 +106,18 @@ class Squad
     /**
      * @return array
      */
-    public function getMember()
+    public function getMembers()
     {
-        return $this->member;
+        return $this->members;
+    }
+
+    /**
+     * @param ArrayCollection $members
+     * @return Squad
+     */
+    public function setMembers(ArrayCollection $members)
+    {
+        $this->members = $members;
     }
 
     /**
@@ -107,8 +126,8 @@ class Squad
      * @param User $member
      * @return void
      */
-     public function addMember($member)
+     public function addMember(User $member)
      {
-         $this->member[]=$member;
+         $this->members->add($member);
      }
 }

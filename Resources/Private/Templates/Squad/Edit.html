@@ -9,22 +9,26 @@
                 <label for="name">Name</label>
                 <f:form.textfield property="name" id="name" />
             </li>
-        
+
             <li>
                 <label for="description">Description</label>
                 <f:form.textfield property="description" id="description" />
             </li>
-        
+
             <li>
                 <label for="picture">Picture</label>
                 <f:form.textfield property="picture" id="picture" />
             </li>
-        
+
             <li>
-                <label for="member">Member</label>
-                <f:form.textfield property="member" id="member" />
+                <strong>Members</strong>
+                <ul>
+                <f:for each="{squad.members}" as="member">
+                    <li>{member.fullname}</li>
+                </f:for>
+                </ul>
             </li>
-        
+
             <li>
                 <f:form.submit value="Update" />
             </li>

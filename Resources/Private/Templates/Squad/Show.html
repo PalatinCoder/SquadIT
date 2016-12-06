@@ -8,19 +8,25 @@
             <th>Name</th>
             <td>{squad.name}</td>
         </tr>
-    
+
         <tr>
             <th>Description</th>
             <td>{squad.description}</td>
         </tr>
-    
+
         <tr>
             <th>Picture</th>
             <td>{squad.picture}</td>
         </tr>
-    
+
         <tr>
             <th>Member</th>
-            <td>{squad.member}</td>
+            <f:for each="{squad.members}" as="member">
+                <td>{member.firstname}</td>
+            </f:for>
         </tr>
     </table>
+    <f:form action="delete" arguments="{squad: squad}">
+        <f:form.submit value="Delete" />
+    </f:form>
+</f:section>
