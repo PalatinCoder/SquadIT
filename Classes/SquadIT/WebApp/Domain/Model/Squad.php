@@ -16,6 +16,7 @@ class Squad
 {
 
     /**
+     * @Flow\Identity
      * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="StringLength", options={ "minimum"=3, "maximum"=80 })
      * @ORM\Column(length=80)
