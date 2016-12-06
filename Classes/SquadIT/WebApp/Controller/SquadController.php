@@ -55,14 +55,6 @@ class SquadController extends ActionController
     }
 
     /**
-     * @return void
-     */
-    public function indexAction()
-    {
-        $this->view->assign('squads', $this->squadRepository->findAll());
-    }
-
-    /**
      * @param Squad $squad
      * @return void
      */
@@ -86,7 +78,7 @@ class SquadController extends ActionController
     {
         $this->squadRepository->add($newSquad);
         $this->addFlashMessage('Created a new squad.');
-        $this->redirect('index');
+        $this->redirect('show', null, null, array('squad' => $newSquad));
     }
 
     /**
@@ -105,8 +97,8 @@ class SquadController extends ActionController
     public function updateAction(Squad $squad)
     {
         $this->squadRepository->update($squad);
-        $this->addFlashMessage('Updated the squad.');
-        $this->redirect('index');
+        $this->addFlashMessage('Updated %s', null, null, array($squad->getName()));
+        $this->redirect('show', null, null, array('squad' => $squad));
     }
 
     /**
@@ -116,7 +108,7 @@ class SquadController extends ActionController
     public function deleteAction(Squad $squad)
     {
         $this->squadRepository->remove($squad);
-        $this->addFlashMessage('Deleted a squad.');
-        $this->redirect('index');
+        $this->addFlashMessage('Deleted the squad.');
+        $this->redirect('index', 'Standard');
     }
 }
