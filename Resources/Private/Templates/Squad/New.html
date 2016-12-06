@@ -4,11 +4,11 @@
 
 <f:section name="Content">
     <p class="lead">Fill out the information to create your own Squad</p>
-    <f:form action="create" objectName="newSquad" class="form-horizontal">
+    <f:form action="create" objectName="newSquad" class="form-horizontal" id="newSquadForm">
         <div class="form-group">
             <label for="picture" class="col-sm-2 control-label">Picture</label>
             <div class="col-sm-10">
-                <f:form.upload property="originalResource" />
+                <f:form.upload property="picture" />
             </div>
         </div>
         <div class="form-group">
@@ -24,24 +24,24 @@
             </div>
         </div>
         <div class="form-group">
-        <!--TBD:
-            Alternative 1:
-            Controller-Mapping MemberListe(emails) auf UserListe(logic)
-            Alternative 2:
-            Logic UserListe in Accountliste umwandeln
-        -->
-            <label for="member" class="col-sm-2 control-label">Member</label>
-            <ol class="col-sm-10" style="list-style: none">
-                <li>
-                    <f:form.textfield property="member" id="member" class="form-control"/>
-                </li>
-                <li>
-                    <f:form.textfield property="member" id="member" class="form-control"/>
-                </li>
-                <li>
-                    <f:form.textfield property="member" id="member" class="form-control"/>
-                </li>
-            </ol>
+            <label for="memberList" class="col-sm-2 control-label">Member</label>
+            <div class="col-sm-10" id="memberList">
+                <div class="checkbox">
+                    <label>
+                        <f:form.hidden name="newSquad[members][]" value="{user_email}" />
+                        <f:form.checkbox property="members" multiple="multiple" value="{user_email}" checked="true" disabled="disabled" />
+                        {user_email}
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-10 col-sm-offset-2">
+                <div class="input-group">
+                    <input type="email" class="form-control" id="inputMemberEmail" placeholder="john.doe@example.com">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" id="memberListAdd"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="sr-only">Add</span></button>
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <div class="col-sm-2 col-sm-offset-10">
@@ -49,4 +49,28 @@
             </div>
         </div>
     </f:form>
+</f:section>
+
+<f:section name="BodyScripts">
+<script>
+$('#memberListAdd').click(function() {
+    $('#memberList').append(
+        $('<div>', {
+            class: 'checkbox'
+        }).prepend(
+            $('<label>', {
+                text: $('#inputMemberEmail').val()
+            }).prepend(
+                $('<input>', {
+                    type: 'checkbox',
+                    name: 'newSquad[members][]',
+                    value: $('#inputMemberEmail').val(),
+                    checked: true
+                })
+            )
+        )
+    );
+    $('#inputMemberEmail').val("");
+});
+</script>
 </f:section>

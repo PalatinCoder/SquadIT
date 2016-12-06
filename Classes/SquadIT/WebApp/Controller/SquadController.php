@@ -7,6 +7,7 @@ namespace SquadIT\WebApp\Controller;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Security\Context;
+use TYPO3\Flow\Security\Account;
 use TYPO3\Flow\Mvc\View\ViewInterface;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use SquadIT\WebApp\Domain\Model\Squad;
@@ -16,7 +17,6 @@ use SquadIT\WebApp\Domain\Repository\UserRepository;
 
 class SquadController extends ActionController
 {
-
     /**
      * @Flow\Inject
      * @var SquadRepository
@@ -36,6 +36,8 @@ class SquadController extends ActionController
     protected $securityContext;
 
     /**
+     * Holds the currently logged in user
+     *
      * @var User
      */
     protected $user;
@@ -68,6 +70,16 @@ class SquadController extends ActionController
      */
     public function newAction()
     {
+        $this->view->assign('user_email', $this->securityContext->getAccount()->getAccountIdentifier());
+    }
+
+    /**
+     * @return void
+     */
+    public function initializeCreateAction()
+    {
+        $propertyConfiguration = $this->arguments->getArgument('newSquad')->getPropertyMappingConfiguration();
+        $propertyConfiguration->forProperty('members')->allowAllProperties();
     }
 
     /**
