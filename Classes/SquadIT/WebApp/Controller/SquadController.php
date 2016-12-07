@@ -6,8 +6,11 @@ namespace SquadIT\WebApp\Controller;
  */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Persistence\Doctrine\PersistenceManager;
 use TYPO3\Flow\Security\Context;
 use TYPO3\Flow\Security\Account;
+use TYPO3\Flow\Security\AccountRepository;
+use TYPO3\Flow\Security\Policy\PolicyService;
 use TYPO3\Flow\Mvc\View\ViewInterface;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use SquadIT\WebApp\Domain\Model\Squad;
@@ -19,6 +22,18 @@ class SquadController extends ActionController
 {
     /**
      * @Flow\Inject
+     * @var PolicyService
+     */
+    protected $policyService;
+
+    /**
+     * @Flow\Inject
+     * @var PersistenceManager
+     */
+    protected $persistenceManager;
+
+    /**
+     * @Flow\Inject
      * @var SquadRepository
      */
     protected $squadRepository;
@@ -28,6 +43,12 @@ class SquadController extends ActionController
      * @var UserRepository
      */
     protected $userRepository;
+
+    /**
+     * @Flow\Inject
+     * @var AccountRepository
+     */
+    protected $accountRepository;
 
     /**
      * @Flow\Inject
@@ -88,6 +109,14 @@ class SquadController extends ActionController
      */
     public function createAction(Squad $newSquad)
     {
+        /** @var \TYPO3\Flow\Security\Policy\Role */
+        $role = $this->policyService->getRole('SquadIT.WebApp:TeamCaptain');
+        /** @var Account $account */
+        $account = $this->securityContext->getAccount();
+        $account->addRole($role);
+        $this->accountRepository->update($account);
+        $this->persistenceManager->persistAll();
+
         $this->squadRepository->add($newSquad);
         $this->addFlashMessage('Created a new squad.');
         $this->redirect('show', null, null, array('squad' => $newSquad));
