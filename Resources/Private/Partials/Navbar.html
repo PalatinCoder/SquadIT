@@ -19,11 +19,12 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Squads <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Football Squad</a></li>
-            <li><a href="#">Basketball Squad</a></li>
-            <li><a href="#">Drinking squad</a></li>
-            <li><a href="#">Fucking bitches squad</a></li>
-            <li role="separator" class="divider"></li>
+            <f:if condition="{user.squads}">
+                <f:for each="{user.squads}" as="currentSquad">
+                <li><f:link.action controller="squad" action="show" arguments="{squad: currentSquad}">{currentSquad.name}</f:link.action></li>
+                </f:for>
+                <li role="separator" class="divider"></li>
+            </f:if>
             <li><f:link.action controller="Squad" action="new"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="color: green"></span> Create new..</f:link.action></li>
           </ul>
         </li>
