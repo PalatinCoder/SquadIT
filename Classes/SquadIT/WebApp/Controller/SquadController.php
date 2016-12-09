@@ -87,6 +87,15 @@ class SquadController extends AbstractUserAwareActionController
     }
 
     /**
+     * @return void
+     */
+    public function initializeUpdateAction()
+    {
+        $propertyConfiguration = $this->arguments->getArgument('squad')->getPropertyMappingConfiguration();
+        $propertyConfiguration->forProperty('members')->allowAllProperties();
+    }
+
+    /**
      * @param Squad $squad
      * @return void
      */
