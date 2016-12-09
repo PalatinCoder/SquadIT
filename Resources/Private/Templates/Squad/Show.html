@@ -1,32 +1,26 @@
 <f:layout name="Default" />
 
-<f:section name="Title">Show squad"{squad.name}"</f:section>
+<f:section name="Title">{squad.name}</f:section>
 
 <f:section name="Content">
-    <table>
-        <tr>
-            <th>Name</th>
-            <td>{squad.name}</td>
-        </tr>
-
-        <tr>
-            <th>Description</th>
-            <td>{squad.description}</td>
-        </tr>
-
-        <tr>
-            <th>Picture</th>
-            <td>{squad.picture}</td>
-        </tr>
-
-        <tr>
-            <th>Member</th>
-            <f:for each="{squad.members}" as="member">
-                <td>{member.fullname}</td>
-            </f:for>
-        </tr>
-    </table>
-    <f:form action="delete" arguments="{squad: squad}">
-        <f:form.submit value="Delete" />
-    </f:form>
+<div class="row">
+    <div class="col-sm-4 col-sm-push-8">
+        <img class="img-circle pull-right" src="https://place-hold.it/150/888/fff&fontsize=32&text={squad.name -> f:format.crop(maxCharacters: 2, append: '')}" alt="Profile Picture" />
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-sm-8 col-sm-pull-4">
+        <p class="lead">{squad.description}</p>
+        <h3>Member</h3>
+        <f:for each="{squad.members}" as="member">
+            <p>{member.fullname}</p>
+        </f:for>
+    </div>
+</div>
+<f:security.ifAccess privilegeTarget="SquadIT.WebApp:Squad.Manage">
+    <div class="row">
+        <div class="col-sm-offset-10 col-sm-2">
+            <f:link.action action="edit" arguments="{squad: squad}" class="btn btn-primary btn-block">Edit</f:link.action>
+        </div>
+    </div>
+</f:security.ifAccess>
 </f:section>
