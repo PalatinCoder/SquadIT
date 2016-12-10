@@ -3,17 +3,31 @@
 <f:section name="Title">{squad.name}</f:section>
 
 <f:section name="Content">
-<div class="row">
-    <div class="col-sm-4 col-sm-push-8">
-        <img class="img-circle pull-right" src="https://place-hold.it/150/888/fff&fontsize=32&text={squad.name -> f:format.crop(maxCharacters: 2, append: '')}" alt="Profile Picture" />
-        <div class="clearfix"></div>
-    </div>
-    <div class="col-sm-8 col-sm-pull-4">
+<div class="media">
+    <div class="media-body">
         <p class="lead">{squad.description}</p>
-        <h3>Member</h3>
-        <f:for each="{squad.members}" as="member">
-            <p>{member.fullname}</p>
-        </f:for>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Members</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="media-list">
+                <f:for each="{squad.members}" as="member">
+                    <li class="media">
+                        <div class="media-left">
+                            <img src="https://place-hold.it/30/888/fff&fontsize=14&text={member.firstname -> f:format.crop(maxCharacters: 1, append: '')}{member.lastname -> f:format.crop(maxCharacters: 1, append: '')}" alt="Profile Picture" class="img-circle media-object" />
+                        </div>
+                        <div class="media-body">
+                            {member.fullname}
+                        </div>
+                    </li>
+                </f:for>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="media-right media-top">
+        <img class="img-circle media-object" src="https://place-hold.it/150/888/fff&fontsize=32&text={squad.name -> f:format.crop(maxCharacters: 2, append: '')}" alt="Profile Picture" />
     </div>
 </div>
 <f:security.ifAccess privilegeTarget="SquadIT.WebApp:Squad.Manage">
