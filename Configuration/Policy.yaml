@@ -7,6 +7,15 @@ privilegeTargets:
     'SquadIT.WebApp:UserManagement':
       matcher: 'method(SquadIT\WebApp\Controller\UserController->(index|update|delete|changePassword)Action())'
 
+    'SquadIT.WebApp:Squad.View':
+      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(show)Action())'
+
+    'SquadIT.WebApp:Squad.Create':
+      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(new|create|initializeCreate)Action())'
+
+    'SquadIT.WebApp:Squad.Manage':
+      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|initializeUpdate|delete)Action())'
+
 roles:
   'TYPO3.Flow:Everybody':
     privileges: []
@@ -17,4 +26,16 @@ roles:
         permission: GRANT
       -
         privilegeTarget: 'SquadIT.WebApp:UserManagement'
+        permission: GRANT
+      -
+        privilegeTarget: 'SquadIT.WebApp:Squad.View'
+        permission: GRANT
+      -
+        privilegeTarget: 'SquadIT.WebApp:Squad.Create'
+        permission: GRANT
+
+  'SquadIT.WebApp:TeamCaptain':
+    privileges:
+      -
+        privilegeTarget: 'SquadIT.WebApp:Squad.Manage'
         permission: GRANT

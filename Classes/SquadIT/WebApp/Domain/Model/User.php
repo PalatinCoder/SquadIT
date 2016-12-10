@@ -7,6 +7,8 @@ namespace SquadIT\WebApp\Domain\Model;
 
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Flow\Entity
@@ -37,10 +39,10 @@ class User
     protected $profilepicture;
 
     /**
-     * @ORM\ManyToOne(inversedBy="members")
-     * @var Squad
+     * @ORM\ManyToMany(mappedBy="members")
+     * @var Collection<Squad>
      */
-    protected $squad;
+    protected $squads;
 
     /**
      * @ORM\OneToOne
@@ -52,6 +54,7 @@ class User
      * Constructor of user with name as parameter.
      * @param string $firstname
      * @param string $lastname
+     * @param \TYPO3\Flow\Security\Account $account
      * @return void
      */
     public function __construct($firstname, $lastname, $account = null)
@@ -59,6 +62,7 @@ class User
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->account = $account;
+        $this->squads = new ArrayCollection();
     }
 
     /**
@@ -123,20 +127,27 @@ class User
     }
 
     /**
-     * @return Squad
+     * @return Collection
      */
-    public function getSquad()
+    public function getSquads()
     {
-        return $this->squad;
+        return $this->squads;
+    }
+
+    /**
+     * @param Collection $squad
+     */
+    public function setSquads($squad)
+    {
+        $this->squads = $squads;
     }
 
     /**
      * @param Squad $squad
-     * @return void
      */
-    public function setSquad($squad)
+    public function addSquad($squad)
     {
-        $this->squad = $squad;
+        $this->squads->add($squad);
     }
 
     /**

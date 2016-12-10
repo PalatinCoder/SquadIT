@@ -1,0 +1,76 @@
+<f:layout name="Default" />
+
+<f:section name="Title">New squad</f:section>
+
+<f:section name="Content">
+    <p class="lead">Fill out the information to create your own Squad</p>
+    <f:form action="create" objectName="newSquad" class="form-horizontal" id="newSquadForm">
+        <div class="form-group">
+            <label for="picture" class="col-sm-2 control-label">Picture</label>
+            <div class="col-sm-10">
+                <f:form.upload property="picture" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <f:form.textfield property="name" id="name" class="form-control" required="required"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <f:form.textarea property="description" id="description" class="form-control" style="resize: vertical"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="memberList" class="col-sm-2 control-label">Member</label>
+            <div class="col-sm-10" id="memberList">
+                <div class="checkbox">
+                    <label>
+                        <f:form.hidden name="newSquad[members][]" value="{user.account.accountidentifier}" />
+                        <f:form.checkbox property="members" multiple="multiple" value="{user.account.accountidentifier}" checked="true" disabled="disabled" />
+                        {user.account.accountidentifier}
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-10 col-sm-offset-2">
+                <div class="input-group">
+                    <input type="email" class="form-control" id="inputMemberEmail" placeholder="john.doe@example.com">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" id="memberListAdd"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="sr-only">Add</span></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-10">
+                <f:form.submit class="btn btn-primary btn-block" value="Create" />
+            </div>
+        </div>
+    </f:form>
+</f:section>
+
+<f:section name="BodyScripts">
+<script>
+$('#memberListAdd').click(function() {
+    $('#memberList').append(
+        $('<div>', {
+            class: 'checkbox'
+        }).prepend(
+            $('<label>', {
+                text: $('#inputMemberEmail').val()
+            }).prepend(
+                $('<input>', {
+                    type: 'checkbox',
+                    name: 'newSquad[members][]',
+                    value: $('#inputMemberEmail').val(),
+                    checked: true
+                })
+            )
+        )
+    );
+    $('#inputMemberEmail').val("");
+});
+</script>
+</f:section>

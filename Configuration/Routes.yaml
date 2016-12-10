@@ -7,6 +7,16 @@
     '@package': 'SquadIT.WebApp'
     '@format': 'html'
 -
+  name: 'Squad Management'
+  uriPattern: 'squad/{squad}/{@action}'
+  defaults:
+    '@package': 'SquadIT.WebApp'
+    '@controller': 'Squad'
+    '@format': 'html'
+  routeParts:
+    squad:
+      objectType: 'SquadIT\WebApp\Domain\Model\Squad'
+-
   name: 'Default Route'
   uriPattern: '{@controller}/{@action}'
   defaults:
