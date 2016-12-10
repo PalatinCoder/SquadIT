@@ -143,6 +143,14 @@ class User
     }
 
     /**
+     * @param Squad $squad
+     */
+    public function addSquad($squad)
+    {
+        $this->squads->add($squad);
+    }
+
+    /**
      * @return \TYPO3\Flow\Security\Account
      */
     public function getAccount()

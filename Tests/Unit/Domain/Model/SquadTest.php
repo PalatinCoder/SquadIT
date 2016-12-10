@@ -19,7 +19,7 @@ class SquadTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aNameCanBeSetAndRetrievedFromTheSquad()
     {
-        $squad = new Squad();
+        $squad = new Squad('Hugo');
         $squad->setName('RandomName');
         $expected = 'RandomName';
         $actual = $squad->getName();
@@ -31,7 +31,7 @@ class SquadTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aDescriptionCanBeSetAndRetrievedFromTheSquad()
     {
-        $squad = new Squad();
+        $squad = new Squad('Hugo');
         $squad->setDescription('A random description that describes the squad.');
         $expected = 'A random description that describes the squad.';
         $actual = $squad->getDescription();
@@ -51,10 +51,10 @@ class SquadTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function aMemberCanBeAddedToASquad()
     {
-        $squad = new Squad();
+        $squad = new Squad('Hugo');
         $squad->addMember(new User('Haggl', 'Schorsch'));
         $squad->addMember(new User('Frodo', 'TheHobo'));
         $squad->addMember(new User('Jan', 'Delay'));
-        $this->assertSame(count($squad->getMember()), 3);
+        $this->assertSame(count($squad->getMembers()), 3);
     }
 }

@@ -55,9 +55,9 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
     {
         /** @var User $user */
         $user = new User('Hugo', 'Tester');
-        $squad = new Squad();
-        $user->setSquad($squad);
-        $this->assertInstanceOf(Squad::class, $user->getSquad());
+        $squad = new Squad('Demo');
+        $user->addSquad($squad);
+        $this->assertInstanceOf(Squad::class, $user->getSquads()[0]);
     }
 
     /**
