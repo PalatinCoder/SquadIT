@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\Collection;
  *
  * @Flow\Scope("singleton")
  */
-class UserCollectionTypeConverter extends AbstractTypeConverter
+class UserTypeConverter extends AbstractTypeConverter
 {
     /**
      * @Flow\Inject
@@ -40,6 +40,7 @@ class UserCollectionTypeConverter extends AbstractTypeConverter
      * Actually convert from $source to $targetType
      *
      * @param mixed $source
+     * @Flow\Validate(argumentName="source", type="EmailAddress")
      * @param string $targetType
      * @param array $convertedChildProperties
      * @param \TYPO3\Flow\Property\PropertyMappingConfigurationInterface $configuration
