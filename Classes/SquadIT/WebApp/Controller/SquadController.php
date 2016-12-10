@@ -116,4 +116,28 @@ class SquadController extends AbstractUserAwareActionController
         $this->addFlashMessage('Deleted the squad.');
         $this->redirect('index', 'Standard');
     }
+
+    /**
+     * Change the team captain of a squad
+     *
+     * @param User $user
+     * @param Squad $squad
+     * @return void
+     */
+     public function passLeadershipAction(User $user, Squad $squad)
+     {
+         /** @var \TYPO3\Flow\Policy\Role $role */
+         $role = $this->policyService->getRole('SquadIT.WebApp:TeamCaptain');
+
+         $this->user->getAccount()->removeRole($role);
+         $user->getAccount()->addRole($role);
+
+         $this->accountRepository->update($this->user->getAccount());
+         $this->accountRepository->update($user->getAccount());
+
+         //$this->persistenceManager->persistAll();
+
+         $this->addFlashMessage('%s is now team captain of %s', null, null, array($user->getFullName(), $squad->getName()));
+         $this->redirect('show', null, null, array('squad' => $squad));
+     }
 }
