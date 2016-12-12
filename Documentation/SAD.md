@@ -30,6 +30,8 @@ N/A
 
 The SquadIT Web App uses the common MVC architecture.
 
+![MVC-Overview](MVC.png)
+
 ## 3 Architectural Goals and Constraints
 
 We are using the [Flow](https://flow.neos.io/) Framework which implements the MVC pattern and does already most of the work. We define our models as simple PHP classes. The controllers are also written in PHP. The view is handeled by Fluid, the template engine of Flow, so it consists of HTML and CSS. Furthermore, Flow includes doctrine, which abstracts the database layer from our logic.
@@ -39,6 +41,8 @@ We are using the [Flow](https://flow.neos.io/) Framework which implements the MV
 N/A
 
 ## 5 Logical View
+
+You can see the controllers in the upper right corner. All controller classes have the suffix 'controller'. All the other classes belong to the model. The view is not shown here, as it is handeled by the framework via HTML template files.
 
 ![Class diagram](Classdiagram.png)
 
@@ -56,7 +60,9 @@ N/A
 
 ## 9 Data View
 
-N/A - as doctrine does persistence automatically based on the design models.
+Doctrine does persistence automatically based on the design models. This is the schema Doctrine created:
+
+![Database schema](Databaseschema.jpg)
 
 ## 10 Size and Performance
 
