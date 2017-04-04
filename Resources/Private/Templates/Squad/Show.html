@@ -15,10 +15,10 @@
                 <f:for each="{squad.members}" as="member">
                     <li class="media">
                         <div class="media-left">
-                            <img src="https://place-hold.it/30/888/fff&fontsize=14&text={member.firstname -> f:format.crop(maxCharacters: 1, append: '')}{member.lastname -> f:format.crop(maxCharacters: 1, append: '')}" alt="Profile Picture" class="img-circle media-object" />
+                            <img src="{f:uri.resource(resource: member.profilepicture)}" alt="{member.fullname}" width="100" class="img-circle media-object" />
                         </div>
                         <div class="media-body">
-                            {member.fullname}
+                            <h4 class="media-heading">{member.fullname}</h4>
                         </div>
                     </li>
                 </f:for>
