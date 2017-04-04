@@ -6,6 +6,7 @@ namespace SquadIT\WebApp\Domain\Model;
  */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Resource\Resource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -33,8 +34,8 @@ class User
     protected $lastname;
 
     /**
-     * @ORM\Column(nullable=true)
-     * @var string
+     * @ORM\OneToOne
+     * @var Resource
      */
     protected $profilepicture;
 
@@ -110,18 +111,22 @@ class User
     }
 
     /**
-     * @return string
+     * @return Resource
      */
     public function getProfilepicture()
     {
+        if ($this->profilepicture == null)
+        {
+            // return placeholder
+        }
         return $this->profilepicture;
     }
 
     /**
-     * @param string $profilepicture
+     * @param Resource $profilepicture
      * @return void
      */
-    public function setProfilepicture($profilepicture)
+    public function setProfilepicture(Resource $profilepicture)
     {
         $this->profilepicture = $profilepicture;
     }

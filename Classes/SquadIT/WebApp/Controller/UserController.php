@@ -11,6 +11,7 @@ use TYPO3\Flow\Security\Account;
 use TYPO3\Flow\Security\AccountFactory;
 use TYPO3\Flow\Security\Cryptography\HashService;
 use SquadIT\WebApp\Domain\Model\User;
+use SquadIT\WebApp\Utility\CircleImageFilter;
 
 class UserController extends AbstractUserAwareActionController
 {
@@ -26,6 +27,24 @@ class UserController extends AbstractUserAwareActionController
      * @var HashService
      */
     protected $hashService;
+
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Utility\Environment
+     */
+    protected $environment;
+
+    /**
+     * @var \Imagine\Image\ImagineInterface
+     * @Flow\Inject(lazy = false)
+     */
+    protected $imagineService;
+
+    /**
+     * @var \TYPO3\Flow\Resource\ResourceManager
+     * @Flow\Inject
+     */
+    protected $resourceManager;
 
     /**
      * @return void
@@ -98,8 +117,27 @@ class UserController extends AbstractUserAwareActionController
     public function updateAction($user)
     {
         $this->userRepository->update($user);
+
+        $resourceUri = $user->getProfilepicture()->createTemporaryLocalCopy();
+        $resultingFileExtension = $user->getProfilepicture()->getFileExtension();
+        $transformedImageTemporaryPath = $this->environment->getPathToTemporaryDirectory() . uniqid('ProcessedImage-') . '.' . $resultingFileExtension;
+
+        if (!file_exists($resourceUri)) {
+            throw new \TYPO3\Flow\Exception(sprintf('An error occurred while transforming an image: the resource data of the original image does not exist (%s, %s).', $originalResource->getSha1(), $resourceUri), 1374848224);
+        }
+
+        $imagineImage = $this->imagineService->open($resourceUri);
+        $circleFilter = new CircleImageFilter($this->imagineService, new \Imagine\Image\Box(200,200));
+        $circleFilter->apply($imagineImage)->save($transformedImageTemporaryPath);
+
+        $resource = $this->resourceManager->importResource($transformedImageTemporaryPath, $user->getProfilepicture()->getCollectionName());
+        unlink($transformedImageTemporaryPath);
+
+        $user->setProfilepicture($resource);
+        $this->userRepository->update($user);
+
         $this->addFlashMessage('Updated your profile');
-        $this->redirect('index');
+        $this->forward('index');
     }
 
     /**

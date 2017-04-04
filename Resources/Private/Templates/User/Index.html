@@ -3,7 +3,7 @@
 <f:section name="Title">My Profile</f:section>
 
 <f:section name="Content">
-<f:form method="post" action="update" class="form-horizontal col-sm-6" object="{user}" objectName="user">
+<f:form method="post" action="update" class="form-horizontal col-sm-6" object="{user}" objectName="user" enctype="multipart/form-data">
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2 class="panel-title">My name</h2>
@@ -28,7 +28,12 @@
         <h2 class="panel-title">Profile picture</h2>
     </div>
     <div class="panel-body">
-        <p>Hang on, we're working on it!</p>
+        <img class="img-circle center-block" alt="{user.fullname}" src="{f:uri.resource(resource: user.profilepicture)}" width="200" height="200" />
+        <div class="form-group">
+            <label class="btn btn-default pull-right">
+                Browse <f:form.upload property="profilepicture" class="sr-only" />
+            </label>
+        </div>
     </div>
 </div>
 <div class="form-group">
