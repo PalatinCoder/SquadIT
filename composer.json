@@ -5,7 +5,8 @@
     "type": "neos-package",
     "require": {
         "typo3/flow": "~3.3.0",
-        "typo3/twitter-bootstrap": "^2.2"
+        "typo3/twitter-bootstrap": "^2.2",
+        "typo3/imagine": "~2.0.0"
     },
     "name": "squadit/webapp",
     "autoload": {
