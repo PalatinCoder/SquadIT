@@ -18,6 +18,12 @@ class User
 {
 
     /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Resource\ResourceManager
+     */
+    protected $resourceManager;
+
+    /**
      * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="StringLength", options={ "minimum"=3, "maximum"=80 })
      * @ORM\Column(length=80)
@@ -115,11 +121,18 @@ class User
      */
     public function getProfilepicture()
     {
-        if ($this->profilepicture == null)
-        {
-            // return placeholder
-        }
         return $this->profilepicture;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProfilepictureUri() {
+        //\TYPO3\Flow\var_dump($this->profilepicture);
+        if ($this->profilepicture == null) {
+            return "https://placehold.it/200/888/fff?text=" . substr($this->firstname, 0, 1) . substr($this->lastname, 0, 1);
+        }
+        return $this->resourceManager->getPublicPersistentResourceUri($this->profilepicture);
     }
 
     /**

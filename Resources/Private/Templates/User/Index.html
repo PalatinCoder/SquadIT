@@ -28,7 +28,7 @@
         <h2 class="panel-title">Profile picture</h2>
     </div>
     <div class="panel-body">
-        <img class="img-circle center-block" alt="{user.fullname}" src="{f:uri.resource(resource: user.profilepicture)}" width="200" height="200" />
+        <img class="img-circle center-block" alt="{user.fullname}" src="{user.profilepictureuri}" width="200" height="200" />
         <div class="form-group">
             <label class="btn btn-default pull-right">
                 Browse <f:form.upload property="profilepicture" class="sr-only" />
