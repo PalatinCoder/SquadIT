@@ -178,6 +178,7 @@ class UserController extends AbstractUserAwareActionController
             $this->redirect('index');
         }
 
+        $this->resourceManager->deleteResource($this->user->getProfilepicture());
         $this->userRepository->remove($this->user);
         $this->accountRepository->remove($this->securityContext->getAccount());
         $this->addFlashMessage('Your account has been deleted');
