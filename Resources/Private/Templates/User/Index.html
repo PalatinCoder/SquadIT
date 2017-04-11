@@ -35,11 +35,11 @@
             <h2 class="panel-title">Profile picture</h2>
         </div>
         <div class="panel-body">
-            <img class="img-circle center-block" alt="{user.fullname}" src="{user.profilepictureuri}" width="200" height="200" />
+            <img class="img-circle center-block" alt="{user.fullname}" src="{user.profilepictureuri}" width="200" height="200" id="profilepicture" style="object-fit: cover;" />
             <f:form method="post" action="changeProfilepicture" class="form-horizontal" enctype="multipart/form-data">
             <div class="pull-right">
                     <label class="btn btn-default">
-                        Browse <f:form.upload name="image" class="sr-only" />
+                        Browse <f:form.upload name="image" id="imageChooser" class="sr-only" />
                     </label>
                     <f:form.submit name="uploadImage" value="Upload" class="btn btn-primary" />
             </div>
@@ -103,4 +103,14 @@
 </div>
 </div>
 
+</f:section>
+
+<f:section name="BodyScripts">
+    <script type="text/javascript">
+    $().ready(function() {
+        $("#imageChooser").change(function() {
+            $("img#profilepicture").attr('src', URL.createObjectURL(this.files[0]));
+        })
+    });
+    </script>
 </f:section>
