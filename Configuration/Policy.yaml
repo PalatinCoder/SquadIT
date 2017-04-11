@@ -5,7 +5,7 @@ privilegeTargets:
       matcher: 'method(SquadIT\WebApp\Controller\StandardController->indexAction())'
 
     'SquadIT.WebApp:UserManagement':
-      matcher: 'method(SquadIT\WebApp\Controller\UserController->(index|update|delete|changePassword)Action())'
+      matcher: 'method(SquadIT\WebApp\Controller\UserController->(index|update|delete|changePassword|changeProfilepicture)Action())'
 
     'SquadIT.WebApp:Squad.View':
       matcher: 'method(SquadIT\WebApp\Controller\SquadController->(show)Action())'
