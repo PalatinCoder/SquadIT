@@ -14,7 +14,7 @@ privilegeTargets:
       matcher: 'method(SquadIT\WebApp\Controller\SquadController->(new|create|initializeCreate)Action())'
 
     'SquadIT.WebApp:Squad.Manage':
-      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|initializeUpdate|delete)Action())'
+      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|initializeUpdate|delete|passLeadership)Action())'
 
 roles:
   'TYPO3.Flow:Everybody':
