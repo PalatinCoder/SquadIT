@@ -8,6 +8,12 @@ cache:
     directories:
         - $HOME/.composer/cache
 
+# when triggered by a push only build master branch and do deployment
+# other branches are built via pr
+branches:
+  only:
+    - master
+
 install:
     - cd ..
     - git clone https://github.com/neos/flow-base-distribution.git -b 3.3
