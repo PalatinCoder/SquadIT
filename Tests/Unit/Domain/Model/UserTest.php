@@ -63,9 +63,20 @@ class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
     /**
      * @test
      */
-    public function aPictureCanBeSet()
+    public function theCorrectProfilePictureUriCanBeRetrieved()
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * @test
+     */
+    public function aPlaceholderIsShownIfTheUserHasNoProfilepicture()
+    {
+        $user = new User('Hugo', 'Tester');
+        $uri = $user->getProfilepictureUri();
+        $this->assertStringStartsWith('https://placehold.it', $uri, "The URI host is not placehold.it");
+        $this->assertStringEndsWith('text=HT', $uri, "The URI does not contain the user initials");
     }
 
     /**
