@@ -5,8 +5,8 @@ namespace SquadIT\WebApp\Domain\Model;
  * This file is part of the SquadIT.WebApp package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Resource\Resource;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\ResourceManagement\PersistentResource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,7 +19,7 @@ class User
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Resource\ResourceManager
+     * @var \Neos\Flow\ResourceManagement\ResourceManager
      */
     protected $resourceManager;
 
@@ -41,7 +41,7 @@ class User
 
     /**
      * @ORM\OneToOne
-     * @var Resource
+     * @var PersistentResource
      */
     protected $profilepicture;
 
@@ -53,7 +53,7 @@ class User
 
     /**
      * @ORM\OneToOne
-     * @var \TYPO3\Flow\Security\Account
+     * @var \Neos\Flow\Security\Account
      */
     protected $account;
 
@@ -61,7 +61,7 @@ class User
      * Constructor of user with name as parameter.
      * @param string $firstname
      * @param string $lastname
-     * @param \TYPO3\Flow\Security\Account $account
+     * @param \Neos\Flow\Security\Account $account
      * @return void
      */
     public function __construct($firstname, $lastname, $account = null)
@@ -117,7 +117,7 @@ class User
     }
 
     /**
-     * @return Resource
+     * @return PersistentResource
      */
     public function getProfilepicture()
     {
@@ -127,8 +127,9 @@ class User
     /**
      * @return string
      */
-    public function getProfilepictureUri() {
-        //\TYPO3\Flow\var_dump($this->profilepicture);
+    public function getProfilepictureUri()
+    {
+        //\Neos\Flow\var_dump($this->profilepicture);
         if ($this->profilepicture == null) {
             return "https://placehold.it/200/888/fff?text=" . substr($this->firstname, 0, 1) . substr($this->lastname, 0, 1);
         }
@@ -136,10 +137,10 @@ class User
     }
 
     /**
-     * @param Resource $profilepicture
+     * @param PersistentResource $profilepicture
      * @return void
      */
-    public function setProfilepicture(Resource $profilepicture)
+    public function setProfilepicture(PersistentResource $profilepicture)
     {
         $this->profilepicture = $profilepicture;
     }
@@ -169,7 +170,7 @@ class User
     }
 
     /**
-     * @return \TYPO3\Flow\Security\Account
+     * @return \Neos\Flow\Security\Account
      */
     public function getAccount()
     {

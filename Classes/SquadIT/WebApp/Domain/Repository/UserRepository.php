@@ -5,11 +5,11 @@ namespace SquadIT\WebApp\Domain\Repository;
  * This file is part of the SquadIT.WebApp package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Persistence\Repository;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\Repository;
 use SquadIT\WebApp\Domain\Model\User;
-use TYPO3\Flow\Security\Account;
-use TYPO3\Flow\Security\AccountRepository;
+use Neos\Flow\Security\Account;
+use Neos\Flow\Security\AccountRepository;
 
 /**
  * @Flow\Scope("singleton")

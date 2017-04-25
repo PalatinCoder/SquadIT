@@ -5,7 +5,7 @@ namespace SquadIT\WebApp\Domain\Model;
  * This file is part of the SquadIT.WebApp package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

@@ -2,8 +2,8 @@
 namespace SquadIT\WebApp\Tests\Behavior\Features\Bootstrap;
 
 use Behat\Gherkin\Node\TableNode;
-use TYPO3\Flow\Security\AccountRepository;
-use TYPO3\Flow\Security\AccountFactory;
+use Neos\Flow\Security\AccountRepository;
+use Neos\Flow\Security\AccountFactory;
 use PHPUnit_Framework_Assert as Assert;
 
 /**

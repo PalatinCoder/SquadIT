@@ -5,10 +5,10 @@ namespace SquadIT\WebApp\Controller;
  * This file is part of the SquadIT.WebApp package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Persistence\Doctrine\PersistenceManager;
-use TYPO3\Flow\Security\Account;
-use TYPO3\Flow\Security\Policy\PolicyService;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\Doctrine\PersistenceManager;
+use Neos\Flow\Security\Account;
+use Neos\Flow\Security\Policy\PolicyService;
 use SquadIT\WebApp\Domain\Model\Squad;
 use SquadIT\WebApp\Domain\Repository\SquadRepository;
 use SquadIT\WebApp\Domain\Model\User;
@@ -64,7 +64,7 @@ class SquadController extends AbstractUserAwareActionController
      */
     public function createAction(Squad $newSquad)
     {
-        /** @var \TYPO3\Flow\Security\Policy\Role */
+        /** @var \Neos\Flow\Security\Policy\Role */
         $role = $this->policyService->getRole('SquadIT.WebApp:TeamCaptain');
         /** @var Account $account */
         $account = $this->securityContext->getAccount();
@@ -126,7 +126,7 @@ class SquadController extends AbstractUserAwareActionController
      */
      public function passLeadershipAction(User $user, Squad $squad)
      {
-         /** @var \TYPO3\Flow\Policy\Role $role */
+         /** @var \Neos\Flow\Policy\Role $role */
          $role = $this->policyService->getRole('SquadIT.WebApp:TeamCaptain');
 
          $this->user->getAccount()->removeRole($role);

@@ -5,9 +5,9 @@ namespace SquadIT\WebApp\Controller;
  * This file is part of the SquadIT.WebApp package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Mvc\ActionRequest;
-use TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 
 class AuthenticationController extends AbstractAuthenticationController
 {
@@ -41,12 +41,12 @@ class AuthenticationController extends AbstractAuthenticationController
     /**
      * Is called if authentication failed.
      *
-     * @param \TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception The exception thrown while the authentication process
+     * @param \Neos\Flow\Security\Exception\AuthenticationRequiredException $exception The exception thrown while the authentication process
      * @return void
      */
-    protected function onAuthenticationFailure(\TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception = null)
+    protected function onAuthenticationFailure(\Neos\Flow\Security\Exception\AuthenticationRequiredException $exception = null)
     {
-        $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error('Authentication failed!', ($exception === null ? 1347016771 : $exception->getCode())));
+        $this->flashMessageContainer->addMessage(new \Neos\Error\Messages\Error('Authentication failed!', ($exception === null ? 1347016771 : $exception->getCode())));
         $this->redirect('login');
     }
 }
