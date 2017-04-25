@@ -37,7 +37,7 @@ before_script:
   - cp Configuration/Settings.yaml.example Configuration/Settings.yaml
   - Build/BuildEssentials/TravisCi/SetupDatabase.sh
   - cp Configuration/Settings.yaml Configuration/Testing/
-  - rm Configuration/Routes.yaml
+  - if [ -f Configuration/Routes.yaml ]; then rm Configuration/Routes.yaml; fi
   - FLOW_CONTEXT=Development/Behat ./flow server:run &
 
 script:
