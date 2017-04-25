@@ -26,3 +26,6 @@ Scenario: Register with wrong input
     And I press "Submit"
     Then I should see "passwords are not identical"
     And I should not see "Registration successful"
+    And the "inputFirstname" field should contain "John"
+    And the "inputLastname" field should contain "Doe"
+    And the "inputEmail" field should contain "john.doe@example.com"

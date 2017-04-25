@@ -37,11 +37,16 @@ class UserController extends AbstractUserAwareActionController
 
     /**
      * Shows a registration form
-     *
+     * @param string $firstname Entered Firstname (if any)
+     * @param string $lastname Entered Lastname (if any)
+     * @param string $email Entered Email (if any)
      * @return void
      */
-    public function registerAction()
+    public function registerAction($firstname = null , $lastname = null , $email = null)
     {
+        $this->view->assign('firstname', $firstname);
+        $this->view->assign('lastname', $lastname);
+        $this->view->assign('email', $email);
     }
 
     /**
@@ -64,7 +69,9 @@ class UserController extends AbstractUserAwareActionController
     {
         if ($password !== $passwordRepeat) {
             $this->addFlashMessage('The entered passwords are not identical', 'Error', Message::SEVERITY_ERROR);
-            $this->redirect('register');
+            $this->redirect('register', null, null,
+                array('firstname' => $firstname, 'lastname' => $lastname, 'email' =>  $email)
+            );
         }
 
         /** @var Account $account */
