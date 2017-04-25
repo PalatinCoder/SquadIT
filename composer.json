@@ -10,8 +10,8 @@
     },
     "name": "squadit/webapp",
     "autoload": {
-        "psr-0": {
-            "SquadIT\\WebApp": "Classes/"
+        "psr-4": {
+            "SquadIT\\WebApp\\": "Classes"
         }
     },
     "extra": {
