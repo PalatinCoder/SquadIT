@@ -15,10 +15,10 @@
                 <f:for each="{squad.members}" as="member">
                     <li class="media">
                         <div class="media-left">
-                            <img src="https://place-hold.it/30/888/fff&fontsize=14&text={member.firstname -> f:format.crop(maxCharacters: 1, append: '')}{member.lastname -> f:format.crop(maxCharacters: 1, append: '')}" alt="Profile Picture" class="img-circle media-object" />
+                            <img src="{member.profilepictureuri}" alt="{member.fullname}" width="100" class="img-circle media-object" />
                         </div>
                         <div class="media-body">
-                            {member.fullname}
+                            <h4 class="media-heading">{member.fullname}</h4>
                         </div>
                     </li>
                 </f:for>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="media-right media-top">
-        <img class="img-circle media-object" src="https://place-hold.it/150/888/fff&fontsize=32&text={squad.name -> f:format.crop(maxCharacters: 2, append: '')}" alt="Profile Picture" />
+        <img class="img-circle media-object" src="https://placehold.it/150/888/fff?text={squad.name -> f:format.crop(maxCharacters: 2, append: '')}" alt="Profile Picture" />
     </div>
 </div>
 <f:security.ifAccess privilegeTarget="SquadIT.WebApp:Squad.Manage">

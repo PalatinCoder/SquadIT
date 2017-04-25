@@ -6,6 +6,7 @@ namespace SquadIT\WebApp\Domain\Model;
  */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Resource\Resource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,6 +16,12 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class User
 {
+
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Resource\ResourceManager
+     */
+    protected $resourceManager;
 
     /**
      * @Flow\Validate(type="NotEmpty")
@@ -33,8 +40,8 @@ class User
     protected $lastname;
 
     /**
-     * @ORM\Column(nullable=true)
-     * @var string
+     * @ORM\OneToOne
+     * @var Resource
      */
     protected $profilepicture;
 
@@ -110,7 +117,7 @@ class User
     }
 
     /**
-     * @return string
+     * @return Resource
      */
     public function getProfilepicture()
     {
@@ -118,10 +125,21 @@ class User
     }
 
     /**
-     * @param string $profilepicture
+     * @return string
+     */
+    public function getProfilepictureUri() {
+        //\TYPO3\Flow\var_dump($this->profilepicture);
+        if ($this->profilepicture == null) {
+            return "https://placehold.it/200/888/fff?text=" . substr($this->firstname, 0, 1) . substr($this->lastname, 0, 1);
+        }
+        return $this->resourceManager->getPublicPersistentResourceUri($this->profilepicture);
+    }
+
+    /**
+     * @param Resource $profilepicture
      * @return void
      */
-    public function setProfilepicture($profilepicture)
+    public function setProfilepicture(Resource $profilepicture)
     {
         $this->profilepicture = $profilepicture;
     }

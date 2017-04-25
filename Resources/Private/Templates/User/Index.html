@@ -3,40 +3,50 @@
 <f:section name="Title">My Profile</f:section>
 
 <f:section name="Content">
-<f:form method="post" action="update" class="form-horizontal col-sm-6" object="{user}" objectName="user">
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2 class="panel-title">My name</h2>
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            <label for="inputFirstname" class="col-sm-2 control-label">Firstname</label>
-            <div class="col-sm-10">
-                <f:form.textfield property="firstname" class="form-control" id="inputFirstname"/>
-            </div>
+<div class="col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">My name</h2>
         </div>
-        <div class="form-group">
-            <label for="inputLastname" class="col-sm-2 control-label">Lastname</label>
-            <div class="col-sm-10">
-                <f:form.textfield property="lastname"  class="form-control" id="inputLastname" />
+        <div class="panel-body">
+            <f:form method="post" action="update" class="form-horizontal" object="{user}" objectName="user">
+            <div class="form-group">
+                <label for="inputFirstname" class="col-sm-2 control-label">Firstname</label>
+                <div class="col-sm-10">
+                    <f:form.textfield property="firstname" class="form-control" id="inputFirstname"/>
+                </div>
             </div>
+            <div class="form-group">
+                <label for="inputLastname" class="col-sm-2 control-label">Lastname</label>
+                <div class="col-sm-10">
+                    <f:form.textfield property="lastname"  class="form-control" id="inputLastname" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <f:form.submit name="saveUser" value="Save" class="btn btn-primary pull-right" />
+                </div>
+            </div>
+            </f:form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Profile picture</h2>
+        </div>
+        <div class="panel-body">
+            <img class="img-circle center-block" alt="{user.fullname}" src="{user.profilepictureuri}" width="200" height="200" id="profilepicture" style="object-fit: cover;" />
+            <f:form method="post" action="changeProfilepicture" class="form-horizontal" enctype="multipart/form-data">
+            <div class="pull-right">
+                    <label class="btn btn-default">
+                        Browse <f:form.upload name="image" id="imageChooser" class="sr-only" />
+                    </label>
+                    <f:form.submit name="uploadImage" value="Upload" class="btn btn-primary" />
+            </div>
+            </f:form>
         </div>
     </div>
 </div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2 class="panel-title">Profile picture</h2>
-    </div>
-    <div class="panel-body">
-        <p>Hang on, we're working on it!</p>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-12">
-        <f:form.submit name="saveUser" value="Save" class="btn btn-primary pull-right" />
-    </div>
-</div>
-</f:form>
 
 <div class="col-sm-6">
 <div class="panel panel-default">
@@ -93,4 +103,14 @@
 </div>
 </div>
 
+</f:section>
+
+<f:section name="BodyScripts">
+    <script type="text/javascript">
+    $().ready(function() {
+        $("#imageChooser").change(function() {
+            $("img#profilepicture").attr('src', URL.createObjectURL(this.files[0]));
+        })
+    });
+    </script>
 </f:section>

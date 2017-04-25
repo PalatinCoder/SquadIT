@@ -11,6 +11,7 @@ use TYPO3\Flow\Security\Account;
 use TYPO3\Flow\Security\AccountFactory;
 use TYPO3\Flow\Security\Cryptography\HashService;
 use SquadIT\WebApp\Domain\Model\User;
+use SquadIT\WebApp\Utility\CircleImageFilter;
 
 class UserController extends AbstractUserAwareActionController
 {
@@ -26,6 +27,24 @@ class UserController extends AbstractUserAwareActionController
      * @var HashService
      */
     protected $hashService;
+
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Utility\Environment
+     */
+    protected $environment;
+
+    /**
+     * @var \Imagine\Image\ImagineInterface
+     * @Flow\Inject(lazy = false)
+     */
+    protected $imagineService;
+
+    /**
+     * @var \TYPO3\Flow\Resource\ResourceManager
+     * @Flow\Inject
+     */
+    protected $resourceManager;
 
     /**
      * @return void
@@ -98,6 +117,7 @@ class UserController extends AbstractUserAwareActionController
 
     /**
      * Update the user
+     * (only the name as the image is processed in `changeProfilepictureAction`)
      *
      * @param User $user
      * @return void
@@ -105,8 +125,45 @@ class UserController extends AbstractUserAwareActionController
     public function updateAction($user)
     {
         $this->userRepository->update($user);
+
         $this->addFlashMessage('Updated your profile');
         $this->redirect('index');
+    }
+
+    /**
+     * Change the profilepicture of the user
+     *
+     * @param \TYPO3\Flow\Resource\Resource $image
+     *
+     * @return void
+     */
+    public function changeProfilepictureAction($image) {
+
+            // delete the old profile picture
+            if ($this->user->getProfilepicture() != null) $this->resourceManager->deleteResource($this->user->getProfilepicture());
+
+            //now process the image
+            $resourceUri = $image->createTemporaryLocalCopy();
+            $resultingFileExtension = $image->getFileExtension();
+            $transformedImageTemporaryPath = $this->environment->getPathToTemporaryDirectory() . uniqid('ProcessedImage-') . '.' . $resultingFileExtension;
+
+            if (!file_exists($resourceUri)) {
+                throw new \TYPO3\Flow\Exception(sprintf('An error occurred while transforming an image: the resource data of the original image does not exist (%s, %s).', $originalResource->getSha1(), $resourceUri), 1374848224);
+            }
+
+            $imagineImage = $this->imagineService->open($resourceUri);
+            $circleFilter = new CircleImageFilter($this->imagineService, new \Imagine\Image\Box(200,200));
+            $circleFilter->apply($imagineImage)->save($transformedImageTemporaryPath);
+
+            // import the processed image
+            $processedImageResource = $this->resourceManager->importResource($transformedImageTemporaryPath);
+            unlink($transformedImageTemporaryPath); // delete the temporary copy
+            $this->resourceManager->deleteResource($image); // delete the unprocessed image
+            $this->user->setProfilepicture($processedImageResource);  // set the processed one
+
+            $this->userRepository->update($this->user);
+
+            $this->redirect('index');
     }
 
     /**
@@ -147,6 +204,7 @@ class UserController extends AbstractUserAwareActionController
             $this->redirect('index');
         }
 
+        if ($this->user->getProfilepicture() != null) $this->resourceManager->deleteResource($this->user->getProfilepicture());
         $this->userRepository->remove($this->user);
         $this->accountRepository->remove($this->securityContext->getAccount());
         $this->addFlashMessage('Your account has been deleted');
