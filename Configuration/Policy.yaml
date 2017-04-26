@@ -1,5 +1,5 @@
 privilegeTargets:
-  'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
 
     'SquadIT.WebApp:ViewDashboard':
       matcher: 'method(SquadIT\WebApp\Controller\StandardController->indexAction())'
@@ -17,9 +17,9 @@ privilegeTargets:
       matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|initializeUpdate|delete|passLeadership)Action())'
 
 roles:
-  'TYPO3.Flow:Everybody':
+  'Neos.Flow:Everybody':
     privileges: []
-  'TYPO3.Flow:AuthenticatedUser':
+  'Neos.Flow:AuthenticatedUser':
     privileges:
       -
         privilegeTarget: 'SquadIT.WebApp:ViewDashboard'

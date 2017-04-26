@@ -1,16 +1,17 @@
-TYPO3:
+
+Neos:
   Flow:
     security:
       authentication:
         providers:
-          'DefaultProvider':
-            provider: 'PersistedUsernamePasswordProvider'
-            entryPoint: 'WebRedirect'
+          DefaultProvider:
+            provider: PersistedUsernamePasswordProvider
+            entryPoint: WebRedirect
             entryPointOptions:
               routeValues:
-                '@package': 'SquadIT.WebApp'
-                '@controller': 'Authentication'
-                '@action': 'login'
+                '@package': SquadIT.WebApp
+                '@controller': Authentication
+                '@action': login
     mvc:
       routes:
-        'SquadIT.WebApp': TRUE
+        SquadIT.WebApp: true

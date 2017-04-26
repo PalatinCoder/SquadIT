@@ -11,7 +11,7 @@ use SquadIT\WebApp\Domain\Model\User;
 /**
  * Testcase for Squad
  */
-class SquadTest extends \TYPO3\Flow\Tests\UnitTestCase
+class SquadTest extends \Neos\Flow\Tests\UnitTestCase
 {
 
     /**

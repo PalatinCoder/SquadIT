@@ -5,7 +5,7 @@ namespace SquadIT\WebApp\Controller;
  * This file is part of the SquadIT.WebApp package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 class StandardController extends AbstractUserAwareActionController
 {

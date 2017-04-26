@@ -3,8 +3,8 @@ namespace SquadIT\WebApp\Tests\Unit\Domain\Model;
 
 use SquadIT\WebApp\Domain\Model\User;
 use SquadIT\WebApp\Domain\Model\Squad;
-use TYPO3\Flow\Security\AccountFactory;
-use TYPO3\Flow\Security\Account;
+use Neos\Flow\Security\AccountFactory;
+use Neos\Flow\Security\Account;
 
 /*
  * This file is part of the SquadIT.WebApp package.
@@ -13,12 +13,12 @@ use TYPO3\Flow\Security\Account;
 /**
  * Testcase for User
  */
-class UserTest extends \TYPO3\Flow\Tests\UnitTestCase
+class UserTest extends \Neos\Flow\Tests\UnitTestCase
 {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\AccountFactory
+     * @var \Neos\Flow\Security\AccountFactory
      */
     protected $accountFactory;
 

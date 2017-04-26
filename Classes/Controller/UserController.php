@@ -5,11 +5,11 @@ namespace SquadIT\WebApp\Controller;
  * This file is part of the SquadIT.WebApp package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Error\Message;
-use TYPO3\Flow\Security\Account;
-use TYPO3\Flow\Security\AccountFactory;
-use TYPO3\Flow\Security\Cryptography\HashService;
+use Neos\Flow\Annotations as Flow;
+use Neos\Error\Messages\Message;
+use Neos\Flow\Security\Account;
+use Neos\Flow\Security\AccountFactory;
+use Neos\Flow\Security\Cryptography\HashService;
 use SquadIT\WebApp\Domain\Model\User;
 use SquadIT\WebApp\Utility\CircleImageFilter;
 
@@ -30,7 +30,7 @@ class UserController extends AbstractUserAwareActionController
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Utility\Environment
+     * @var \Neos\Flow\Utility\Environment
      */
     protected $environment;
 
@@ -41,7 +41,7 @@ class UserController extends AbstractUserAwareActionController
     protected $imagineService;
 
     /**
-     * @var \TYPO3\Flow\Resource\ResourceManager
+     * @var \Neos\Flow\ResourceManagement\ResourceManager
      * @Flow\Inject
      */
     protected $resourceManager;
@@ -104,11 +104,11 @@ class UserController extends AbstractUserAwareActionController
          * Perform login for the created account
          */
 
-        /** @var \TYPO3\Flow\Security\Authentication\Token\UsernamePassword */
-        $authenticationTokens = $this->securityContext->getAuthenticationTokensOfType('TYPO3\Flow\Security\Authentication\Token\UsernamePassword');
+        /** @var \Neos\Flow\Security\Authentication\Token\UsernamePassword */
+        $authenticationTokens = $this->securityContext->getAuthenticationTokensOfType('Neos\Flow\Security\Authentication\Token\UsernamePassword');
         if (count($authenticationTokens) === 1) {
             $authenticationTokens[0]->setAccount($account);
-            $authenticationTokens[0]->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+            $authenticationTokens[0]->setAuthenticationStatus(\Neos\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
         }
 
         $this->addFlashMessage('Registration successful');
@@ -133,7 +133,7 @@ class UserController extends AbstractUserAwareActionController
     /**
      * Change the profilepicture of the user
      *
-     * @param \TYPO3\Flow\Resource\Resource $image
+     * @param \Neos\Flow\ResourceManagement\PersistentResource $image
      *
      * @return void
      */
@@ -148,7 +148,7 @@ class UserController extends AbstractUserAwareActionController
             $transformedImageTemporaryPath = $this->environment->getPathToTemporaryDirectory() . uniqid('ProcessedImage-') . '.' . $resultingFileExtension;
 
             if (!file_exists($resourceUri)) {
-                throw new \TYPO3\Flow\Exception(sprintf('An error occurred while transforming an image: the resource data of the original image does not exist (%s, %s).', $originalResource->getSha1(), $resourceUri), 1374848224);
+                throw new \Neos\Flow\Exception(sprintf('An error occurred while transforming an image: the resource data of the original image does not exist (%s, %s).', $originalResource->getSha1(), $resourceUri), 1374848224);
             }
 
             $imagineImage = $this->imagineService->open($resourceUri);
