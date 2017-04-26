@@ -6,7 +6,7 @@
     "require": {
         "neos/flow": "~4.0.0",
         "neos/twitter-bootstrap": "~3.0",
-        "typo3/imagine": "~3.0"
+        "neos/imagine": "~3.0"
     },
     "name": "squadit/webapp",
     "autoload": {
