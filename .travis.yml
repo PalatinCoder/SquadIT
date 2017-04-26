@@ -22,6 +22,7 @@ install:
     - cd flow-base-distribution
     - composer config repositories.github vcs https://github.com/PalatinCoder/SquadIT.WebApp.git
     - composer require squadit/webapp:dev-$TRAVIS_PULL_REQUEST_BRANCH
+    - composer remove neos/welcome
     - rm -rf Packages/Application/SquadIT.WebApp
     - mv ../SquadIT.WebApp Packages/Application/SquadIT.WebApp
     - composer install -d Build/Behat
@@ -34,7 +35,6 @@ before_script:
   - echo 'zend.enable_gc = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'report_zend_debug = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'report_memleaks = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  - cp Configuration/Settings.yaml.example Configuration/Settings.yaml
   - Build/BuildEssentials/TravisCi/SetupDatabase.sh
   - cp Configuration/Settings.yaml Configuration/Testing/
   - if [ -f Configuration/Routes.yaml ]; then rm Configuration/Routes.yaml; fi
