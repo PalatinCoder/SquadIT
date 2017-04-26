@@ -30,7 +30,7 @@ class Version20161129090407 extends AbstractMigration
         $this->addSql('CREATE TABLE squadit_webapp_domain_model_squad (persistence_object_identifier VARCHAR(40) NOT NULL, name VARCHAR(80) NOT NULL, description VARCHAR(255) DEFAULT NULL, picture VARCHAR(255) NOT NULL, PRIMARY KEY(persistence_object_identifier)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE squadit_webapp_domain_model_user (persistence_object_identifier VARCHAR(40) NOT NULL, squad VARCHAR(40) DEFAULT NULL, account VARCHAR(40) DEFAULT NULL, firstname VARCHAR(80) NOT NULL, lastname VARCHAR(80) NOT NULL, profilepicture VARCHAR(255) DEFAULT NULL, INDEX IDX_7FD23F7DCFD0FFE7 (squad), UNIQUE INDEX UNIQ_7FD23F7D7D3656A4 (account), PRIMARY KEY(persistence_object_identifier)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE squadit_webapp_domain_model_user ADD CONSTRAINT FK_7FD23F7DCFD0FFE7 FOREIGN KEY (squad) REFERENCES squadit_webapp_domain_model_squad (persistence_object_identifier)');
-        $this->addSql('ALTER TABLE squadit_webapp_domain_model_user ADD CONSTRAINT FK_7FD23F7D7D3656A4 FOREIGN KEY (account) REFERENCES typo3_flow_security_account (persistence_object_identifier)');
+        $this->addSql('ALTER TABLE squadit_webapp_domain_model_user ADD CONSTRAINT FK_7FD23F7D7D3656A4 FOREIGN KEY (account) REFERENCES neos_flow_security_account (persistence_object_identifier)');
     }
 
     /**
