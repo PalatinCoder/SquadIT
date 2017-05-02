@@ -11,3 +11,5 @@ Our FP calculation can be found [here](https://github.com/PalatinCoder/SquadIT.W
 In the following diagram we connected our logged times with the function points:
 
 ![Screenshot]({{ site.url }}{{ site.baseurl }}/images/FP_estimate.png)
+
+You can see that many points are quite far from the trend line. The reason for this is, that on the one hand our Framework (Flow) decreases the workload we have for many use cases (especially CRUDs). On the other hand some features which don't have many function points took a long time to implement (e.g. profile pictures).
