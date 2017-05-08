@@ -26,6 +26,7 @@ install:
     - rm -rf Packages/Application/SquadIT.WebApp
     - mv ../SquadIT.WebApp Packages/Application/SquadIT.WebApp
     - composer install -d Build/Behat
+    - composer require -d Build/Behat satooshi/php-coveralls
 
 before_script:
   - phpenv config-rm xdebug.ini
@@ -44,6 +45,9 @@ script:
     # TODO Unit & Functional Tests
     - ./bin/phpunit --colors --stop-on-failure -c Packages/Application/SquadIT.WebApp/Tests/UnitTests.xml
     - ./bin/behat --ansi --stop-on-failure -f progress,failed -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml --tags ~@skip
+
+after_success:
+  - travis_retry php vendor/bin/coveralls
 
 deploy:
     provider: script
