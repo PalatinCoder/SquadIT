@@ -26,9 +26,9 @@ install:
     - rm -rf Packages/Application/SquadIT.WebApp
     - mv ../SquadIT.WebApp Packages/Application/SquadIT.WebApp
     - composer install -d Build/Behat
+    - composer require -d Build/Behat satooshi/php-coveralls
 
 before_script:
-  - phpenv config-rm xdebug.ini
   - echo 'date.timezone = "Antarctica/Troll"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'opcache.fast_shutdown = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'opcache.enable_cli = 0' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
@@ -44,6 +44,10 @@ script:
     # TODO Unit & Functional Tests
     - ./bin/phpunit --colors --stop-on-failure -c Packages/Application/SquadIT.WebApp/Tests/UnitTests.xml
     - ./bin/behat --ansi --stop-on-failure -f progress,failed -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml --tags ~@skip
+
+after_success:
+  - cd Packages/Application/SquadIT.WebApp
+  - travis_retry php ../../../bin/coveralls -v
 
 deploy:
     provider: script
