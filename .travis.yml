@@ -47,7 +47,7 @@ script:
     - ./bin/behat --ansi --stop-on-failure -f progress,failed -c Packages/Application/SquadIT.WebApp/Tests/Behavior/behat.yml --tags ~@skip
 
 after_success:
-  - travis_retry php vendor/bin/coveralls
+  - travis_retry php ./bin/coveralls
 
 deploy:
     provider: script
