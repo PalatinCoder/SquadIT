@@ -8,7 +8,7 @@ We started the semester with defining the scope. Our Use Cases stay as planned i
 
 ![Overall use case diagram](https://raw.githubusercontent.com/PalatinCoder/SquadIT.WebApp/master/Documentation/overall_UCD_s2.png)
 
-<!-- Zeittracking einfügen, Risikenplan einfügen --!>
+<!-- Zeittracking einfügen, Risikenplan einfügen -->
 
 We are looking forward to recieve your critics in the comment section.
 
