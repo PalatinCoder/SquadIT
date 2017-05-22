@@ -11,7 +11,6 @@ use Neos\Flow\Security\Account;
 use Neos\Flow\Security\AccountFactory;
 use Neos\Flow\Security\Cryptography\HashService;
 use SquadIT\WebApp\Domain\Model\User;
-use SquadIT\WebApp\Utility\CircleImageFilter;
 
 class UserController extends AbstractUserAwareActionController
 {
@@ -21,7 +20,6 @@ class UserController extends AbstractUserAwareActionController
      */
     protected $accountFactory;
 
-
     /**
      * @Flow\Inject
      * @var HashService
@@ -29,22 +27,16 @@ class UserController extends AbstractUserAwareActionController
     protected $hashService;
 
     /**
-     * @Flow\Inject
-     * @var \Neos\Flow\Utility\Environment
-     */
-    protected $environment;
-
-    /**
-     * @var \Imagine\Image\ImagineInterface
-     * @Flow\Inject(lazy = false)
-     */
-    protected $imagineService;
-
-    /**
      * @var \Neos\Flow\ResourceManagement\ResourceManager
      * @Flow\Inject
      */
     protected $resourceManager;
+
+    /**
+     * @var \SquadIT\WebApp\Service\ImageProcessingService
+     * @Flow\Inject
+     */
+    protected $imageProcessingService;
 
     /**
      * @return void
@@ -61,7 +53,7 @@ class UserController extends AbstractUserAwareActionController
      * @param string $email Entered Email (if any)
      * @return void
      */
-    public function registerAction($firstname = null , $lastname = null , $email = null)
+    public function registerAction($firstname = null, $lastname = null, $email = null)
     {
         $this->view->assign('firstname', $firstname);
         $this->view->assign('lastname', $lastname);
@@ -137,33 +129,20 @@ class UserController extends AbstractUserAwareActionController
      *
      * @return void
      */
-    public function changeProfilepictureAction($image) {
+    public function changeProfilepictureAction($image)
+    {
+        // delete the old profile picture
+        if ($this->user->getProfilepicture() != null) {
+            $this->resourceManager->deleteResource($this->user->getProfilepicture());
+        }
 
-            // delete the old profile picture
-            if ($this->user->getProfilepicture() != null) $this->resourceManager->deleteResource($this->user->getProfilepicture());
+        /** @var PersistentResource */
+        $processedImageResource = $this->imageProcessingService->processProfilepicture($image);
+        $this->user->setProfilepicture($processedImageResource);  // set the processed one
 
-            //now process the image
-            $resourceUri = $image->createTemporaryLocalCopy();
-            $resultingFileExtension = $image->getFileExtension();
-            $transformedImageTemporaryPath = $this->environment->getPathToTemporaryDirectory() . uniqid('ProcessedImage-') . '.' . $resultingFileExtension;
+        $this->userRepository->update($this->user);
 
-            if (!file_exists($resourceUri)) {
-                throw new \Neos\Flow\Exception(sprintf('An error occurred while transforming an image: the resource data of the original image does not exist (%s, %s).', $originalResource->getSha1(), $resourceUri), 1374848224);
-            }
-
-            $imagineImage = $this->imagineService->open($resourceUri);
-            $circleFilter = new CircleImageFilter($this->imagineService, new \Imagine\Image\Box(200,200));
-            $circleFilter->apply($imagineImage)->save($transformedImageTemporaryPath);
-
-            // import the processed image
-            $processedImageResource = $this->resourceManager->importResource($transformedImageTemporaryPath);
-            unlink($transformedImageTemporaryPath); // delete the temporary copy
-            $this->resourceManager->deleteResource($image); // delete the unprocessed image
-            $this->user->setProfilepicture($processedImageResource);  // set the processed one
-
-            $this->userRepository->update($this->user);
-
-            $this->redirect('index');
+        $this->redirect('index');
     }
 
     /**
@@ -204,7 +183,9 @@ class UserController extends AbstractUserAwareActionController
             $this->redirect('index');
         }
 
-        if ($this->user->getProfilepicture() != null) $this->resourceManager->deleteResource($this->user->getProfilepicture());
+        if ($this->user->getProfilepicture() != null) {
+            $this->resourceManager->deleteResource($this->user->getProfilepicture());
+        }
         $this->userRepository->remove($this->user);
         $this->accountRepository->remove($this->securityContext->getAccount());
         $this->addFlashMessage('Your account has been deleted');
