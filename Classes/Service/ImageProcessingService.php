@@ -11,6 +11,7 @@ use Neos\Flow\Exception;
 
 /**
  * @Flow\Scope("singleton")
+ * @codeCoverageIgnore
  */
 class ImageProcessingService
 {
