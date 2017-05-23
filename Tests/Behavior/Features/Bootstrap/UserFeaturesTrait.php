@@ -5,7 +5,7 @@ use Behat\Gherkin\Node\TableNode;
 use SquadIT\WebApp\Domain\Repository\UserRepository;
 use SquadIT\WebApp\Domain\Model\User;
 use Neos\Flow\Security\AccountRepository;
-use PHPUnit_Framework_Assert as Assert;
+use PHPUnit\Framework\Assert as Assert;
 
 /**
  * This trait contains the step definitions for the features related to the user management#
