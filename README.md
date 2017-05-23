@@ -16,29 +16,29 @@ If you want to use SquadIT, you can use our [hosted service](https://squadit-ser
 ## Installation
 
 ### Environment setup
-* As SquadIT is built on the foundation of the Flow you need to setup your server to match it's [requirements](http://flowframework.readthedocs.io/en/stable/TheDefinitiveGuide/PartII/Requirements.html). Furthermore, SquadIT needs imagick to do image processing, so make sure this is installed on your system.
+* As SquadIT is built on the foundation of Flow you need to setup your server to match it's [requirements](http://flowframework.readthedocs.io/en/stable/TheDefinitiveGuide/PartII/Requirements.html). Furthermore, SquadIT needs imagick to do image processing, so make sure this is installed on your system.
 
-* Package management is done by composer. To install it, follow the [installation instructions](https://getcomposer.org/download/). If you're on a linux system (which you should be), in most cases the installation of composer is as simple as `curl -s https://getcomposer.org/installer | php`
+* Package management is done by composer. To install it, follow the [installation instructions](https://getcomposer.org/download/). If you're on a linux system (which you should be), in most cases the installation of composer is as simple as `~$ curl -s https://getcomposer.org/installer | php`
 
 ### Application
 
 To install the application execute the following commands:
 
 * Get the framework's base distribution <br>
-`composer create-project --no-install neos/flow-base-distribution <INSTALL_DIR>` <br>
-`cd <INSTALL_DIR>`
+`~$ composer create-project --no-install neos/flow-base-distribution <INSTALL_DIR>` <br>
+`~$ cd <INSTALL_DIR>`
 
 * Add the Github repo for SquadIT <br>
-`composer config repositories.squadit vcs https://github.com/PalatinCoder/SquadIT.WebApp.git`
+`~$ composer config repositories.squadit vcs https://github.com/PalatinCoder/SquadIT.WebApp.git`
 
 * Add the SquadIT package <br>
-`composer require --no-update squadit/webapp:dev-master`
+`~$ composer require --no-update squadit/webapp:dev-master`
 
 * Remove the flow welcome package <br>
-`composer remove --no-update neos/welcome`
+`~$ composer remove --no-update neos/welcome`
 
 * Now install all the packages <br>
-`composer install --no-dev`
+`~$ composer install --no-dev`
 
 ### Checking the installation
 
