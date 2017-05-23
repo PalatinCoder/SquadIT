@@ -4,7 +4,7 @@ namespace SquadIT\WebApp\Tests\Behavior\Features\Bootstrap;
 use Behat\Gherkin\Node\TableNode;
 use Neos\Flow\Security\AccountRepository;
 use Neos\Flow\Security\AccountFactory;
-use PHPUnit_Framework_Assert as Assert;
+use PHPUnit\Framework\Assert as Assert;
 
 /**
  * A trait containing step definitions regarding accounts
