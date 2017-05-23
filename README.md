@@ -17,7 +17,8 @@ If you want to use SquadIT, you can use our [hosted service](https://squadit-ser
 ## Installation
 
 ### Environment setup
-* As SquadIT is built on the foundation of Flow you need to setup your server to match it's [requirements](http://flowframework.readthedocs.io/en/stable/TheDefinitiveGuide/PartII/Requirements.html). Furthermore, SquadIT needs imagick to do image processing, so make sure this is installed on your system.
+Make sure to read the following instructions carefully (also the linked ones), as most difficulties are related to an improperly setup environment.
+* As SquadIT is built on the foundation of Flow you need to setup your server to match it's [requirements](http://flowframework.readthedocs.io/en/stable/TheDefinitiveGuide/PartII/Requirements.html). In addition to the instructions in this document, consider the [Flow Framework installation instructions](http://flowframework.readthedocs.io/en/stable/TheDefinitiveGuide/PartII/Installation.html). Furthermore, SquadIT needs imagick to do image processing, so make sure this is installed on your system.
 
 * Package management is done by composer. To install it, follow the [installation instructions](https://getcomposer.org/download/). If you're on a linux system (which you should be), in most cases the installation of composer is as simple as `~$ curl -s https://getcomposer.org/installer | php`
 
