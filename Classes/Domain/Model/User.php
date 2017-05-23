@@ -62,7 +62,6 @@ class User
      * @param string $firstname
      * @param string $lastname
      * @param \Neos\Flow\Security\Account $account
-     * @return void
      */
     public function __construct($firstname, $lastname, $account = null)
     {
