@@ -26,7 +26,7 @@ If you want to use SquadIT, you can use our [hosted service](https://squadit-ser
 To install the application execute the following commands:
 
 * Get the framework's base distribution <br>
-`~$ composer create-project --no-install neos/flow-base-distribution <INSTALL_DIR>` <br>
+`~$ composer create-project --no-install neos/flow-base-distribution:~4.1.0 <INSTALL_DIR>` <br>
 `~$ cd <INSTALL_DIR>`
 
 * Add the Github repo for SquadIT <br>
