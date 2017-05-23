@@ -129,7 +129,6 @@ class User
      */
     public function getProfilepictureUri()
     {
-        //\Neos\Flow\var_dump($this->profilepicture);
         if ($this->profilepicture == null) {
             return "https://placehold.it/200/888/fff?text=" . substr($this->firstname, 0, 1) . substr($this->lastname, 0, 1);
         }
