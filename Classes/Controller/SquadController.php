@@ -107,11 +107,39 @@ class SquadController extends AbstractUserAwareActionController
     }
 
     /**
+     * Change the profilepicture of the squad
+     *
+     * @param PersistentResource $image
+     * @param Squad $squad
+     *
+     * @return void
+     */
+    public function changeProfilepictureAction(PersistentResource $image, Squad $squad)
+    {
+        // delete the old profile picture
+        if ($squad->getProfilepicture() != null) {
+            $this->resourceManager->deleteResource($squad->getProfilepicture());
+        }
+
+        /** @var PersistentResource */
+        $processedImageResource = $this->imageProcessingService->processProfilepicture($image);
+        $squad->setProfilepicture($processedImageResource);  // set the processed one
+
+        $this->squadRepository->update($squad);
+
+        $this->redirect('index');
+    }
+
+    /**
      * @param Squad $squad
      * @return void
      */
     public function deleteAction(Squad $squad)
     {
+        if ($squad->getProfilepicture() != null) {
+            $this->resourceManager->deleteResource($squad->getProfilepicture());
+        }
+
         $this->squadRepository->remove($squad);
         $this->addFlashMessage('Deleted the squad.');
         $this->redirect('index', 'Standard');
