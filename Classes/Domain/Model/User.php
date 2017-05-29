@@ -62,7 +62,6 @@ class User
      * @param string $firstname
      * @param string $lastname
      * @param \Neos\Flow\Security\Account $account
-     * @return void
      */
     public function __construct($firstname, $lastname, $account = null)
     {
@@ -129,7 +128,6 @@ class User
      */
     public function getProfilepictureUri()
     {
-        //\Neos\Flow\var_dump($this->profilepicture);
         if ($this->profilepicture == null) {
             return "https://placehold.it/200/888/fff?text=" . substr($this->firstname, 0, 1) . substr($this->lastname, 0, 1);
         }
@@ -154,9 +152,9 @@ class User
     }
 
     /**
-     * @param Collection $squad
+     * @param Collection $squads
      */
-    public function setSquads($squad)
+    public function setSquads($squads)
     {
         $this->squads = $squads;
     }

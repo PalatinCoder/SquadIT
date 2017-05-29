@@ -44,7 +44,6 @@ class Squad
 
     /**
      * @param string $name
-     * @return void
      */
     public function __construct($name)
     {

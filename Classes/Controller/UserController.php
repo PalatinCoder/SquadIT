@@ -161,7 +161,7 @@ class UserController extends AbstractUserAwareActionController
             $referrer = $this->request->getInternalArgument('__referrer');
             $this->redirect($referrer['@action'], $referrer['@controller']);
         }
-        //$account = $this->accountRepository->find($account);
+
         $account->setCredentialsSource($this->hashService->hashPassword($password, 'default'));
         $this->accountRepository->update($account);
 

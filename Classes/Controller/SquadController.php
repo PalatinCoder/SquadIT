@@ -135,8 +135,6 @@ class SquadController extends AbstractUserAwareActionController
          $this->accountRepository->update($this->user->getAccount());
          $this->accountRepository->update($user->getAccount());
 
-         //$this->persistenceManager->persistAll();
-
          $this->addFlashMessage('%s is now team captain of %s', null, null, array($user->getFullName(), $squad->getName()));
          $this->redirect('show', null, null, array('squad' => $squad));
      }
