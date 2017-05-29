@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "neos-package",
     "require": {
-        "neos/flow": "~4.0.0",
+        "neos/flow": "~4.1.0",
         "neos/twitter-bootstrap": "~3.0",
         "neos/imagine": "~3.0"
     },

@@ -18,7 +18,7 @@ install:
     # Variable is empty when building a push. As this only happens on master, set it preemptively
     - if [ -z $TRAVIS_PULL_REQUEST_BRANCH ]; then export TRAVIS_PULL_REQUEST_BRANCH="master"; fi
     - cd ..
-    - git clone https://github.com/neos/flow-base-distribution.git -b 4.0
+    - git clone https://github.com/neos/flow-base-distribution.git -b 4.1
     - cd flow-base-distribution
     - composer config repositories.github vcs https://github.com/PalatinCoder/SquadIT.WebApp.git
     - composer require squadit/webapp:dev-$TRAVIS_PULL_REQUEST_BRANCH
