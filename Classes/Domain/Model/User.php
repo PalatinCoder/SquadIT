@@ -152,9 +152,9 @@ class User
     }
 
     /**
-     * @param Collection $squad
+     * @param Collection $squads
      */
-    public function setSquads($squad)
+    public function setSquads($squads)
     {
         $this->squads = $squads;
     }
