@@ -12,6 +12,7 @@ use Neos\Flow\Security\Policy\PolicyService;
 use SquadIT\WebApp\Domain\Model\Squad;
 use SquadIT\WebApp\Domain\Repository\SquadRepository;
 use SquadIT\WebApp\Domain\Model\User;
+use SquadIT\WebApp\Service\ImageProcessingService;
 
 class SquadController extends AbstractUserAwareActionController
 {
@@ -32,6 +33,18 @@ class SquadController extends AbstractUserAwareActionController
      * @var SquadRepository
      */
     protected $squadRepository;
+
+    /**
+     * @Flow\Inject
+     * @var ImageProcessingService
+     */
+    protected $imageProcessingService;
+
+    /**
+     * @Flow\Inject
+     * @var \Neos\Flow\ResourceManagement\ResourceManager
+     */
+    protected $resourceManager;
 
     /**
      * @param Squad $squad
@@ -71,6 +84,19 @@ class SquadController extends AbstractUserAwareActionController
         $account->addRole($role);
         $this->accountRepository->update($account);
         $this->persistenceManager->persistAll();
+
+        /** @var PersistentResource */
+        $profilepicture = $newSquad->getProfilepicture();
+
+        if ($profilepicture) {
+            // delete the uploaded profile picture
+            $this->resourceManager->deleteResource($profilepicture);
+            /** @var PersistentResource */
+            $processedImage = $this->imageProcessingService->processProfilepicture($profilepicture);
+            // set the processed one
+            $newSquad->setProfilepicture($processedImage);
+        }
+
 
         $this->squadRepository->add($newSquad);
         $this->addFlashMessage('Created a new squad.');
