@@ -28,8 +28,10 @@
             <li><f:link.action controller="Squad" action="new"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="color: green"></span> Create new..</f:link.action></li>
           </ul>
         </li>
-        <li><a href="#">Calendar</a></li>
-        <li><a href="#">Message Board</a></li>
+        <f:if condition="{squad}">
+            <li><f:link.action controller="event" action="index" arguments="{squad: squad}">Squalendar</f:link.action></li>
+            <li><a href="#">Message Board</a></li>
+        </f:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
