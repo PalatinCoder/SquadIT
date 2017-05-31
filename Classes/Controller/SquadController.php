@@ -127,33 +127,18 @@ class SquadController extends AbstractUserAwareActionController
      */
     public function updateAction(Squad $squad)
     {
+        // update and persist so that the resource is actually imported thus accessible to the processing service
         $this->squadRepository->update($squad);
-        $this->addFlashMessage('Updated %s', null, null, array($squad->getName()));
-        $this->redirect('show', null, null, array('squad' => $squad));
-    }
-
-    /**
-     * Change the profilepicture of the squad
-     *
-     * @param PersistentResource $image
-     * @param Squad $squad
-     *
-     * @return void
-     */
-    public function changeProfilepictureAction(PersistentResource $image, Squad $squad)
-    {
-        // delete the old profile picture
-        if ($squad->getProfilepicture() != null) {
-            $this->resourceManager->deleteResource($squad->getProfilepicture());
-        }
+        $this->persistenceManager->persistAll();
 
         /** @var PersistentResource */
-        $processedImageResource = $this->imageProcessingService->processProfilepicture($image);
-        $squad->setProfilepicture($processedImageResource);  // set the processed one
+        $processedImageResource = $this->imageProcessingService->processProfilepicture($squad->getProfilepicture());
 
+        $squad->setProfilepicture($processedImageResource);  // set the processed picture, uploaded one will be deleted
         $this->squadRepository->update($squad);
 
-        $this->redirect('index');
+        $this->addFlashMessage('Updated %s', null, null, array($squad->getName()));
+        $this->redirect('show', null, null, array('squad' => $squad));
     }
 
     /**
