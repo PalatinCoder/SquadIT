@@ -7,6 +7,17 @@
     '@package': 'SquadIT.WebApp'
     '@format': 'html'
 -
+  name: 'Squalendar'
+  uriPattern: 'squad/{squad}/squalendar/{@action}'
+  defaults:
+    '@package': 'SquadIT.WebApp'
+    '@controller': 'Event'
+    '@action': 'index'
+    '@format': 'html'
+  routeParts:
+    squad:
+      objectType: 'SquadIT\WebApp\Domain\Model\Squad'
+-
   name: 'Squad Management'
   uriPattern: 'squad/{squad}/{@action}'
   defaults:
