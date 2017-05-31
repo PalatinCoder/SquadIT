@@ -11,7 +11,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Neos\Flow\ResourceManagement\PersistentResource;
 
-
 /**
  * @Flow\Entity
  */
@@ -104,9 +103,6 @@ class Squad
     }
 
     /**
-     * @param PersistentResource $picture
-     * @param Squad $squad
-     *
      * @return string
      */
     public function getProfilepictureUri()
