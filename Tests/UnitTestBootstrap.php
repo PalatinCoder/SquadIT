@@ -55,7 +55,7 @@ function loadClassForTesting($className)
             $classFilePathAndName .= $classNamePart;
             if (file_exists($classFilePathAndName . '/Classes')) {
                 $packageKeyParts = array_slice($classNameParts, 0, $index + 1);
-                $classesOrTests = ($classNameParts[$index + 1] === 'Tests' && isset($classNameParts[$index + 2]) && $classNameParts[$index + 2] === 'Unit') ? '/' : '/Classes/' . implode('/', $packageKeyParts) . '/';
+                $classesOrTests = ($classNameParts[$index + 1] === 'Tests' && isset($classNameParts[$index + 2]) && $classNameParts[$index + 2] === 'Unit') ? '/' : '/Classes/';
                 $classesFilePathAndName = $classFilePathAndName . $classesOrTests . implode('/', array_slice($classNameParts, $index + 1)) . '.php';
                 if (is_file($classesFilePathAndName)) {
                     require($classesFilePathAndName);

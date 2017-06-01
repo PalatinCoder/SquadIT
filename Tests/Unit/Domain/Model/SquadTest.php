@@ -41,9 +41,20 @@ class SquadTest extends \Neos\Flow\Tests\UnitTestCase
     /**
      * @test
      */
-    public function aPictureCanBeSet()
+    public function theCorrectProfilePictureUriCanBeRetrieved()
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
+    }
+
+    /**
+     * @test
+     */
+    public function aPlaceholderIsShownIfTheSquadHasNoProfilepicture()
+    {
+        $squad = new Squad("Testsquad");
+        $uri = $squad->getProfilepictureUri();
+        $this->assertStringStartsWith('https://placehold.it', $uri, "The URI host is not placehold.it");
+        $this->assertStringEndsWith('text=Te', $uri, "The URI does not contain the user initials");
     }
 
     /**
