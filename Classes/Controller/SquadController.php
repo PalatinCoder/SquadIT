@@ -12,6 +12,7 @@ use Neos\Flow\Security\Policy\PolicyService;
 use SquadIT\WebApp\Domain\Model\Squad;
 use SquadIT\WebApp\Domain\Repository\SquadRepository;
 use SquadIT\WebApp\Domain\Model\User;
+use SquadIT\WebApp\Service\ImageProcessingService;
 
 class SquadController extends AbstractUserAwareActionController
 {
@@ -32,6 +33,18 @@ class SquadController extends AbstractUserAwareActionController
      * @var SquadRepository
      */
     protected $squadRepository;
+
+    /**
+     * @Flow\Inject
+     * @var ImageProcessingService
+     */
+    protected $imageProcessingService;
+
+    /**
+     * @Flow\Inject
+     * @var \Neos\Flow\ResourceManagement\ResourceManager
+     */
+    protected $resourceManager;
 
     /**
      * @param Squad $squad
@@ -72,6 +85,19 @@ class SquadController extends AbstractUserAwareActionController
         $this->accountRepository->update($account);
         $this->persistenceManager->persistAll();
 
+        /** @var PersistentResource */
+        $profilepicture = $newSquad->getProfilepicture();
+
+        if ($profilepicture) {
+            // delete the uploaded profile picture
+            $this->resourceManager->deleteResource($profilepicture);
+            /** @var PersistentResource */
+            $processedImage = $this->imageProcessingService->processProfilepicture($profilepicture);
+            // set the processed one
+            $newSquad->setProfilepicture($processedImage);
+        }
+
+
         $this->squadRepository->add($newSquad);
         $this->addFlashMessage('Created a new squad.');
         $this->redirect('show', null, null, array('squad' => $newSquad));
@@ -101,7 +127,16 @@ class SquadController extends AbstractUserAwareActionController
      */
     public function updateAction(Squad $squad)
     {
+        // update and persist so that the resource is actually imported thus accessible to the processing service
         $this->squadRepository->update($squad);
+        $this->persistenceManager->persistAll();
+
+        /** @var PersistentResource */
+        $processedImageResource = $this->imageProcessingService->processProfilepicture($squad->getProfilepicture());
+
+        $squad->setProfilepicture($processedImageResource);  // set the processed picture, uploaded one will be deleted
+        $this->squadRepository->update($squad);
+
         $this->addFlashMessage('Updated %s', null, null, array($squad->getName()));
         $this->redirect('show', null, null, array('squad' => $squad));
     }
@@ -112,6 +147,10 @@ class SquadController extends AbstractUserAwareActionController
      */
     public function deleteAction(Squad $squad)
     {
+        if ($squad->getProfilepicture() != null) {
+            $this->resourceManager->deleteResource($squad->getProfilepicture());
+        }
+
         $this->squadRepository->remove($squad);
         $this->addFlashMessage('Deleted the squad.');
         $this->redirect('index', 'Standard');

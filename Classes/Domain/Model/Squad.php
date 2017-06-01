@@ -9,12 +9,19 @@ use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Neos\Flow\ResourceManagement\PersistentResource;
 
 /**
  * @Flow\Entity
  */
 class Squad
 {
+
+    /**
+     * @Flow\Inject
+     * @var \Neos\Flow\ResourceManagement\ResourceManager
+     */
+    protected $resourceManager;
 
     /**
      * @Flow\Identity
@@ -32,9 +39,10 @@ class Squad
     protected $description;
 
     /**
-     * @var string
+     * @ORM\OneToOne
+     * @var PersistentResource
      */
-    protected $picture;
+    protected $profilepicture;
 
     /**
      * @ORM\ManyToMany(inversedBy="squads")
@@ -86,20 +94,31 @@ class Squad
     }
 
     /**
-     * @return string
+     * @return PersistentResource
      */
-    public function getPicture()
+    public function getProfilepicture()
     {
-        return $this->picture;
+        return $this->profilepicture;
     }
 
     /**
-     * @param string $picture
+     * @return string
+     */
+    public function getProfilepictureUri()
+    {
+        if ($this->profilepicture == null) {
+            return "https://placehold.it/200/888/fff?text=" . substr($this->name, 0, 2);
+        }
+        return $this->resourceManager->getPublicPersistentResourceUri($this->profilepicture);
+    }
+
+    /**
+     * @param PersistentResource $profilepicture
      * @return void
      */
-    public function setPicture($picture)
+    public function setProfilepicture($profilepicture)
     {
-        $this->picture = $picture;
+        $this->profilepicture = $profilepicture;
     }
 
     /**
