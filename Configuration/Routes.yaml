@@ -18,6 +18,16 @@
     squad:
       objectType: 'SquadIT\WebApp\Domain\Model\Squad'
 -
+  name: 'Event Management'
+  uriPattern: 'event/{event}/{@action}'
+  defaults:
+    '@package': 'SquadIT.WebApp'
+    '@format': 'html'
+    '@controller': 'Event'
+  routeParts:
+    event:
+      objectType: 'SquadIT\WebApp\Domain\Model\Event'
+-
   name: 'Squad Management'
   uriPattern: 'squad/{squad}/{@action}'
   defaults:
