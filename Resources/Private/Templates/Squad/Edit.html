@@ -3,55 +3,59 @@
 <f:section name="Title">Edit squad "{squad.name}"</f:section>
 
 <f:section name="Content">
-    <f:form action="update" object="{squad}" objectName="squad" class="form-horizontal" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="profilepicture" class="col-sm-2 control-label">Picture</label>
-        <div class="col-sm-10">
-            <f:form.upload property="profilepicture" />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Squad data</h3>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">Name</label>
-        <div class="col-sm-10">
-            <f:form.textfield property="name" id="name" class="form-control" required="required"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="description" class="col-sm-2 control-label">Description</label>
-        <div class="col-sm-10">
-            <f:form.textarea property="description" id="description" class="form-control" style="resize: vertical"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="memberList" class="col-sm-2 control-label">Member</label>
-        <div class="col-sm-10" id="memberList">
-            <f:for each="{squad.members}" as="member">
-            <div class="checkbox">
-                <label>
-                    <f:form.checkbox property="members" multiple="multiple" value="{member.account.accountidentifier}" checked="true" />
-                    {member.fullname}
-                </label>
+        <div class="panel-body">
+            <f:form action="update" object="{squad}" objectName="squad" class="form-horizontal" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="profilepicture" class="col-sm-2 control-label">Picture</label>
+                <div class="col-sm-10">
+                    <f:form.upload property="profilepicture" />
+                </div>
             </div>
-            </f:for>
-        </div>
-        <div class="col-sm-10 col-sm-offset-2">
-            <div class="input-group">
-                <input type="email" class="form-control" id="inputMemberEmail" placeholder="john.doe@example.com">
-                <span class="input-group-btn">
-                    <button class="btn btn-success" type="button" id="memberListAdd"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="sr-only">Add</span></button>
-                </span>
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <f:form.textfield property="name" id="name" class="form-control" required="required"/>
+                </div>
             </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <f:form.textarea property="description" id="description" class="form-control" style="resize: vertical"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="memberList" class="col-sm-2 control-label">Member</label>
+                <div class="col-sm-10" id="memberList">
+                    <f:for each="{squad.members}" as="member">
+                    <div class="checkbox">
+                        <label>
+                            <f:form.checkbox property="members" multiple="multiple" value="{member.account.accountidentifier}" checked="true" />
+                            {member.fullname}
+                        </label>
+                    </div>
+                    </f:for>
+                </div>
+                <div class="col-sm-10 col-sm-offset-2">
+                    <div class="input-group">
+                        <input type="email" class="form-control" id="inputMemberEmail" placeholder="john.doe@example.com">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="button" id="memberListAdd"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="sr-only">Add</span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-10">
+                    <f:form.submit value="Update" class="btn btn-primary btn-block"/>
+                </div>
+            </div>
+            </f:form>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-sm-2 col-sm-offset-8">
-            <f:form.submit value="Update" class="btn btn-primary btn-block"/>
-        </div>
-        <div class="col-sm-2">
-            <input type="submit" value="Delete" class="btn btn-danger btn-block" formaction="{f:uri.action(controller: 'squad', action: 'delete')}" />
-        </div>
-    </div>
-    </f:form>
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -59,13 +63,34 @@
         </div>
         <div class="panel-body">
             <p>Select the member who you want to become team captain<p>
-            <f:form action="passLeadership" method="post" class="form" arguments="{'squad': squad}">
+            <f:form action="passLeadership" method="post" class="form-horizontal" arguments="{'squad': squad}">
                 <div class="form-group">
                     <f:form.select name="user" options="{squad.members}" optionValueField="account.accountidentifier" optionLabelField="fullname" class="form-control" />
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 col-sm-offset-10">
-                        <f:form.submit value="Update" class="btn btn-primary btn-block" />
+                        <f:form.submit value="Pass leadership" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            </f:form>
+        </div>
+    </div>
+
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">Danger zone</h3>
+        </div>
+        <div class="panel-body">
+            <f:form action="delete" method="post" class="form-horizontal" arguments="{squad: squad}">
+                <div class="checkbox">
+                    <label>
+                        <f:form.checkbox name="confirm" additionalAttributes="{'required': 'required'}" value="true" />
+                        Yes, I want to delete the squad "{squad.name}"
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 col-sm-offset-10">
+                        <f:form.submit value="Delete" class="btn btn-danger btn-block" />
                     </div>
                 </div>
             </f:form>
