@@ -16,13 +16,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li><f:link.action action="index" controller="standard">Dashboard</f:link.action></li>
-        <li class="dropdown">
+          <li {f:if(condition: '{currentControllerName} == "Standard"', then: 'class="active"')}><f:link.action action="index" controller="standard">Dashboard</f:link.action></li>
+        <li class="dropdown  {f:if(condition: '{currentControllerName} == "Squad"', then: 'active')}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Squads <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <f:if condition="{user.squads}">
                 <f:for each="{user.squads}" as="currentSquad">
-                <li><f:link.action controller="squad" action="show" arguments="{squad: currentSquad}">{currentSquad.name}</f:link.action></li>
+                <li {f:if(condition: '{currentSquad.name} == {squad.name}', then: 'class="active"')}><f:link.action controller="squad" action="show" arguments="{squad: currentSquad}">{currentSquad.name}</f:link.action></li>
                 </f:for>
                 <li role="separator" class="divider"></li>
             </f:if>
@@ -30,7 +30,7 @@
           </ul>
         </li>
         <f:if condition="{squad}">
-            <li><f:link.action controller="event" action="index" arguments="{squad: squad}">Squalendar</f:link.action></li>
+            <li {f:if(condition: '{currentControllerName} == "Event"', then: 'class="active"')}><f:link.action controller="event" action="index" arguments="{squad: squad}">Squalendar</f:link.action></li>
             <li><a href="#">Message Board</a></li>
         </f:if>
       </ul>
