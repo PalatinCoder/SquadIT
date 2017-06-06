@@ -52,6 +52,40 @@ class EventController extends AbstractUserAwareActionController
     }
 
     /**
+     * @return void
+     */
+    public function initializeCreateAction()
+    {
+        $this->arguments['newEvent']
+        ->getPropertyMappingConfiguration()
+        ->forProperty('startDate')
+            ->setTypeConverterOption(\Neos\Flow\Property\TypeConverter\DateTimeConverter::class,
+                                     \Neos\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d\TH:i');
+        $this->arguments['newEvent']
+        ->getPropertyMappingConfiguration()
+        ->forProperty('endDate')
+            ->setTypeConverterOption(\Neos\Flow\Property\TypeConverter\DateTimeConverter::class,
+                                     \Neos\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d\TH:i');
+    }
+
+    /**
+     * @return void
+     */
+    public function initializeUpdateAction()
+    {
+        $this->arguments['event']
+        ->getPropertyMappingConfiguration()
+        ->forProperty('startDate')
+            ->setTypeConverterOption(\Neos\Flow\Property\TypeConverter\DateTimeConverter::class,
+                                     \Neos\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d\TH:i');
+        $this->arguments['event']
+        ->getPropertyMappingConfiguration()
+        ->forProperty('endDate')
+            ->setTypeConverterOption(\Neos\Flow\Property\TypeConverter\DateTimeConverter::class,
+                                     \Neos\Flow\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'Y-m-d\TH:i');
+    }
+
+    /**
      * @param \SquadIT\WebApp\Domain\Model\Event $newEvent
      * @return void
      */
