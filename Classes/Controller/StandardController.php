@@ -6,6 +6,7 @@ namespace SquadIT\WebApp\Controller;
  */
 
 use Neos\Flow\Annotations as Flow;
+use SquadIT\WebApp\Domain\Model\Event;
 
 class StandardController extends AbstractUserAwareActionController
 {
@@ -14,8 +15,25 @@ class StandardController extends AbstractUserAwareActionController
      */
     public function indexAction()
     {
-        $this->view->assign('foos', array(
-            'bar', 'baz'
-        ));
+        /** @var array<Event> $upcomingEvents */
+        $upcomingEvents = array();
+
+        foreach ($this->user->getSquads() as $squad) {
+            foreach ($squad->getEvents() as $event) {
+                $upcomingEvents[] = $event;
+            }
+        }
+
+        usort($upcomingEvents, function (Event $a, Event $b) {
+            $ad = $a->getStartDate();
+            $bd = $b->getStartDate();
+
+            if ($ad == $bd) {
+                return 0;
+            }
+            return $ad < $bd ? -1 : 1;
+        });
+
+        $this->view->assign('upcomingevents', array_slice($upcomingEvents, 0, 5));
     }
 }

@@ -1,15 +1,121 @@
 <f:layout name="Default" />
 
-<f:section name="Title">Index view of Standard controller</f:section>
+<f:section name="HeaderStyles">
+<style type="text/css">
+.agenda {  }
+
+/* Dates */
+.agenda .agenda-date {
+    width: 160px;
+}
+.agenda .agenda-date .dayofmonth {
+  width: 40px;
+  font-size: 36px;
+  line-height: 36px;
+  text-align: right;
+  margin-right: 10px;
+}
+.agenda .agenda-date .shortdate {
+  font-size: 0.75em;
+}
+
+
+/* Times */
+.agenda .agenda-time { width: 140px; }
+
+
+/* Events */
+.agenda .agenda-events {  }
+.agenda .agenda-events .agenda-event {  }
+</style>
+</f:section>
+
+<f:section name="Title">Your dashboard</f:section>
 
 <f:section name="Content">
-    <h1>A freshly created Fluid template!</h1>
-    <p>Some data set by the controller:</p>
-    <ul>
-        
-        <f:for each="{foos}" as="foo">
-            <li>{foo}</li>
-        </f:for>
-        
-    </ul>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Upcoming events</h3>
+            </div>
+            <f:if condition="{upcomingevents}"><f:then>
+                <div class="agenda">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Event</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <f:for each="{upcomingevents}" as="event">
+                                    <tr>
+                                        <td class="agenda-date">
+                                            <div class="dayofmonth">{f:format.date(date: event.startDate, format: 'd')}</div>
+                                            <div class="shortdate">{f:format.date(date: event.startDate, format: 'F Y')}</div>
+                                        </td>
+                                        <td class="agenda-time">
+                                            {f:format.date(date: event.startDate, format: "H:i")}
+                                        </td>
+                                        <td class="agenda-events">
+                                            <div class="agenda-event">
+                                                <f:link.action controller="event" action="show" arguments="{event: event}">{event.title}</f:link.action>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </f:for>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </f:then><f:else>
+            <div class="panel-body">
+                <p>You have no upcoming events</p>
+            </div>
+            </f:else></f:if>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Recent messages</h3>
+            </div>
+            <div class="panel-body">
+                dummy
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Your squads</h3>
+            </div>
+            <f:if condition="{user.squads}"><f:then>
+            <div class="list-group">
+                <f:for each="{user.squads}" as="currentSquad">
+                <f:link.action controller="squad" action="show" arguments="{squad: currentSquad}" class="list-group-item">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="img-circle media-object" src="{currentSquad.profilepictureuri}" alt="Profilepicture" width="50" />
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{currentSquad.name}</h4>
+                            <p>{currentSquad.description}</h4>
+                        </div>
+                    </div>
+                </f:link.action>
+                </f:for>
+            </div>
+            </f:then><f:else>
+            <div class="panel-body">
+                <p>You are not part of any squad</p>
+            </div>
+            </f:else>
+            </f:if>
+        </div>
+    </div>
+</div>
 </f:section>

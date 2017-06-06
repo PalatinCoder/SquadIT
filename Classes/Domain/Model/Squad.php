@@ -154,4 +154,21 @@ class Squad
      {
          $this->members->add($member);
      }
+
+     /**
+      * @return array
+      */
+     public function getEvents()
+     {
+         return $this->events;
+     }
+
+     /**
+      * @param ArrayCollection $events
+      * @return void
+      */
+     public function setEvents(ArrayCollection $events)
+     {
+         $this->events = $events;
+     }
 }

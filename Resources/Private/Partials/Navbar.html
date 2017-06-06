@@ -8,14 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
-          <img src="" alt="SquadIT">
+      <a class="navbar-brand">
+          <img src="{f:uri.resource(package: 'SquadIT.WebApp', path: 'Assets/logo.png')}" width="100" alt="SquadIT">
       </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+          <li><f:link.action action="index" controller="standard">Dashboard</f:link.action></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Squads <span class="caret"></span></a>
           <ul class="dropdown-menu">
