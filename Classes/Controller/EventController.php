@@ -10,6 +10,9 @@ use Neos\Flow\Mvc\Controller\ActionController;
 use SquadIT\WebApp\Domain\Model\Event;
 use SquadIT\WebApp\Domain\Model\Squad;
 
+/**
+ * @codeCoverageIgnore
+ */
 class EventController extends AbstractUserAwareActionController
 {
 
