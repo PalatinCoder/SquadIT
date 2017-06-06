@@ -30,11 +30,21 @@
                 <h3>Your squads</h3>
             </div>
             <f:if condition="{user.squads}"><f:then>
-            <ul class="list-group">
+            <div class="list-group">
                 <f:for each="{user.squads}" as="currentSquad">
-                <f:link.action controller="squad" action="show" arguments="{squad: currentSquad}" class="list-group-item">{currentSquad.name}</f:link.action>
+                <f:link.action controller="squad" action="show" arguments="{squad: currentSquad}" class="list-group-item">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="img-circle media-object" src="{currentSquad.profilepictureuri}" alt="Profilepicture" width="50" />
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{currentSquad.name}</h4>
+                            <p>{currentSquad.description}</h4>
+                        </div>
+                    </div>
+                </f:link.action>
                 </f:for>
-            </ul>
+            </div>
             </f:then><f:else>
             <div class="panel-body">
                 <p>You are not part of any squad</p>
