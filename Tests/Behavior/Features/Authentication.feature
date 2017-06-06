@@ -5,6 +5,10 @@ Background:
         | username            | password | role |
         | chef@squadit.de     | chefchef |      |
         | player@squadit.de   | playa    |      |
+    And there are users:
+        | firstname     | lastname      | account           |
+        | Hugo          | Tester        | chef@squadit.de   |
+        | Hans          | Auchtester    | player@squadit.de |
 
 @fixtures
 Scenario: Login
