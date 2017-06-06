@@ -45,6 +45,12 @@ class Squad
     protected $profilepicture;
 
     /**
+     * @ORM\OneToMany(mappedBy="squad")
+     * @var Collection<Event>
+     */
+    protected $events;
+
+    /**
      * @ORM\ManyToMany(inversedBy="squads")
      * @var Collection<User>
      */

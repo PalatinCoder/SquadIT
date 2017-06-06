@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title><f:render section="Title" /> - SquadIT</title>
+        <title><f:format.stripTags><f:render section="Title" /></f:format.stripTags> - SquadIT</title>
         <f:base />
         <f:format.raw><bootstrap:include version="3" includeJQuery="true" /></f:format.raw>
         <link rel="stylesheet" href="{f:uri.resource(package: 'SquadIT.WebApp', path: 'Style/Global.css')}" type="text/css" />
