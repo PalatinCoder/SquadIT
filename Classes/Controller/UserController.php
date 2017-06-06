@@ -142,6 +142,7 @@ class UserController extends AbstractUserAwareActionController
 
         $this->userRepository->update($this->user);
 
+        $this->addFlashMessage('Updated your profile picture');
         $this->redirect('index');
     }
 
