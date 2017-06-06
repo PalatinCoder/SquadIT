@@ -31,11 +31,13 @@ class Event
     /**
      * @var \DateTime
      * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="DateTime")
      */
     protected $startDate;
 
     /**
      * @var \DateTime
+     * @Flow\Validate(type="DateTime")
      */
     protected $endDate;
 
