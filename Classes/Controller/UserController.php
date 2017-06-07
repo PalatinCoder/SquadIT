@@ -85,6 +85,13 @@ class UserController extends AbstractUserAwareActionController
             );
         }
 
+        if ($this->accountRepository->findOneByAccountIdentifier($email) !== null) {
+            $this->addFlashMessage('The entered email is already registered', null, Message::SEVERITY_ERROR);
+            $this->redirect('register', null, null,
+                array('firstname' => $firstname, 'lastname' => $lastname)
+            );
+        }
+
         /** @var Account $account */
         $account = $this->accountFactory->createAccountWithPassword($email, $password);
         $this->accountRepository->add($account);
