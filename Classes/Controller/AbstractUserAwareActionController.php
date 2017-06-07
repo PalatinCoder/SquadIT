@@ -48,5 +48,6 @@ abstract class AbstractUserAwareActionController extends ActionController
             return;
         }
         $view->assign('user', $this->user);
+        $view->assign('currentControllerName', $this->request->getControllerName());
     }
 }

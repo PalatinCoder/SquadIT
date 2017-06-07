@@ -35,7 +35,7 @@
         </f:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li class="dropdown  {f:if(condition: '{currentControllerName} == "User"', then: 'active')}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <img width="30" class="img-circle" src="{user.profilepictureuri}" alt="Profilepicture" />
             {user.firstname} <span class="caret"></span>
