@@ -39,7 +39,7 @@
             <f:form method="post" action="changeProfilepicture" class="form-horizontal" enctype="multipart/form-data">
             <div class="pull-right">
                     <label class="btn btn-default">
-                        Browse <f:form.upload name="image" id="imageChooser" class="sr-only" />
+                        Browse <f:form.upload name="image" id="imageChooser" class="sr-only" additionalAttributes="{required: 'required'}" />
                     </label>
                     <f:form.submit name="uploadImage" value="Upload" class="btn btn-primary" />
             </div>
