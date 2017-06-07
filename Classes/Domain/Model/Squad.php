@@ -57,12 +57,20 @@ class Squad
     protected $members;
 
     /**
-     * @param string $name
+     * @ORM\ManyToOne
+     * @var User
      */
-    public function __construct($name)
+    protected $leader;
+
+    /**
+     * @param string $name
+     * @param User $leader
+     */
+    public function __construct($name, User $leader)
     {
         $this->members = new ArrayCollection();
         $this->name = $name;
+        $this->leader = $leader;
     }
 
     /**
@@ -170,5 +178,22 @@ class Squad
      public function setEvents(ArrayCollection $events)
      {
          $this->events = $events;
+     }
+
+     /**
+      * @return User
+      */
+     public function getLeader()
+     {
+         return $this->leader;
+     }
+
+     /**
+      * @param User $leader
+      * @return void
+      */
+     public function setLeader(User $leader)
+     {
+         $this->leader = $leader;
      }
 }

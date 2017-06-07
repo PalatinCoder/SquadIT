@@ -30,11 +30,11 @@
         <img class="img-circle media-object" src="{squad.profilepictureuri}" alt="Profile Picture" width="150"/>
     </div>
 </div>
-<f:security.ifAccess privilegeTarget="SquadIT.WebApp:Squad.Manage">
+<f:if condition="{squad.leader} == {user}">
     <div class="row">
         <div class="col-sm-offset-10 col-sm-2">
             <f:link.action action="edit" arguments="{squad: squad}" class="btn btn-primary btn-block">Edit</f:link.action>
         </div>
     </div>
-</f:security.ifAccess>
+</f:if>
 </f:section>
