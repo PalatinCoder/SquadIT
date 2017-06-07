@@ -20,7 +20,9 @@ class StandardController extends AbstractUserAwareActionController
 
         foreach ($this->user->getSquads() as $squad) {
             foreach ($squad->getEvents() as $event) {
-                $upcomingEvents[] = $event;
+                if ($event->getStartDate() > new \DateTime) {
+                    $upcomingEvents[] = $event;
+                }
             }
         }
 
