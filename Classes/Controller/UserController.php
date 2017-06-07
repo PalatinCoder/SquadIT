@@ -151,7 +151,9 @@ class UserController extends AbstractUserAwareActionController
      *
      * @param Account $account
      * @param string $password
+     * @Flow\Validate(argumentName="password", type="NotEmpty")
      * @param string $passwordRepeat
+     * @Flow\Validate(argumentName="passwordRepeat", type="NotEmpty")
      *
      * @return void
      */
