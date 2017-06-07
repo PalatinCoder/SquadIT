@@ -18,7 +18,10 @@
                             <img src="{member.profilepictureuri}" alt="{member.fullname}" width="100" class="img-circle media-object" />
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">{member.fullname}</h4>
+                            <h4 class="media-heading">
+                                {member.fullname}
+                                <f:if condition="{squad.leader} == {member}"><span class="badge">Leader</span></f:if>
+                            </h4>
                         </div>
                     </li>
                 </f:for>
