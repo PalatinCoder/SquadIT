@@ -14,7 +14,7 @@ privilegeTargets:
       matcher: 'method(SquadIT\WebApp\Controller\SquadController->(new|create|initializeCreate)Action())'
 
     'SquadIT.WebApp:Squad.ManageOwn':
-      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|delete|passLeadership)Action(squad.leader.account == current.securityContext.account))'
+      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|delete|passLeadership)Action(squad.leader == current.userContext.user))'
     # catch all to deny eveything which doesn't match the expression above
     'SquadIT.WebApp:Squad.ManageForeign':
       matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|delete|passLeadership)Action())'
@@ -23,11 +23,11 @@ privilegeTargets:
       matcher: 'method(SquadIT\WebApp\Controller\EventController->(index|show)Action())'
 
     'SquadIT.WebApp:Squalendar.ManageOwn':
-      matcher: 'method(SquadIT\WebApp\Controller\EventController->(update|delete|edit)Action(event.squad.leader.account == current.securityContext.account))'
+      matcher: 'method(SquadIT\WebApp\Controller\EventController->(update|delete|edit)Action(event.squad.leader == current.userContext.user))'
     'SquadIT.WebApp:Squalendar.ManageOwn.NewEvent':
-      matcher: 'method(SquadIT\WebApp\Controller\EventController->newAction(squad.leader.account == current.securityContext.account))'
+      matcher: 'method(SquadIT\WebApp\Controller\EventController->newAction(squad.leader == current.userContext.user))'
     'SquadIT.WebApp:Squalendar.ManageOwn.CreateEvent':
-      matcher: 'method(SquadIT\WebApp\Controller\EventController->(create)Action(newEvent.squad.leader.account == current.securityContext.account))'
+      matcher: 'method(SquadIT\WebApp\Controller\EventController->(create)Action(newEvent.squad.leader == current.userContext.user))'
     # catch all for squalendar
     'SquadIT.WebApp:Squalendar.ManageForeign':
       matcher: 'method(SquadIT\WebApp\Controller\EventController->(create|update|delete|new|edit)Action())'

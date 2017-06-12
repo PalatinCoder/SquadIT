@@ -3,32 +3,24 @@ namespace SquadIT\WebApp\Controller;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
-use Neos\Flow\Security\Account;
-use Neos\Flow\Security\Context;
-use Neos\Flow\Security\AccountRepository;
+use Neos\Flow\Security\Context as SecurityContext;
 use SquadIT\WebApp\Domain\Model\User;
 use SquadIT\WebApp\Domain\Repository\UserRepository;
+use SquadIT\WebApp\Service\UserContext;
 
 abstract class AbstractUserAwareActionController extends ActionController
 {
-
     /**
      * @Flow\Inject
-     * @var UserRepository
-     */
-    protected $userRepository;
-
-    /**
-     * @Flow\Inject
-     * @var AccountRepository
-     */
-    protected $accountRepository;
-
-    /**
-     * @Flow\Inject
-     * @var Context
+     * @var SecurityContext
      */
     protected $securityContext;
+
+    /**
+     * @Flow\Inject
+     * @var UserContext
+     */
+    protected $userContext;
 
     /**
      * Holds the current user
@@ -43,7 +35,7 @@ abstract class AbstractUserAwareActionController extends ActionController
      */
     public function initializeView(\Neos\Flow\Mvc\View\ViewInterface $view)
     {
-        $this->user = $this->userRepository->findOneByAccount($this->securityContext->getAccount());
+        $this->user = $this->userContext->getUser();
         if ($this->user === null) {
             return;
         }
