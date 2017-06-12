@@ -15,3 +15,6 @@ Neos:
     mvc:
       routes:
         SquadIT.WebApp: true
+    aop:
+      globalObjects:
+        userContext: SquadIT\WebApp\Service\UserContext
