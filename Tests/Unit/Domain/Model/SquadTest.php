@@ -13,13 +13,18 @@ use SquadIT\WebApp\Domain\Model\User;
  */
 class SquadTest extends \Neos\Flow\Tests\UnitTestCase
 {
+    protected $dummyUser;
 
+    protected function setUp()
+    {
+        $this->dummyUser = new User('Dummy', 'User');
+    }
     /**
      * @test
      */
     public function aNameCanBeSetAndRetrievedFromTheSquad()
     {
-        $squad = new Squad('Hugo');
+        $squad = new Squad('Hugo', $this->dummyUser);
         $squad->setName('RandomName');
         $expected = 'RandomName';
         $actual = $squad->getName();
@@ -31,7 +36,7 @@ class SquadTest extends \Neos\Flow\Tests\UnitTestCase
      */
     public function aDescriptionCanBeSetAndRetrievedFromTheSquad()
     {
-        $squad = new Squad('Hugo');
+        $squad = new Squad('Hugo', $this->dummyUser);
         $squad->setDescription('A random description that describes the squad.');
         $expected = 'A random description that describes the squad.';
         $actual = $squad->getDescription();
@@ -51,7 +56,7 @@ class SquadTest extends \Neos\Flow\Tests\UnitTestCase
      */
     public function aPlaceholderIsShownIfTheSquadHasNoProfilepicture()
     {
-        $squad = new Squad("Testsquad");
+        $squad = new Squad("Testsquad", $this->dummyUser);
         $uri = $squad->getProfilepictureUri();
         $this->assertStringStartsWith('https://placehold.it', $uri, "The URI host is not placehold.it");
         $this->assertStringEndsWith('text=Te', $uri, "The URI does not contain the user initials");
@@ -62,7 +67,7 @@ class SquadTest extends \Neos\Flow\Tests\UnitTestCase
      */
     public function aMemberCanBeAddedToASquad()
     {
-        $squad = new Squad('Hugo');
+        $squad = new Squad('Hugo', $this->dummyUser);
         $squad->addMember(new User('Haggl', 'Schorsch'));
         $squad->addMember(new User('Frodo', 'TheHobo'));
         $squad->addMember(new User('Jan', 'Delay'));

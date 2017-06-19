@@ -55,7 +55,7 @@ class UserTest extends \Neos\Flow\Tests\UnitTestCase
     {
         /** @var User $user */
         $user = new User('Hugo', 'Tester');
-        $squad = new Squad('Demo');
+        $squad = new Squad('Demo', $user);
         $user->addSquad($squad);
         $this->assertInstanceOf(Squad::class, $user->getSquads()[0]);
     }
