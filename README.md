@@ -14,6 +14,14 @@ If you want to use SquadIT, you can use our [hosted service](https://squadit-ser
 
 ---
 
+## Docker
+This software ships as a handy [docker image](https://hub.docker.com/r/0rickyy0/squadit/) which you can download and run right away.
+To run the software as docker container use the following command:
+
+`docker run -dit -p 8080:80 0rickyy0/squadit`
+
+[Edit ports accordingly](https://docs.docker.com/engine/reference/run/#expose-incoming-ports) - in production you might want to enable https traffic through port 443 and http traffic through port 80.
+
 ## Installation
 
 ### Environment setup
