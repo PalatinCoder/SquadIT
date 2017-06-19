@@ -71,7 +71,7 @@ Now that Flow works fine you need to set up the web server. Set up a vhost in th
     DocumentRoot /var/www/squadit/Web
     <Directory /var/www/squadit/Web>
         AllowOverride FileInfo Options
-        Options +FolloSymlinks
+        Options +FollowSymlinks
     </Directory>
 </VirtualHost>
 ```
