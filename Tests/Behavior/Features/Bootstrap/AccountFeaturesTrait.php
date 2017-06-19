@@ -24,11 +24,7 @@ trait AccountFeaturesTrait
 
         $hash = $table->getHash();
         foreach ($hash as $row) {
-            if ($row['role'] === "") {
-                $account = $accountFactory->createAccountWithPassword($row['username'], $row['password']);
-            } else {
-                $account = $accountFactory->createAccountWithPassword($row['username'], $row['password'], explode(',', $row['role']));
-            }
+            $account = $accountFactory->createAccountWithPassword($row['username'], $row['password']);
             $accountRepository->add($account);
         }
 
