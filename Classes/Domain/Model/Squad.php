@@ -45,7 +45,7 @@ class Squad
     protected $profilepicture;
 
     /**
-     * @ORM\OneToMany(mappedBy="squad")
+     * @ORM\OneToMany(mappedBy="squad", orphanRemoval=true)
      * @var Collection<Event>
      */
     protected $events;
