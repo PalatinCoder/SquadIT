@@ -13,13 +13,23 @@ privilegeTargets:
     'SquadIT.WebApp:Squad.Create':
       matcher: 'method(SquadIT\WebApp\Controller\SquadController->(new|create|initializeCreate)Action())'
 
-    'SquadIT.WebApp:Squad.Manage':
-      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|initializeUpdate|delete|passLeadership)Action())'
+    'SquadIT.WebApp:Squad.ManageOwn':
+      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|delete|passLeadership)Action(squad.leader == current.userContext.user))'
+    # catch all to deny eveything which doesn't match the expression above
+    'SquadIT.WebApp:Squad.ManageForeign':
+      matcher: 'method(SquadIT\WebApp\Controller\SquadController->(edit|update|delete|passLeadership)Action())'
 
     'SquadIT.WebApp:Squalendar.View':
       matcher: 'method(SquadIT\WebApp\Controller\EventController->(index|show)Action())'
 
-    'SquadIT.WebApp:Squalendar.Manage':
+    'SquadIT.WebApp:Squalendar.ManageOwn':
+      matcher: 'method(SquadIT\WebApp\Controller\EventController->(update|delete|edit)Action(event.squad.leader == current.userContext.user))'
+    'SquadIT.WebApp:Squalendar.ManageOwn.NewEvent':
+      matcher: 'method(SquadIT\WebApp\Controller\EventController->newAction(squad.leader == current.userContext.user))'
+    'SquadIT.WebApp:Squalendar.ManageOwn.CreateEvent':
+      matcher: 'method(SquadIT\WebApp\Controller\EventController->(create)Action(newEvent.squad.leader == current.userContext.user))'
+    # catch all for squalendar
+    'SquadIT.WebApp:Squalendar.ManageForeign':
       matcher: 'method(SquadIT\WebApp\Controller\EventController->(create|update|delete|new|edit)Action())'
 
 roles:
@@ -42,12 +52,15 @@ roles:
       -
         privilegeTarget: 'SquadIT.WebApp:Squalendar.View'
         permission: GRANT
-
-  'SquadIT.WebApp:TeamCaptain':
-    privileges:
       -
-        privilegeTarget: 'SquadIT.WebApp:Squad.Manage'
+        privilegeTarget: 'SquadIT.WebApp:Squad.ManageOwn'
         permission: GRANT
       -
-        privilegeTarget: 'SquadIT.WebApp:Squalendar.Manage'
+        privilegeTarget: 'SquadIT.WebApp:Squalendar.ManageOwn'
+        permission: GRANT
+      -
+        privilegeTarget: 'SquadIT.WebApp:Squalendar.ManageOwn.NewEvent'
+        permission: GRANT
+      -
+        privilegeTarget: 'SquadIT.WebApp:Squalendar.ManageOwn.CreateEvent'
         permission: GRANT

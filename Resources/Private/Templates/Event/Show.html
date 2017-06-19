@@ -34,7 +34,7 @@
             <td>{event.location}</td>
         </tr>
     </table>
-    <f:security.ifAccess privilegeTarget="SquadIT.WebApp:Squad.Manage">
+    <f:if condition="{event.squad.leader} == {user}">
         <div class="row">
             <div class="col-sm-offset-10 col-sm-2">
                 <f:link.action action="edit" arguments="{event: event}" class="btn btn-primary btn-block">
@@ -42,5 +42,5 @@
                 </f:link.action>
             </div>
         </div>
-    </f:security.ifAccess>
+    </f:if>
 </f:section>
