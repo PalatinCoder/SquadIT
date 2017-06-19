@@ -3,9 +3,9 @@ Feature: Squad management
 
 Background:
     Given there are accounts:
-        | username            | password | role                           |
-        | chef@squadit.de     | chefchef | SquadIT.WebApp:TeamCaptain     |
-        | player@squadit.de   | playa    |                                |
+        | username            | password |
+        | chef@squadit.de     | chefchef |
+        | player@squadit.de   | playa    |
     And there are users:
         | firstname     | lastname      | account           |
         | Hugo          | Tester        | chef@squadit.de   |

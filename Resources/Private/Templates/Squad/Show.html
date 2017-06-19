@@ -18,7 +18,10 @@
                             <img src="{member.profilepictureuri}" alt="{member.fullname}" width="100" class="img-circle media-object" />
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">{member.fullname}</h4>
+                            <h4 class="media-heading">
+                                {member.fullname}
+                                <f:if condition="{squad.leader} == {member}"><span class="badge">Leader</span></f:if>
+                            </h4>
                         </div>
                     </li>
                 </f:for>
@@ -30,11 +33,11 @@
         <img class="img-circle media-object" src="{squad.profilepictureuri}" alt="Profile Picture" width="150"/>
     </div>
 </div>
-<f:security.ifAccess privilegeTarget="SquadIT.WebApp:Squad.Manage">
+<f:if condition="{squad.leader} == {user}">
     <div class="row">
         <div class="col-sm-offset-10 col-sm-2">
             <f:link.action action="edit" arguments="{squad: squad}" class="btn btn-primary btn-block">Edit</f:link.action>
         </div>
     </div>
-</f:security.ifAccess>
+</f:if>
 </f:section>
