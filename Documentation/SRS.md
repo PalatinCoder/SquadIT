@@ -77,6 +77,12 @@ Team members can send messages to an internal board.
 
 When an event has been rescheduled or a new message was added to the internal board, e-mails with all the important information and a link to the message or event are sent to the user. Users can disable e-mail notifications
 
+#### 3.1.9 Manage a Squad
+
+The team captain can manage the squad. In particular, he can change the squad's core data and he can add or remove other users to the squad. Furthermore, the team captain can pass the leadership to another member of the squad.
+
+These requirements are described in the use-cases [Manage squad][UC_ManageSquad] and [Pass leadership][UC_PassLeadership].
+
 ### 3.2 Usability
 
 #### 3.2.1 Intuitive interface
@@ -187,3 +193,5 @@ TBD
 [overall_ucd]: overall_ucd.png
 [UC_AddEvent]: UC_AddEvent.md
 [UC_CreateSquad]: UC_CreateSquad.md
+[UC_ManageSquad]: UC_ManageSquad.md
+[UC_PassLeadership]: UC_PassLeadership.md
