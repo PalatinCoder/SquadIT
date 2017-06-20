@@ -59,7 +59,7 @@ This requirement is described in the use-case [Create squad][UC_CreateSquad].
 
 The team captain can manage events like regular matches or tournaments in the squad's calendar. Each events consists of a name, date, description and optionally further notes. Each team member can view the schedule.
 
-This requirement is further described in the use-cases [Add Event][UC_AddEvent], [TBD].
+This requirement is further described in the use-cases [Add Event][UC_AddEvent], [View Schedule][UC_ViewSchedule] and [Edit Event][UC_EditEvent].
 
 #### 3.1.5 Team mates' statuses
 
@@ -195,3 +195,5 @@ TBD
 [UC_CreateSquad]: UC_CreateSquad.md
 [UC_ManageSquad]: UC_ManageSquad.md
 [UC_PassLeadership]: UC_PassLeadership.md
+[UC_ViewSchedule]: UC_ViewSchedule.md
+[UC_EditEvent]: UC_EditEvent.md
