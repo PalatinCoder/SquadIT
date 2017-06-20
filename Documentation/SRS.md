@@ -24,7 +24,11 @@ N/A
 * [GitHub](https://github.com/PalatinCoder/SquadIT.WebApp)
 * Use-Cases
   + [Add Event][UC_AddEvent]
+  + [Edit Event][UC_EditEvent]
+  + [View Schedule][UC_ViewSchedule]
   + [Create Squad][UC_CreateSquad]
+  + [Manage Squad][UC_ManageSquad]
+  + [Pass Leadership][UC_PassLeadership]
 
 ### 1.5 Overview
 
