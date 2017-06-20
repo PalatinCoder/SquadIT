@@ -59,7 +59,7 @@ This requirement is described in the use-case [Create squad][UC_CreateSquad].
 
 The team captain can manage events like regular matches or tournaments in the squad's calendar. Each events consists of a name, date, description and optionally further notes. Each team member can view the schedule.
 
-This requirement is further described in the use-cases [Add Event][UC_AddEvent], [TBD].
+This requirement is further described in the use-cases [Add Event][UC_AddEvent], [View Schedule][UC_ViewSchedule] and [Edit Event][UC_EditEvent].
 
 #### 3.1.5 Team mates' statuses
 
@@ -76,6 +76,12 @@ Team members can send messages to an internal board.
 #### 3.1.8 E-mail notifications
 
 When an event has been rescheduled or a new message was added to the internal board, e-mails with all the important information and a link to the message or event are sent to the user. Users can disable e-mail notifications
+
+#### 3.1.9 Manage a Squad
+
+The team captain can manage the squad. In particular, he can change the squad's core data and he can add or remove other users to the squad. Furthermore, the team captain can pass the leadership to another member of the squad.
+
+These requirements are described in the use-cases [Manage squad][UC_ManageSquad] and [Pass leadership][UC_PassLeadership].
 
 ### 3.2 Usability
 
@@ -187,3 +193,7 @@ TBD
 [overall_ucd]: overall_ucd.png
 [UC_AddEvent]: UC_AddEvent.md
 [UC_CreateSquad]: UC_CreateSquad.md
+[UC_ManageSquad]: UC_ManageSquad.md
+[UC_PassLeadership]: UC_PassLeadership.md
+[UC_ViewSchedule]: UC_ViewSchedule.md
+[UC_EditEvent]: UC_EditEvent.md
